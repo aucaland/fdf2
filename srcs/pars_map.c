@@ -3,10 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/11/30 17:13:28 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/01 23:28:19 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../LIBFT/libft.h"
+
+int *parsing(int fd)
+{
+
+}

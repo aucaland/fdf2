@@ -1,14 +1,16 @@
 NAME		= fdf
-SRC_DIR		= ./srcs
-OBJ_DIR		= ./objs
-SRCS		=
+SRC_DIR		= srcs
+OBJ_DIR		= objs
+SRC_NAME		= test.c\
 
 
 
 
-OBJS		=	$(SRCS:%.c=$(OBJ_DIR)%.o)
+OBJ_NAME		=	$(SRC_NAME:%.c=%.o)
 
-MLX_FLAG = -lft -lmlx -lm
+SRC = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
+
 ####Compil####
 
 CC 		= gcc
@@ -18,50 +20,50 @@ CFLAGS 	= -Wall -Wextra -Werror
 
 UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		MLX_FLAG += -lXext -lX11 -lz
+		MLX_FLAG = -lft -lmlx -lXext -lX11 -lm -lz
 		MLX = ./mlx/mlx_linux
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		MLX_FLAG += -framework OpenGL -framework Appkit
-		MLX = ./mlx/mlx_macos
+		MLX_FLAG = -lft -lmlx -framework OpenGL -framework Appkit
+		MLX = ./mlx/mlx_macos/
 	endif
 
 #####LIBS#####
 
 LIBS	= LIBFT/libft.a $(MLX)/libmlx.a
 LDFLAG	= -LLIBFT -L$(MLX)
-CH_FLAG	= -I$(MLX) -I$(LIBFT) -I./
+CH_FLAG	= -I. -I$(MLX) -I$(LIBFT)
+
 ## Rules ##
 
 all:			$(NAME)
 
 LIBFT/libft.a:
 	@echo "Making LIBFT"
-	@make -C LIBFT
+	@make all -C LIBFT
 
 $(MLX)/libmlx.a:
 	@echo "Making MLX"
-	@make -C $(MLX)
+	@make all -C $(MLX)
 
-$(NAME):		$(OBJS) $(LIBS)
-	@$(CC) $^ -o $(CFLAGS) $(LDFLAG) $(MLX_FLAG)
+$(NAME):	$(LIBS) $(OBJ)
+	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c $(CH_FLAG)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS)  $(CH_FLAG) -c $< -o $@
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	#@$(CC) $(CFLAGS)  $(CH_FLAG) -o $@ -c $<
+	@$(CC) $(CFLAGS) -Imlx/mlx_linux/ -ILIBFT/ -I. -o $@ -c $<
 	@echo "-\033[1;92mCompiling : \033[0m $?"
 
 clean:
-	@rm -rf $(OBJS)
-	@make clean -C $(MLX)
+	@rm -rf $(OBJ)
 	@make clean -C LIBFT
 	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"         \033[0;32m [OK] \033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C LIBFT
-	@make fclean -C $(MLX)
 	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"    \033[0;32m [OK] \033[0m"
 
 re: fclean all
