@@ -1,0 +1,3 @@
+/home/aurel/CLionProjects/Fdf2/cmake-build-debug/CMakeFiles/Fdf2.dir
+/home/aurel/CLionProjects/Fdf2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aurel/CLionProjects/Fdf2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
