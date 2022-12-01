@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/11/29 12:36:34 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/01 23:41:08 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,19 @@ int		ft_put_itoa_hex(size_t nb, char *base_hex);
 char	*ft_create_str(int final_size);
 size_t	ft_pow(int nbr_base, int p);
 size_t	ft_strlen(const char *s);
+
 int		ft_putnbr_cust(int n, int fd);
 int		ft_putnbr_unsigned(unsigned int n, int fd);
 int		ft_put_uitoa_hex(unsigned int nb, char *base_hex);
 int		ft_ustrlen_int(unsigned int n);
 int		ft_printf(const char *format, ...);
 int		count_len(size_t nb, int nbr_base);
+
+/*				GNL						*/
+
+size_t	ft_strlen_gnl(char *str);
+char	*get_next_line_gnl(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_substr_gnl(char *str, unsigned int start, size_t len);
 
 #endif

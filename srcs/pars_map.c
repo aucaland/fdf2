@@ -6,13 +6,16 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/01 23:28:19 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/01 23:31:43 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIBFT/libft.h"
+#include "../fdf.h"
 
 int *parsing(int fd)
 {
+	t_list *map;
 
+	map = ft_lstnew()
 }
