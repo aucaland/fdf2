@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/01 23:41:08 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/01 23:44:57 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		count_len(size_t nb, int nbr_base);
 /*				GNL						*/
 
 size_t	ft_strlen_gnl(char *str);
-char	*get_next_line_gnl(int fd);
+char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_substr_gnl(char *str, unsigned int start, size_t len);
 

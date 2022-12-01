@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/01 20:57:11 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/01 21:03:41 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ typedef struct list_map
 	void *content;
 	struct list_map *next;
 }l_map;
+
+int	is_space(const char str);
 
 #endif
