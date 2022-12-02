@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/01 23:44:57 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/02 10:15:47 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,17 @@ int		count_len(size_t nb, int nbr_base);
 
 /*				GNL						*/
 
+# define BUFFER_SIZE 10
+
 size_t	ft_strlen_gnl(char *str);
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_substr_gnl(char *str, unsigned int start, size_t len);
+char	*ft_strchr_gnl(char *s, int c);
+
+/*				FdF				*/
+
+long long int	ft_atoi_base(char *str, char *base);
+long long int	ft_pow_long(long long int nbr_base, int p);
 
 #endif

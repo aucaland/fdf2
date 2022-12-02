@@ -6,13 +6,13 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:22:53 by aucaland          #+#    #+#             */
-/*   Updated: 2022/11/29 09:54:49 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:10:16 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr_gnl(char *s, int c)
 {
 	char	*str_cast;
 	char	chr_cast;
