@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:20:14 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/01 23:41:09 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/02 11:39:03 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*save_rest(char *line_buf)
 	while (line_buf[i] && line_buf[i] != '\n')
 		i++;
 	if (line_buf[i] == '\n')
-		str = ft_substr(line_buf, i + 1, ft_strlen(line_buf) - i + 1);
+		str = ft_substr_gnl(line_buf, i + 1, ft_strlen_gnl(line_buf) - i + 1);
 	else
 		str = NULL;
 	free(line_buf);
@@ -47,7 +47,7 @@ static char	*get_correct_line(char *line_buf)
 	i = 0;
 	while (line_buf[i] && line_buf[i] != '\n')
 		i++;
-	str = ft_substr(line_buf, 0, i + 1);
+	str = ft_substr_gnl(line_buf, 0, i + 1);
 	return (str);
 }
 
@@ -56,11 +56,11 @@ static char	*get_line_buf(int fd, char *line_buf)
 	char	*buf;
 	ssize_t	lenght;
 
-	buf = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	buf = ft_calloc_gnl(sizeof(char), BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
 	lenght = -1;
-	while (!ft_strchr(buf, '\n') && lenght != 0)
+	while (!ft_strchr_gnl(buf, '\n') && lenght != 0)
 	{
 		lenght = read(fd, buf, BUFFER_SIZE);
 		if (lenght == -1)
@@ -71,7 +71,7 @@ static char	*get_line_buf(int fd, char *line_buf)
 		}
 		buf[lenght] = '\0';
 		if (buf[0] != 0)
-			line_buf = ft_strjoin(line_buf, buf);
+			line_buf = ft_strjoin_gnl(line_buf, buf);
 	}
 	free(buf);
 	buf = NULL;
@@ -105,19 +105,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
-//int main()
-//{
-//	int fd;
-//	char *str;
-//	fd = open("bible.txt", O_RDONLY);
-//	while (1)
-//	{
-//		str = get_next_line(fd);
-//		printf("%s", str);
-//		if (!str)
-//			break ;
-//		free (str);
-//	}
-//	close(fd);
-//}

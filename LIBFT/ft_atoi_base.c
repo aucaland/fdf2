@@ -105,6 +105,8 @@ long long int	ft_atoi_base(char *str, char *base)
 
 	i = 0;
 	nbr_base = 0;
+	if (!is_allowed(base))
+		return (0);
 	while (base[nbr_base])
 		nbr_base++;
 	while (str[i])

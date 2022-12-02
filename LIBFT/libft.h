@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 10:15:47 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:32:35 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -91,13 +95,13 @@ int		count_len(size_t nb, int nbr_base);
 
 /*				GNL						*/
 
-# define BUFFER_SIZE 10
 
 size_t	ft_strlen_gnl(char *str);
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_substr_gnl(char *str, unsigned int start, size_t len);
 char	*ft_strchr_gnl(char *s, int c);
+void	*ft_calloc_gnl(size_t count, size_t size);
 
 /*				FdF				*/
 

@@ -1,22 +1,6 @@
-/home/aurel/CLion-2022.2.4/clion-2022.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/aurel/CLion-2022.2.4/clion-2022.2.4/bin/ninja/linux/ninja -G Ninja -S /home/aurel/CLionProjects/Fdf2 -B /home/aurel/CLionProjects/Fdf2/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/aurel/CLionProjects/Fdf2/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/aucaland/Documents/tronc_commun/FdF
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.23 or higher is required.  You are running version 3.21.1
 
-Cannot get compiler information:
-	Compiler exited with error code 1: /usr/bin/cc -xobjective-c -g -std=gnu90 -fpch-preprocess -v -dD -E
-	Using built-in specs.
-	COLLECT_GCC=/usr/bin/cc
-	OFFLOAD_TARGET_NAMES=nvptx-none
-	OFFLOAD_TARGET_DEFAULT=1
-	Target: x86_64-redhat-linux
-	Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,objc,obj-c++,ada,go,d,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-libstdcxx-backtrace --with-linker-hash-style=gnu --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-12.2.1-20220819/obj-x86_64-redhat-linux/isl-install --enable-offload-targets=nvptx-none --without-cuda-driver --enable-offload-defaulted --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
-	Thread model: posix
-	Supported LTO compression algorithms: zlib zstd
-	gcc version 12.2.1 20220819 (Red Hat 12.2.1-2) (GCC) 
-	COLLECT_GCC_OPTIONS='-g' '-std=gnu90' '-fpch-preprocess' '-v' '-dD' '-E' '-D' '___CIDR_DEFINITIONS_END' '-mtune=generic' '-march=x86-64'
-	 cc1obj -E -quiet -v -D ___CIDR_DEFINITIONS_END /tmp/compiler-file8262624095396412970 -mtune=generic -march=x86-64 -std=gnu90 -fpch-preprocess -g -fworking-directory -dD -dumpbase compiler-file8262624095396412970
-	cc: fatal error: cannot execute 'cc1obj': execvp: No such file or directory
-	compilation terminated.
-	
-	
+
+-- Configuring incomplete, errors occurred!

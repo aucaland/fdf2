@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:22:53 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 10:10:16 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:39:03 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strchr_gnl(char *s, int c)
 	return (NULL);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
 	void	*ptr;
 	size_t	tot;
@@ -54,14 +54,14 @@ char	*ft_substr_gnl(char *str, unsigned int start, size_t len)
 	size_t		i;
 
 	i = 0;
-	if (!str || start >= ft_strlen(str))
+	if (!str || start >= ft_strlen_gnl(str))
 		len = 0;
-	else if (len > ft_strlen(&str[start]))
-		len = ft_strlen(&str[start]);
+	else if (len > ft_strlen_gnl(&str[start]))
+		len = ft_strlen_gnl(&str[start]);
 	dst = malloc(sizeof(char) * (len + 1));
 	if (!dst)
 		return (NULL);
-	while (start <= ft_strlen(str) && str[start] && len > 0)
+	while (start <= ft_strlen_gnl(str) && str[start] && len > 0)
 	{
 		dst[i++] = str[start++];
 		len--;
