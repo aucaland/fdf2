@@ -4,7 +4,7 @@ OBJ_DIR		= objs
 SRC_NAME	= test.c\
 			  hook_define.c\
 			  pars_map.c\
-			  read_map.c
+			  graphics.c
 
 
 

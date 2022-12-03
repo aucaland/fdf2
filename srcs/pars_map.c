@@ -6,11 +6,11 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 21:42:53 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 22:23:43 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 #include <stdio.h>
 
 static int	count_word(t_list *list)
@@ -49,12 +49,13 @@ static int	read_file(t_list **list_pars, int fd)
 	while (str != NULL)
 	{
 		ft_lstadd_back(list_pars, ft_lstnew(ft_strdup(str)));
-		dprintf(1, "%s\n", (char *)(*list_pars)->content);
+//		dprintf(1, "%s\n", (char *)(*list_pars)->content);
 		free(str);
 		count_line++;
 		str = get_next_line(fd);
 	}
 	return (count_line);
+
 }
 
 static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
@@ -66,16 +67,16 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 
 	i = 0;
 	top = list_pars;
-	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
+//	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
 	while (i < nbr_line)
 	{
 		list_content = list_pars->content;
-		dprintf(1, "i=%d - %s\n", i, list_content);
+	//	dprintf(1, "i=%d - %s\n", i, list_content);
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		j = 0;
 		while (j < nbr_word)
 		{
-			dprintf(1, "tab[%d;%d]\n", i, j);
+		//	dprintf(1, "tab[%d;%d]\n", i, j);
 			while (ft_isspace(*list_content))
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi_base((list_content), "0123456789");
@@ -110,23 +111,19 @@ void	parsing(char *path, t_fdf *fdf)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
 		exit(-1);
-	}
-	list_pars = malloc(sizeof(t_list));
-	ft_printf("%s", path);
-	if (!list_pars)
-		exit(-1);
+	list_pars = NULL;
+//	ft_printf("%s", path);
 	nbr_line = read_file(&list_pars, fd);
 	if (nbr_line <= 0)
 		exit(-1);
 //	list_content = list_pars->content;
-	dprintf(1, "%s\n", (char *)list_pars->content);
+//	dprintf(1, "%s\n", (char *)list_pars->content);
 	nbr_word = count_word(list_pars);
-	dprintf(1, "%d\n", nbr_word);
+//	dprintf(1, "%d\n", nbr_word);
 	fdf = init_struct_map(fdf, nbr_line, nbr_word);
-	dprintf(1, "%s", (char *)list_pars->content);
-	dprintf(1, "%d", nbr_word);
+//	dprintf(1, "%s", (char *)list_pars->content);
+//	dprintf(1, "%d", nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
 	close (fd);
 //	ft_printf("%d", fdf->map->tab[0][0]);

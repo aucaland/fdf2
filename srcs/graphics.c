@@ -12,13 +12,3 @@
 
 #include "fdf.h"
 
-int	ft_read_map(char *file)
-{
-	int fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		exit(0);
-	close(fd);
-	return (fd);
-}

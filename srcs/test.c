@@ -6,11 +6,11 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/03 21:19:55 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 22:25:22 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 static t_fdf *init_struct_main()//TODO: init all struct
 {
@@ -44,14 +44,13 @@ int	main(int argc, char **argv)
 
 	fdf = init_struct_main();
 	parsing(argv[1], fdf);
-
-//	fdf->mlx = mlx_init();
-//	fdf->mlx_win = mlx_new_window(fdf->mlx, 800, 800, "Hello ok");
-//	mlx_hook(fdf->mlx_win, 2, 1L<<0, close_win, fdf);
-//	fdf->data->img = mlx_new_image(fdf->mlx, 800, 800);
-//	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
-//								 &fdf->data->endian);
-//	my_mlx_pixel_put(fdf->data, 50, 50, 0x00FF0000);
-//	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img, 0, 0);
-//	mlx_loop(fdf->mlx);
+	fdf->mlx = mlx_init();
+	fdf->mlx_win = mlx_new_window(fdf->mlx, 800, 800, "Hello ok");
+	mlx_hook(fdf->mlx_win, 2, 1L<<0, close_win, fdf);
+	fdf->data->img = mlx_new_image(fdf->mlx, 800, 800);
+	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
+								 &fdf->data->endian);
+	my_mlx_pixel_put(fdf->data, 50, 50, 0x00FF0000);
+	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img, 0, 0);
+	mlx_loop(fdf->mlx);
 }

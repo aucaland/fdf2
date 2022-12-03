@@ -6,15 +6,15 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/03 21:20:54 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 21:47:45 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-# include "mlx.h"
-# include "libft.h"
+# include "mlx/mlx_linux/mlx.h"
+# include "LIBFT/libft.h"
 
 typedef struct	s_data {
 	void	*img;
