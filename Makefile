@@ -48,7 +48,7 @@ $(MLX)/libmlx.a:
 	@make all -C $(MLX)
 
 $(NAME):	$(LIBS) $(OBJ)
-	@$(CC) $^ $(CFLAGS) $(LDFLAG) $(MLX_FLAG) -o $(NAME)
+	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c

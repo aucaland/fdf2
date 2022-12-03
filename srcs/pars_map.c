@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 12:45:39 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 12:53:33 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 	ft_lstclear(&top, &free);
 }
 
-t_fdf *init_struct(int nbr_line)
+t_fdf *init_struct(int nbr_line)//TODO: init all struct
 {
 	t_fdf *fdf;
 
@@ -131,25 +131,12 @@ t_fdf	*parsing(int fd)
 //	dprintf(1, "%s", list_pars->content);
 //	dprintf(1, "%d", nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
-	int j = 0;
-	int i = 0;
-	while (i < nbr_line)
-	{
-		while (j < nbr_word)
-		{
-			dprintf(1,"%d",fdf->map->tab[i][j]);
-			j++;
-		}
-		printf("%c", '\n');
-		i++;
-		j = 0;
-	}
 	return (fdf);
 }
 
 int	main()
 {
-	int fd = open("../test_maps/10-2.fdf", O_RDONLY);
+	int fd = open("../test_maps/mars.fdf", O_RDONLY);
 	*parsing(fd);
 	close(fd);
 }
