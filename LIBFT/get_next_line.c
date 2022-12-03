@@ -81,7 +81,7 @@ static char	*get_line_buf(int fd, char *line_buf)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char static	*line_buf;
+	static char	*line_buf;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{

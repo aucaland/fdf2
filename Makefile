@@ -1,7 +1,8 @@
 NAME		= fdf
 SRC_DIR		= srcs
 OBJ_DIR		= objs
-SRC_NAME		= test.c\
+SRC_NAME	= test.c\
+			 # pars_map.c
 
 
 
@@ -32,7 +33,7 @@ UNAME_S := $(shell uname -s)
 
 LIBS	= LIBFT/libft.a $(MLX)/libmlx.a
 LDFLAG	= -LLIBFT -L$(MLX)
-CH_FLAG	= -I. -I$(MLX) -I$(LIBFT)
+CH_FLAG	= -I. -I$(MLX) -ILIBFT
 
 ## Rules ##
 
@@ -47,13 +48,12 @@ $(MLX)/libmlx.a:
 	@make all -C $(MLX)
 
 $(NAME):	$(LIBS) $(OBJ)
-	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(MLX_FLAG)
+	@$(CC) $^ $(CFLAGS) $(LDFLAG) $(MLX_FLAG) -o $(NAME)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	#@$(CC) $(CFLAGS)  $(CH_FLAG) -o $@ -c $<
-	@$(CC) $(CFLAGS) -Imlx/mlx_linux/ -ILIBFT/ -I. -o $@ -c $<
+	@$(CC) $(CFLAGS) $(CH_FLAG) -o $@ -c $<
 	@echo "-\033[1;92mCompiling : \033[0m $?"
 
 clean:

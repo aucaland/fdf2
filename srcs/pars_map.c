@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 18:17:09 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/03 12:45:39 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_list(t_list **list_pars, int fd)
 	return (count_line);
 }
 
-void	fill_tab(t_list *list_pars, t_map *map, int nbr_line, int nbr_word)
+void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 {
 	t_list	*top;
 	char	*list_content;
@@ -72,23 +72,20 @@ void	fill_tab(t_list *list_pars, t_map *map, int nbr_line, int nbr_word)
 	int		j;
 
 	i = 0;
-
 	top = list_pars;
-
-	map->tab = malloc(sizeof(int *) * nbr_line);
-	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
+//	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
 	while (i < nbr_line)
 	{
 		list_content = list_pars->content;
-		dprintf(1, "i=%d - %s\n", i, list_content);
-		map->tab[i] = malloc(sizeof(int) * nbr_word);
+	//	dprintf(1, "i=%d - %s\n", i, list_content);
+		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		j = 0;
 		while (j < nbr_word)
 		{
-			dprintf(1, "tab[%d;%d]\n", i, j);
+		//	dprintf(1, "tab[%d;%d]\n", i, j);
 			while (is_space(*list_content))
 				list_content++;
-			map->tab[i][j] = ft_atoi_base((list_content), "0123456789");
+			fdf->map->tab[i][j] = ft_atoi_base((list_content), "0123456789");
 
 			while (!is_space(*list_content))
 				list_content++;
@@ -100,24 +97,54 @@ void	fill_tab(t_list *list_pars, t_map *map, int nbr_line, int nbr_word)
 	ft_lstclear(&top, &free);
 }
 
-t_map	*parsing(int fd)
+t_fdf *init_struct(int nbr_line)
+{
+	t_fdf *fdf;
+
+	fdf = malloc(sizeof(t_fdf));
+	if (!fdf)
+		return (free(fdf), fdf = NULL, NULL);
+	fdf->map = malloc(sizeof(t_map));
+	if (!(fdf->map))
+		return (ft_free(fdf->map, sizeof(t_map)), NULL);
+	fdf->map->tab = malloc(sizeof(int *) * nbr_line);
+	if (!(fdf->map->tab))
+		return (ft_free(fdf->map, sizeof(t_map)), ft_free(fdf, sizeof(t_fdf)), NULL);
+	return (fdf);
+}
+
+t_fdf	*parsing(int fd)
 {
 	t_list	*list_pars;
-	t_map	*map;
-	char	*list_content;
+	t_fdf	*fdf;
+//	char	*list_content;
 	int		nbr_line;
 	int		nbr_word;
 
 	nbr_line = get_list(&list_pars, fd);
 	if (nbr_line <= 0)
 		return (NULL);
-	list_content = list_pars->content;
-///	dprintf(1, "%d", nbr_line);
+//	list_content = list_pars->content;
+//	dprintf(1, "%d", nbr_line);
 	nbr_word = count_word(list_pars);
+	fdf = init_struct(nbr_line);
 //	dprintf(1, "%s", list_pars->content);
 //	dprintf(1, "%d", nbr_word);
-	fill_tab(list_pars, map, nbr_line, nbr_word);
-	return (map);
+	fill_tab(list_pars, fdf, nbr_line, nbr_word);
+	int j = 0;
+	int i = 0;
+	while (i < nbr_line)
+	{
+		while (j < nbr_word)
+		{
+			dprintf(1,"%d",fdf->map->tab[i][j]);
+			j++;
+		}
+		printf("%c", '\n');
+		i++;
+		j = 0;
+	}
+	return (fdf);
 }
 
 int	main()

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:29:04 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 09:35:05 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/03 10:51:18 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ static int	is_allowed(char *base)
 static int	long long	find_index_str(char str, char *base)
 {
 	long long int	i;
-	int				j;
 
 	i = 0;
-	j = 0;
 	while (base[i])
 	{
 		if (str == base[i])

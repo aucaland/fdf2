@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/02 17:21:10 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:56:40 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 typedef struct s_map
 {
 	int	**tab;
+
 }	t_map;
 
 typedef struct s_fdf
 {
-	t_map map;
-	t_data data;
+	t_map *map;
+	t_data *data;
 } t_fdf;
 int	is_space(const char str);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 11:32:35 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/03 12:28:18 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,9 @@ void	*ft_calloc_gnl(size_t count, size_t size);
 
 long long int	ft_atoi_base(char *str, char *base);
 long long int	ft_pow_long(long long int nbr_base, int p);
+
+/*				Fcking Malloc		*/
+
+void ft_free(void *ptr, int size);
 
 #endif
