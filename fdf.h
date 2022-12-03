@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/03 13:55:58 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 21:20:54 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 typedef struct s_map
 {
+	int height;
+	int width;
 	int	**tab;
 
 }				t_map;
@@ -41,5 +43,13 @@ typedef struct s_fdf
 }				t_fdf;
 int	is_space(const char str);
 
+/*				HOOKs			*/
+
+int	close_win(int keycode, t_fdf *fdf);
+
+/*					PARSING				*/
+
+void	parsing(char *path, t_fdf *fdf);
+int	ft_read_map(char *file);
 
 #endif

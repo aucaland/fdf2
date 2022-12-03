@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 12:28:18 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 16:37:23 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,9 @@ long long int	ft_pow_long(long long int nbr_base, int p);
 /*				Fcking Malloc		*/
 
 void ft_free(void *ptr, int size);
+
+/*				Utils_no_libft			*/
+
+int	ft_isspace(char str);
 
 #endif

@@ -2,7 +2,9 @@ NAME		= fdf
 SRC_DIR		= srcs
 OBJ_DIR		= objs
 SRC_NAME	= test.c\
-			 # pars_map.c
+			  hook_define.c\
+			  pars_map.c\
+			  read_map.c
 
 
 
