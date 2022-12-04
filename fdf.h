@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 19:58:37 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 22:28:00 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_space(const char str);
 
 /*				HOOKs			*/
 
-int	close_win(int keycode, t_fdf *fdf);
+int	ft_hook(int keycode, t_fdf *fdf);
 
 /*					PARSING				*/
 

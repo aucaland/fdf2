@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 22:47:39 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 22:48:04 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * 0.8));
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win, "Hello ok");
-	mlx_hook(fdf->mlx_win, 2, 1L<<0, close_win, fdf);
+	mlx_hook(fdf->mlx_win, 2, 1L<<0, ft_hook, fdf);
 	fdf->data->img = mlx_new_image(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win);
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
 								 &fdf->data->endian);
