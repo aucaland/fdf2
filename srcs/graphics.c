@@ -6,15 +6,12 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 20:58:41 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 22:44:40 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include <stdio.h>
-#define ABS(x) ((x) >= 0 ? (x) : -(x))
-#define SGN(x) ((x) < 0 ? -1 : \
-						 (x) > 0 ? 1 : 0)
+
 
 void isometric(float *x, float *y, int z)
 {
@@ -38,8 +35,8 @@ void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 	int z0;
 	int z1;
 
-	z0 = fdf->map->tab[(int)y0][(int)x0];
-	z1 = fdf->map->tab[(int)y1][(int)x1];
+	z0 = fdf->map->tab[(int)y0][(int)x0] * (fdf->map->max_coeff / (fdf->map->height));
+	z1 = fdf->map->tab[(int)y1][(int)x1] * (fdf->map->max_coeff / (fdf->map->height));
 	/* zoom */
 	x0 *= fdf->windef->scale;
 	x1 *= fdf->windef->scale;
@@ -48,11 +45,11 @@ void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 
 	isometric(&x0, &y0, z0);
 	isometric(&x1, &y1, z1);
-	x0 += fdf->windef->width_win / 2.2;
-	x1 += fdf->windef->width_win / 2.2;
+	x0 += fdf->windef->width_win / 2.6;
+	x1 += fdf->windef->width_win / 2.6;
 	y0 += fdf->windef->height_win / 3.3;
 	y1 += fdf->windef->height_win / 3.3;
-	fdf->data->color = BLUE * (z0 + 1.2) * 10;
+	fdf->data->color = BLUE + (GREEN + RED) * (z0 * 100);
 	dx = x1 - x0;
 	dy = y1 - y0;
 	max = fmax(fabs(dx), fabs(dy));

@@ -6,12 +6,11 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/04 21:03:28 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 22:40:35 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include <stdio.h>
 
 static int	count_word(t_list *list)
 {
@@ -67,12 +66,14 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 
 	i = 0;
 	top = list_pars;
+	fdf->map->max_coeff = 0;
 //	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
 	while (i < nbr_line)
 	{
 		list_content = list_pars->content;
 	//	dprintf(1, "i=%d - %s\n", i, list_content);
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
+
 		j = 0;
 		while (j < nbr_word)
 		{
@@ -80,7 +81,7 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 			while (ft_isspace(*list_content))
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi((list_content));
-
+			fdf->map->max_coeff = fmax(fdf->map->max_coeff, fdf->map->tab[i][j]);
 			while (!ft_isspace(*list_content))
 				list_content++;
 			j++;
@@ -125,6 +126,7 @@ void	parsing(char *path, t_fdf *fdf)
 //	dprintf(1, "%s", (char *)list_pars->content);
 //	dprintf(1, "%d", nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
+	ft_printf("%d", fdf->map->max_coeff );
 //	ft_print_map(fdf);
 	close (fd);
 //	ft_printf("%d", fdf->map->tab[0][0]);

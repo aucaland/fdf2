@@ -34,6 +34,7 @@ typedef struct s_map
 	int height;
 	int width;
 	int	**tab;
+	int max_coeff;
 
 }				t_map;
 

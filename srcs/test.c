@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 20:33:04 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 22:47:39 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	main(int argc, char **argv)
 
 	fdf = init_struct_main();
 	parsing(argv[1], fdf);
-	fdf->windef->height_win = 800;
-	fdf->windef->width_win = 800;
-	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * 0.7));
+	fdf->windef->width_win = 1980;
+	fdf->windef->height_win = 1080;
+	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * 0.8));
 	fdf->mlx = mlx_init();
-	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->windef->height_win, fdf->windef->width_win, "Hello ok");
+	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win, "Hello ok");
 	mlx_hook(fdf->mlx_win, 2, 1L<<0, close_win, fdf);
-	fdf->data->img = mlx_new_image(fdf->mlx, fdf->windef->height_win, fdf->windef->width_win);
+	fdf->data->img = mlx_new_image(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win);
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
 								 &fdf->data->endian);
 	comput_line(fdf);
