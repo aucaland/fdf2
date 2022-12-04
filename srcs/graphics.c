@@ -6,15 +6,15 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 15:43:45 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 17:30:35 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdio.h>
-#define ABS(_x) ((_x) >= 0 ? (_x) : -(_x))
-#define SGN(_x) ((_x) < 0 ? -1 : \
-						 ((_x) > 0 ? 1 : 0))
+#define ABS(x) ((x) >= 0 ? (x) : -(x))
+#define SGN(x) ((x) < 0 ? -1 : \
+						 (x) > 0 ? 1 : 0)
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -78,8 +78,13 @@ void vertical_octant(int x0, int y0, int x1, int y1, t_fdf *fdf)
 	}
 }
 
-void bresenham(int x0, int y0, int x1, int y1, t_fdf *fdf)
+void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 {
+/* zoom */
+	x0 *= fdf->windef->scale;
+	x1 *= fdf->windef->scale;
+	y0 *= fdf->windef->scale;
+	y1 *= fdf->windef->scale;
 	int dx = x1 - x0;
 	int dy = y1 - y0;
 	int incX = SGN(dx);
@@ -89,15 +94,25 @@ void bresenham(int x0, int y0, int x1, int y1, t_fdf *fdf)
 
 	if (dy == 0)
 	{
-		for (int x = x0; x != x1 + incX; x += incX)
+		int x;
+
+		x = x0;
+		while (x != x1 + incX)
+		{
 			my_mlx_pixel_put(fdf->data, x, y0, 0x00FF0000);
+			x += incX;
+		}
 	}
 	else if (dx == 0)
 	{
+		int y;
 
-		for (int y = y0; y != y1 + incY; y += incY)
+		y = y0;
+		while (y != y1 + incY)
+		{
 			my_mlx_pixel_put(fdf->data, x0, y, 0x00FF0000);
-
+			y += incY;
+		}
 	}
 	else if (dx >= dy)
 		horizontal_octant(x0, y0, x1, y1, fdf);
@@ -109,9 +124,7 @@ void comput_line(t_fdf *fdf)
 {
 	int x;
 	int y;
-	int scale;
 
-	scale = fdf->windef->scale;
 	y = 0;
 	while (y < fdf->map->height)
 	{
@@ -119,8 +132,8 @@ void comput_line(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			bresenham(x * scale, y * scale, x * scale + 1 * scale, y * scale, fdf);
-			bresenham(x * scale, y * scale, x * scale, y * scale + 1 * scale, fdf);
+			bresenham(x, y, x + 1, y, fdf);
+			bresenham(x, y, x, y + 1, fdf);
 			x++;
 		}
 		y++;

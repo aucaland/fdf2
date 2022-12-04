@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 22:23:43 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/03 22:24:40 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 		//	dprintf(1, "tab[%d;%d]\n", i, j);
 			while (ft_isspace(*list_content))
 				list_content++;
-			fdf->map->tab[i][j] = ft_atoi_base((list_content), "0123456789");
+			fdf->map->tab[i][j] = ft_atoi((list_content));
 
 			while (!ft_isspace(*list_content))
 				list_content++;

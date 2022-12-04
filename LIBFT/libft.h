@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 16:37:23 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 17:11:03 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 128
 # endif
 
 int			ft_isalpha(int c);

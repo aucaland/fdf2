@@ -38,12 +38,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-	{
-		if (sign == 1 && n > (( 10 * n + (str[i] - '0')) / 10 ))
-			return (-1);
-		if (sign == -1 && n > ((10 * n + (str[i] - '0')) / 10))
-			return (0);
 		n = n * 10 + (str[i++] - '0');
-	}
 	return ((int)(n * sign));
 }
