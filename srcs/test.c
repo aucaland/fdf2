@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 18:19:17 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 20:33:04 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	parsing(argv[1], fdf);
 	fdf->windef->height_win = 800;
 	fdf->windef->width_win = 800;
-	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * 0.8));
+	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * 0.7));
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->windef->height_win, fdf->windef->width_win, "Hello ok");
 	mlx_hook(fdf->mlx_win, 2, 1L<<0, close_win, fdf);

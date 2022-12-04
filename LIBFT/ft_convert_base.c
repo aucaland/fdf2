@@ -1,18 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 09:29:04 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 10:51:18 by aurel            ###   ########.fr       */
+/*   Created: 2022/12/04 20:07:49 by aurel             #+#    #+#             */
+/*   Updated: 2022/12/04 20:46:00 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-static int	long long	find_index_str(char str, char *base)
+int	is_allowed(char *base)
+{
+	int	nbr_base;
+	int	i;
+
+	i = 1;
+	nbr_base = 0;
+	while (base[nbr_base])
+	{
+		if (base[nbr_base] == '+' || base[nbr_base] == '-')
+			return (0);
+		while (base[nbr_base + i])
+		{
+			if (base[nbr_base] == base[nbr_base + i])
+			{
+				return (0);
+			}
+			i++;
+		}
+		i = 1;
+		nbr_base++;
+	}
+	if (nbr_base == 0 || nbr_base == 1)
+		return (0);
+	return (1);
+}
+
+int	long long	find_index_str(char str, char *base)
 {
 	long long int	i;
 
@@ -34,12 +61,12 @@ static int	long long	find_index_str(char str, char *base)
 long long int	ft_pow_long(long long int nbr_base, int p)
 {
 	if (p != 0)
-		return (ft_pow_long(nbr_base, p - 1) * (nbr_base));
+		return (ft_pow(nbr_base, p - 1) * (nbr_base));
 	else
 		return (1);
 }
 
-static long long int	convert_in_dec(long long int nbr_base \
+long long int	convert_in_dec(long long int nbr_base \
 		, char *base, char *str, int i)
 {
 	long long int	value;
@@ -62,7 +89,7 @@ static long long int	convert_in_dec(long long int nbr_base \
 	p--;
 	while (p >= 0)
 	{
-		value += find_index_str(str[i], base) * ft_pow_long(nbr_base, p);
+		value += find_index_str(str[i], base) * ft_pow(nbr_base, p);
 		i++;
 		p--;
 	}
@@ -76,8 +103,6 @@ long long int	ft_atoi_base(char *str, char *base)
 
 	i = 0;
 	nbr_base = 0;
-	if (!is_allowed(base))
-		return (0);
 	while (base[nbr_base])
 		nbr_base++;
 	while (str[i])

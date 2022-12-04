@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/03 22:24:40 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 21:03:28 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,13 +125,23 @@ void	parsing(char *path, t_fdf *fdf)
 //	dprintf(1, "%s", (char *)list_pars->content);
 //	dprintf(1, "%d", nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
+//	ft_print_map(fdf);
 	close (fd);
 //	ft_printf("%d", fdf->map->tab[0][0]);
 }
 
-//int	main()
+//void ft_print_map(t_fdf *fdf)
 //{
-//	int fd = open("../test_maps/mars.fdf", O_RDONLY);
-//	*parsing(fd);
-//	close(fd);
+//	int i;
+//	int j;
+//
+//	i = 0;
+//	while (i < fdf->map->height)
+//	{
+//		j = 0;
+//		while (j < fdf->map->width)
+//			ft_printf("%d ", fdf->map->tab[i][j++]);
+//		ft_printf("\n");
+//		i++;
+//	}
 //}

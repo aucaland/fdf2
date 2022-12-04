@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 17:30:35 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 20:58:41 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 #define SGN(x) ((x) < 0 ? -1 : \
 						 (x) > 0 ? 1 : 0)
 
+void isometric(float *x, float *y, int z)
+{
+	*x = (*x - *y) * cos(0.83);
+	*y = (*x + *y) * sin(0.83) - z;
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -24,100 +30,43 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void horizontal_octant(int x0, int y0, int x1, int y1, t_fdf *fdf)
-{
-	// more horizontal than vertical
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-	int incX = SGN(dx);
-	int incY = SGN(dy);
-	dx = ABS(dx);
-	dy = ABS(dy);
-	int slope = 2 * dy;
-	int error = -dx;
-	int errorInc = -2 * dx;
-	int y = y0;
-
-	for (int x = x0; x != x1 + incX; x += incX)
-	{
-		my_mlx_pixel_put(fdf->data, x, y, 0x00FF0000);
-		error += slope;
-
-		if (error >= 0)
-		{
-			y += incY;
-			error += errorInc;
-		}
-	}
-}
-
-void vertical_octant(int x0, int y0, int x1, int y1, t_fdf *fdf)
-{
-	// more vertical than horizontal
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-	int incX = SGN(dx);
-	int incY = SGN(dy);
-	dx = ABS(dx);
-	dy = ABS(dy);
-	int slope = 2 * dx;
-	int error = -dy;
-	int errorInc = -2 * dy;
-	int x = x0;
-
-	for (int y = y0; y != y1 + incY; y += incY)
-	{
-		my_mlx_pixel_put(fdf->data, x, y, 0x00FF0000);
-		error += slope;
-
-		if (error >= 0)
-		{
-			x += incX;
-			error += errorInc;
-		}
-	}
-}
-
 void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 {
-/* zoom */
+	float dx;
+	float dy;
+	int max;
+	int z0;
+	int z1;
+
+	z0 = fdf->map->tab[(int)y0][(int)x0];
+	z1 = fdf->map->tab[(int)y1][(int)x1];
+	/* zoom */
 	x0 *= fdf->windef->scale;
 	x1 *= fdf->windef->scale;
 	y0 *= fdf->windef->scale;
 	y1 *= fdf->windef->scale;
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-	int incX = SGN(dx);
-	int incY = SGN(dy);
-	dx = ABS(dx);
-	dy = ABS(dy);
 
-	if (dy == 0)
+	isometric(&x0, &y0, z0);
+	isometric(&x1, &y1, z1);
+	x0 += fdf->windef->width_win / 2.2;
+	x1 += fdf->windef->width_win / 2.2;
+	y0 += fdf->windef->height_win / 3.3;
+	y1 += fdf->windef->height_win / 3.3;
+	fdf->data->color = BLUE * (z0 + 1.2) * 10;
+	dx = x1 - x0;
+	dy = y1 - y0;
+	max = fmax(fabs(dx), fabs(dy));
+	dx /= max;
+	dy /= max;
+	while ((int) (x0 - x1) || (int) (y1 - y0))
 	{
-		int x;
-
-		x = x0;
-		while (x != x1 + incX)
-		{
-			my_mlx_pixel_put(fdf->data, x, y0, 0x00FF0000);
-			x += incX;
-		}
+		if (x0 >= fdf->windef->width_win || x0 <= 0 || y0 <= 0 \
+			|| y0 >= fdf->windef->height_win)
+			break;
+		my_mlx_pixel_put(fdf->data, x0, y0, fdf->data->color);
+		x0 += dx;
+		y0 += dy;
 	}
-	else if (dx == 0)
-	{
-		int y;
-
-		y = y0;
-		while (y != y1 + incY)
-		{
-			my_mlx_pixel_put(fdf->data, x0, y, 0x00FF0000);
-			y += incY;
-		}
-	}
-	else if (dx >= dy)
-		horizontal_octant(x0, y0, x1, y1, fdf);
-	else
-		vertical_octant(x0, y0, x1, y1, fdf);
 }
 
 void comput_line(t_fdf *fdf)
@@ -132,8 +81,10 @@ void comput_line(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			bresenham(x, y, x + 1, y, fdf);
-			bresenham(x, y, x, y + 1, fdf);
+			if (x > 0)
+				bresenham(x, y, x - 1, y, fdf);
+			if (y > 0)
+				bresenham(x, y, x, y - 1, fdf);
 			x++;
 		}
 		y++;

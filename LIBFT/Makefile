@@ -53,9 +53,10 @@ SRCS		=	ft_atoi.c\
 				ft_lstnew.c\
 				get_next_line.c\
 				get_next_line_utils.c\
-				ft_atoi_base.c\
 				ft_free.c\
-				ft_isspace.c
+				ft_isspace.c\
+				ft_convert_base.c\
+				ft_convert_base2.c
 
 OBJS		=	$(SRCS:%.c=$(OBJS_DIR)%.o)
 

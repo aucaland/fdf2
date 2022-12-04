@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/04 17:11:03 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 20:46:00 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,13 @@ void ft_free(void *ptr, int size);
 /*				Utils_no_libft			*/
 
 int	ft_isspace(char str);
+//convert_base(piscine) //TODO: refactor
+
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
+char	*ft_itoa_base(long long int nb, char *base_to);
+char	*ft_create_str(int final_size);
+char	*entry_zero(char *base_to);
+long long int	ft_pow2(long long int nbr_base, int p);
+int	is_allowed(char *base);
 
 #endif
