@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/03 21:47:45 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/04 15:35:12 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,23 @@ typedef struct s_map
 
 }				t_map;
 
+typedef struct s_mlx
+{
+	int height_win;
+	int width_win;
+	int scale;
+} 				t_win;
+
 typedef struct s_fdf
 {
 	void *mlx;
 	void *mlx_win;
 	t_map *map;
 	t_data *data;
+	t_win *windef;
+
 }				t_fdf;
+
 int	is_space(const char str);
 
 /*				HOOKs			*/
@@ -51,5 +61,9 @@ int	close_win(int keycode, t_fdf *fdf);
 
 void	parsing(char *path, t_fdf *fdf);
 int	ft_read_map(char *file);
+
+/*				Graph				*/
+
+void comput_line(t_fdf *fdf);
 
 #endif
