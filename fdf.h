@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 10:32:13 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:13:11 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ typedef struct s_map
 typedef struct s_tools
 {
 	int	mouse_x;
-	int mouse_y;
-	int center_x;
-	int center_y;
+	int  mouse_y;
+	float offset_x;
+	float offset_y;
+
+	float scale_change;
 }				t_tools;
 typedef struct s_mlx
 {

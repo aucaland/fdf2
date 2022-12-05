@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 11:31:00 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:10:30 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.83);
-	*y = (*x + *y) * sin(0.83) - z;
+	*x = (*x - *y) * cos(0.72);
+	*y = (*x + *y) * sin(0.72) - z;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -35,8 +35,8 @@ void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 	int z0;
 	int z1;
 
-	z0 = fdf->map->tab[(int)y0][(int)x0] * ((fdf->map->max_coeff * 2.5) / (fdf->map->height));
-	z1 = fdf->map->tab[(int)y1][(int)x1] * ((fdf->map->max_coeff * 2.5) / (fdf->map->height));
+	z0 = fdf->map->tab[(int)y0][(int)x0] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
+	z1 = fdf->map->tab[(int)y1][(int)x1] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
 	/* zoom */
 	x0 *= fdf->windef->scale;
 	x1 *= fdf->windef->scale;
@@ -45,11 +45,11 @@ void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
 
 	isometric(&x0, &y0, z0);
 	isometric(&x1, &y1, z1);
-	x0 += fdf->windef->width_win / 3;
-	x1 += fdf->windef->width_win / 3;
-	y0 += fdf->windef->height_win / 3.3;
-	y1 += fdf->windef->height_win / 3.3;
-	fdf->data->color = WHITE + RED * z0 * 10;
+	x0 += fdf->windef->cam.offset_x;
+	x1 += fdf->windef->cam.offset_x;
+	y0 += fdf->windef->cam.offset_y;
+	y1 += fdf->windef->cam.offset_y;
+	fdf->data->color = BLUE * 0.4 + RED * z0 * 0.2 + WHITE * 0.4;
 	dx = x1 - x0;
 	dy = y1 - y0;
 	max = fmax(fabs(dx), fabs(dy));
@@ -95,5 +95,5 @@ void create_img(t_fdf *fdf)
 										&fdf->data->endian);
 
 	comput_line(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img,fdf->windef->cam.center_x, fdf->windef->cam.center_y);
+	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img,0, 0);
 }
