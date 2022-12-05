@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 10:39:43 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:31:50 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 		fdf->windef->scale *= 0.95;
 		fdf->windef->cam.mouse_x = x;
 		fdf->windef->cam.mouse_y = y;
+		fdf->windef->cam.center_x -= fdf->windef->scale * 0.05;
+		fdf->windef->cam.center_y -= fdf->windef->scale * 0.05;
 		create_img(fdf);
 	}
 	else if (keycode == 5)
 	{
 		fdf->windef->scale *= 1.05;
-		fdf->windef->cam.mouse_x = x;
-		fdf->windef->cam.mouse_y = y;
+	//	fdf->windef->cam.mouse_x = x;
+	//	fdf->windef->cam.mouse_y = y;
+	//	fdf->windef->cam.center_x -= fdf->windef->cam.mouse_x / 0.05;
+	//	fdf->windef->cam.center_y -= fdf->windef->cam.mouse_y / 0.05;
 		create_img(fdf);
 	}
 	return (0);
@@ -37,6 +41,7 @@ int	ft_move(int keycode, t_fdf *fdf)
 	if (keycode == 123) // gauche
 	{
 		fdf->windef->cam.center_x -= 5;
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
 	if (keycode == 126) // haut
@@ -48,11 +53,13 @@ int	ft_move(int keycode, t_fdf *fdf)
 	if (keycode == 124) // droite
 	{
 		fdf->windef->cam.center_x += 5;
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
 	if (keycode == 125) // bas
 	{
 		fdf->windef->cam.center_y += 5;
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
 	return (0);
