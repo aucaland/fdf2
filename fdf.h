@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 23:06:11 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:59:52 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include "LIBFT/libft.h"
 # include <math.h>
 # include "define_utils.h"
-
+#if defined(__linux__)
+# include "Linux/keycode_linux.h"
+#elif	defined(__MACH__)
+#include "Mac/keycode_mac.h"
+#endif
 typedef struct	s_data {
 	void	*img;
 	char	*addr;

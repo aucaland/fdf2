@@ -6,12 +6,11 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 23:17:10 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:32:01 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include "keycode_linux.h"
 
 
 //int ft_rotate(int keycode, t_fdf *fdf)
