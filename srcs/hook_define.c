@@ -6,17 +6,32 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 15:01:20 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+
+//int ft_rotate(int keycode, t_fdf *fdf)
+//{
+//	if (keycode == 0)
+//	{
+//		fdf->rot->rot_x += 0.05;
+//		ft_rotate_x(fdf, fdf->rot.rot_x);
+//	}	if (keycode == 2)
+//	{
+//		fdf->rot->rot_x -= 0.05;
+//		ft_rotate_x(fdf, fdf->rot.rot_x);
+//	}
+//}
+
 int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 {
 
-	(void)x;
 	(void)y;
+	(void)x;
+
 	if (keycode == 4)
 	{
 		fdf->windef->scale *= 0.95;
@@ -32,7 +47,7 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	return (0);
 }
 
-int	ft_move(int keycode, t_fdf *fdf)
+int	ft_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == 123) // gauche
 	{
@@ -71,7 +86,9 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	//if (keycode == 78)
 	//	--
 	if (keycode == 123 || keycode == 124 || keycode == 126 || keycode == 125)
-		ft_move(keycode, fdf);
+		ft_translate(keycode, fdf);
+	//if (keycode == 0 || keycode == 13 || keycode == 2 || keycode == 1 || keycode == 12 | keycode == 14)
+	//	ft_rotate(keycode, fdf);
 	return (0);
 }
 void	ft_hook_define(t_fdf *fdf)

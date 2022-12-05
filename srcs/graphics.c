@@ -6,12 +6,11 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 15:10:30 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
 
 void isometric(float *x, float *y, int z)
 {

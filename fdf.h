@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 14:13:11 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_tools
 	int  mouse_y;
 	float offset_x;
 	float offset_y;
-
 	float scale_change;
+
 }				t_tools;
 typedef struct s_mlx
 {
@@ -55,6 +55,13 @@ typedef struct s_mlx
 	t_tools	cam;
 } 				t_win;
 
+typedef struct s_rot
+{
+	double rot_x;
+	double rot_y;
+	double rot_z;
+}				t_rot;
+
 typedef struct s_fdf
 {
 	void *mlx;
@@ -62,8 +69,11 @@ typedef struct s_fdf
 	t_map *map;
 	t_data *data;
 	t_win *windef;
+	t_rot *rot;
 
 }				t_fdf;
+
+/*					Rotate					*/
 
 int	is_space(const char str);
 
@@ -71,8 +81,10 @@ int	is_space(const char str);
 
 int	ft_hook_keycode(int keycode, t_fdf *fdf);
 void	ft_hook_define(t_fdf *fdf);
-int ft_move(int keycode, t_fdf *fdf);
+int ft_translate(int keycode, t_fdf *fdf);
 int ft_zoom(int keycode, int x, int y, t_fdf *fdf);
+int ft_rotate(int keycode, t_fdf *fdf);
+void ft_rotate_x(t_fdf *fdf);
 
 /*					PARSING				*/
 
@@ -84,5 +96,8 @@ int	ft_read_map(char *file);
 void comput_line(t_fdf *fdf);
 void ft_print_map(t_fdf *fdf);
 void create_img(t_fdf *fdf);
+
+
+
 
 #endif
