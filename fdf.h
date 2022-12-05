@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/04 22:28:00 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/05 10:32:13 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,19 @@ typedef struct s_map
 
 }				t_map;
 
+typedef struct s_tools
+{
+	int	mouse_x;
+	int mouse_y;
+	int center_x;
+	int center_y;
+}				t_tools;
 typedef struct s_mlx
 {
 	int height_win;
 	int width_win;
-	int scale;
+	float scale;
+	t_tools	cam;
 } 				t_win;
 
 typedef struct s_fdf
@@ -59,7 +67,10 @@ int	is_space(const char str);
 
 /*				HOOKs			*/
 
-int	ft_hook(int keycode, t_fdf *fdf);
+int	ft_hook_keycode(int keycode, t_fdf *fdf);
+void	ft_hook_define(t_fdf *fdf);
+int ft_move(int keycode, t_fdf *fdf);
+int ft_zoom(int keycode, int x, int y, t_fdf *fdf);
 
 /*					PARSING				*/
 
@@ -70,5 +81,6 @@ int	ft_read_map(char *file);
 
 void comput_line(t_fdf *fdf);
 void ft_print_map(t_fdf *fdf);
+void create_img(t_fdf *fdf);
 
 #endif
