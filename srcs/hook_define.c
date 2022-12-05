@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:17:10 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+#include "keycode_linux.h"
 
 
 //int ft_rotate(int keycode, t_fdf *fdf)
@@ -34,14 +35,14 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 
 	if (keycode == 4)
 	{
-		fdf->windef->scale *= 0.95;
+		fdf->cam->scale *= 0.95;
 		create_img(fdf);
 	}
 	else if (keycode == 5)
 	{
-		fdf->windef->scale *= 1.05;
-	//	fdf->windef->cam.mouse_x = x;
-	//	fdf->windef->cam.mouse_y = y;
+		fdf->cam->scale *= 1.05;
+	//	fdf->cam.mouse_x = x;
+	//	fdf->cam.mouse_y = y;
 		create_img(fdf);
 	}
 	return (0);
@@ -49,27 +50,27 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 
 int	ft_translate(int keycode, t_fdf *fdf)
 {
-	if (keycode == 123) // gauche
+	if (keycode == LEFT_ARROW) // gauche
 	{
-		fdf->windef->cam.offset_x += 10;
+		fdf->cam->offset_x -= 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
-	if (keycode == 126) // haut
+	if (keycode == UP_ARROW) // haut
 	{
-		fdf->windef->cam.offset_y += 10;
+		fdf->cam->offset_y -= 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
-	if (keycode == 124) // droite
+	if (keycode == RIGHT_ARROW) // droite
 	{
-		fdf->windef->cam.offset_x -= 10;
+		fdf->cam->offset_x += 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
-	if (keycode == 125) // bas
+	if (keycode == DOWN_ARROW) // bas
 	{
-		fdf->windef->cam.offset_y -= 10;
+		fdf->cam->offset_y += 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
@@ -79,13 +80,13 @@ int	ft_translate(int keycode, t_fdf *fdf)
 int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
 	ft_printf("%d\n", keycode);
-	if (keycode == 53)
+	if (keycode == ESC)
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 	//if (keycode == 69)
 // ++
 	//if (keycode == 78)
 	//	--
-	if (keycode == 123 || keycode == 124 || keycode == 126 || keycode == 125)
+	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);
 	//if (keycode == 0 || keycode == 13 || keycode == 2 || keycode == 1 || keycode == 12 | keycode == 14)
 	//	ft_rotate(keycode, fdf);

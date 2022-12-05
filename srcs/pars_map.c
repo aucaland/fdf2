@@ -82,6 +82,7 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi((list_content));
 			fdf->map->max_coeff = fmax(fdf->map->max_coeff, fdf->map->tab[i][j]);
+			fdf->map->min_coeff = fmin(fdf->map->min_coeff, fdf->map->tab[i][j]);
 			while (!ft_isspace(*list_content))
 				list_content++;
 			j++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:06:11 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_data {
 	int 	color;
 }				t_data;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
 
 typedef struct s_map
 {
@@ -35,6 +35,9 @@ typedef struct s_map
 	int width;
 	int	**tab;
 	int max_coeff;
+	int min_coeff;
+	int height_win;
+	int width_win;
 
 }				t_map;
 
@@ -45,22 +48,19 @@ typedef struct s_tools
 	float offset_x;
 	float offset_y;
 	float scale_change;
-
-}				t_tools;
-typedef struct s_mlx
-{
-	int height_win;
-	int width_win;
 	float scale;
-	t_tools	cam;
-} 				t_win;
-
-typedef struct s_rot
-{
 	double rot_x;
 	double rot_y;
 	double rot_z;
-}				t_rot;
+
+}				t_tools;
+
+typedef struct s_point
+{
+	float x;
+	float y;
+	int z;
+}				t_point;
 
 typedef struct s_fdf
 {
@@ -68,8 +68,8 @@ typedef struct s_fdf
 	void *mlx_win;
 	t_map *map;
 	t_data *data;
-	t_win *windef;
-	t_rot *rot;
+	t_tools	*cam;
+	t_point point;
 
 }				t_fdf;
 
@@ -96,6 +96,11 @@ int	ft_read_map(char *file);
 void comput_line(t_fdf *fdf);
 void ft_print_map(t_fdf *fdf);
 void create_img(t_fdf *fdf);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_point	proj(t_fdf *fdf);
+t_fdf *new_point(int x, int y, t_fdf *fdf);
+void isometric(float *x, float *y, int z);
+void bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
 
 
 

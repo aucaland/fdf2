@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 16:37:57 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:41:58 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_fdf *init_struct_main()//TODO: init all struct
 	fdf->data = malloc(sizeof(t_data));
 	if (!(fdf->data))
 		return (ft_free(fdf->map, sizeof(t_map)), ft_free(fdf, sizeof(t_fdf)), NULL);
-	fdf->windef = malloc(sizeof(t_win));
-	if (!(fdf->windef))
+	fdf->cam = malloc(sizeof(t_tools));
+	if (!(fdf->cam))
 	{
 		ft_free(fdf->map, sizeof(t_map));
 		return (ft_free(fdf->data, sizeof(t_data)), ft_free(fdf, sizeof(t_fdf)), NULL);
@@ -42,16 +42,16 @@ int	main(int argc, char **argv)
 
 	fdf = init_struct_main();
 	parsing(argv[1], fdf);
-	fdf->windef->width_win = 1980;
-	fdf->windef->height_win = 1080;
-	fdf->windef->cam.mouse_x = 0;
-	fdf->windef->cam.mouse_y = 0;
-	fdf->windef->cam.offset_x = fdf->windef->width_win / 3.3;
-	fdf->windef->cam.offset_y = fdf->windef->height_win / 3.3;
+	fdf->map->width_win = 1980;
+	fdf->map->height_win = 1080;
+	fdf->cam->mouse_x = 0;
+	fdf->cam->mouse_y = 0;
+	fdf->cam->offset_x = fdf->map->width_win / 2;
+	fdf->cam->offset_y = fdf->map->height_win / 2;
 	//fdf->rot->rot_x = 0;
-	fdf->windef->scale = (fdf->windef->height_win) / (fdf->map->height + (fdf->map->height * -0.3));
+	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
 	fdf->mlx = mlx_init();
-	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win, "Hello ok");
+	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "Hello ok");
 	ft_hook_define(fdf);
 	create_img(fdf);
 	mlx_loop(fdf->mlx);

@@ -3,19 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 16:09:44 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:44:45 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+
+t_point	proj(t_fdf *fdf)
+{
+	fdf->point.x *= fdf->cam->scale;
+	fdf->point.y *= fdf->cam->scale;
+	fdf->point.z *= ((fdf->map->max_coeff) / (fdf->map->height * 0.3));;
+	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
+	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
+	isometric(&fdf->point.x, &fdf->point.y, fdf->point.z);
+	fdf->point.x += (fdf->map->width) / 2 + fdf->cam->offset_x;
+	fdf->point.y += (fdf->map->height) / 2 + fdf->cam->offset_y;
+	return (fdf->point);
+}
+
 void isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.72);
-	*y = (*x + *y) * sin(0.72) - z;
+	*x = (*x - *y) * cos(0.65);
+	*y = (*x + *y) * sin(0.65) - z;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -26,43 +40,42 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void bresenham(float x0, float y0, float x1, float y1, t_fdf *fdf)
+void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 {
 	float dx;
 	float dy;
 	int max;
-	int z0;
-	int z1;
+	//int z0;
+	//int z1;
 
-	z0 = fdf->map->tab[(int)y0][(int)x0] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
-	z1 = fdf->map->tab[(int)y1][(int)x1] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
+
+	//z0 = fdf->map->tab[(int)y0][(int)x0] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
+	//z1 = fdf->map->tab[(int)y1][(int)x1] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
 	/* zoom */
-	x0 *= fdf->windef->scale;
-	x1 *= fdf->windef->scale;
-	y0 *= fdf->windef->scale;
-	y1 *= fdf->windef->scale;
-
-	isometric(&x0, &y0, z0);
-	isometric(&x1, &y1, z1);
-	x0 += fdf->windef->cam.offset_x;
-	x1 += fdf->windef->cam.offset_x;
-	y0 += fdf->windef->cam.offset_y;
-	y1 += fdf->windef->cam.offset_y;
-	fdf->data->color = BLUE * 0.4 + RED * z0 * 0.2 + WHITE * 0.4;
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = coord1.x - coord0.x;
+	dy = coord1.y - coord0.y;
+	fdf->data->color = BLUE * 0.4 + RED * coord0.z * 0.2 + WHITE * 0.4;
 	max = fmax(fabs(dx), fabs(dy));
 	dx /= max;
 	dy /= max;
-	while ((int) (x0 - x1) || (int) (y1 - y0))
+	while ((int) (coord0.x - coord1.x) || (int) (coord1.y - coord0.y))
 	{
-		if (x0 >= fdf->windef->width_win || x0 <= 0 || y0 <= 0 \
-			|| y0 >= fdf->windef->height_win)
+		if (coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
+			|| coord0.y >= fdf->map->height_win)
 			break;
-		my_mlx_pixel_put(fdf->data, x0, y0, fdf->data->color);
-		x0 += dx;
-		y0 += dy;
+		my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, fdf->data->color);
+		coord0.x += dx;
+		coord0.y += dy;
 	}
+}
+
+t_fdf *new_point(int x, int y, t_fdf *fdf)
+{
+	fdf->point.x = x;
+	fdf->point.y = y;
+	fdf->point.z = fdf->map->tab[y][x];
+	//TODO: color here
+	return (fdf);
 }
 
 void comput_line(t_fdf *fdf)
@@ -78,9 +91,9 @@ void comput_line(t_fdf *fdf)
 		while (x < fdf->map->width)
 		{
 			if (x > 0)
-				bresenham(x, y, x - 1, y, fdf);
+				bresenham(proj(new_point(x, y, fdf)), proj(new_point(x - 1, y, fdf)), fdf);
 			if (y > 0)
-				bresenham(x, y, x, y - 1, fdf);
+				bresenham(proj(new_point(x, y, fdf)), proj(new_point(x, y - 1, fdf)), fdf);
 			x++;
 		}
 		y++;
@@ -89,7 +102,7 @@ void comput_line(t_fdf *fdf)
 
 void create_img(t_fdf *fdf)
 {
-	fdf->data->img = mlx_new_image(fdf->mlx, fdf->windef->width_win, fdf->windef->height_win);
+	fdf->data->img = mlx_new_image(fdf->mlx, fdf->map->width_win, fdf->map->height_win);
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
 										&fdf->data->endian);
 
