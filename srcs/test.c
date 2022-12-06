@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 17:25:25 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:23:19 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 	fdf->cam->mouse_y = 0;
 	fdf->cam->offset_x = fdf->map->width_win / 3;
 	fdf->cam->offset_y = fdf->map->height_win / 3;
+	fdf->cam->inc_z = 1;
 	colors_range(fdf);
 	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
 	fdf->mlx = mlx_init();

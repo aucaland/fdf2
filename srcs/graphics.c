@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 17:54:12 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:32:14 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 t_fdf *new_point(int x, int y, t_fdf *fdf)
 {
 	fdf->point.x = x;
+//	ft_printf("%d", fdf->point.z);
 	fdf->point.y = y;
-	fdf->point.z = fdf->map->tab[y][x];
+	fdf->point.z = fdf->map->tab[y][x] * fdf->cam->inc_z;
 	//TODO: color here
 	return (fdf);
 }

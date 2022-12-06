@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 18:38:26 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:23:19 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	ft_inc_z(int keycode, t_fdf *fdf)
+{
+	if (keycode == PLUS)
+	{
+		 fdf->cam->inc_z *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == MINUS)
+	{
+		 fdf->cam->inc_z *= 0.95;
+		create_img(fdf);
+	}
+}
 
 void ft_change_color(int keycode, t_fdf *fdf)
 {
@@ -146,10 +160,12 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	//	--
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);
-	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q | keycode == E)
+	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q || keycode == E)
 		ft_rotate(keycode, fdf);
 	if (keycode == R || keycode == G || keycode == B || keycode == T || keycode == H || keycode == N)
 		ft_change_color(keycode, fdf);
+	if (keycode == PLUS || keycode == MINUS)
+		ft_inc_z(keycode, fdf);
 	return (0);
 }
 void	ft_hook_define(t_fdf *fdf)

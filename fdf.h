@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 17:24:47 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:20:42 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_tools
 	double rot_x;
 	double rot_y;
 	double rot_z;
+	float inc_z;
 
 }				t_tools;
 
@@ -97,6 +98,7 @@ void ft_rotate(int keycode, t_fdf *fdf);
 void ft_rotate_x(float *y, int *z, double rot_x);
 void ft_rotate_y(float *x, int *z, double rot_y);
 void ft_rotate_z(float *x, float *y, double rot_z);
+void	ft_inc_z(int keycode, t_fdf *fdf);
 
 /*					PARSING				*/
 
