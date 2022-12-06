@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:35:52 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:57:26 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ t_point	proj(t_fdf *fdf)
 {
 	fdf->point.x *= fdf->cam->scale;
 	fdf->point.y *= fdf->cam->scale;
-	fdf->point.z *= ((fdf->map->max_coeff) / (fdf->map->height * 0.3));;
+	fdf->point.z *= ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
+	fdf->data->color =  BLUE_F * 0.4 + RED_F * fdf->point.z * 0.4 + WHITE * 0.4;
 	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
 	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
+	ft_rotate_y(&fdf->point.x, &fdf->point.z, fdf->cam->rot_y);
+	ft_rotate_z(&fdf->point.x, &fdf->point.y, fdf->cam->rot_z);
 	isometric(&fdf->point.x, &fdf->point.y, fdf->point.z);
 	fdf->point.x += (fdf->map->width) / 2 + fdf->cam->offset_x;
 	fdf->point.y += (fdf->map->height) / 2 + fdf->cam->offset_y;
@@ -55,7 +58,6 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	/* zoom */
 	dx = coord1.x - coord0.x;
 	dy = coord1.y - coord0.y;
-	fdf->data->color =  WHITE * 0.8; //BLUE_F * 0.4 + RED_F * coord0.z * 0.2 +
 	max = fmax(fabs(dx), fabs(dy));
 	dx /= max;
 	dy /= max;

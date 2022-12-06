@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:25:37 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:22:07 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,36 @@
 
 void ft_rotate(int keycode, t_fdf *fdf)
 {
-	if (keycode == A)
+	if (keycode == W)
 	{
-		fdf->cam->rot_x += 0.1;
+		fdf->cam->rot_x -= 0.02;
 		create_img(fdf);
 	}
-	//if (keycode == 2)
-	//{
-	//	fdf->rot->rot_x -= 0.05;
-	//	ft_rotate_x(fdf, fdf->rot.rot_x);
-	//}
+	if (keycode == S)
+	{
+		fdf->cam->rot_x += 0.02;
+		create_img(fdf);
+	}
+	if (keycode == D)
+	{
+		fdf->cam->rot_y += 0.02;
+		create_img(fdf);
+	}
+	if (keycode == A)
+	{
+		fdf->cam->rot_y -= 0.02;
+		create_img(fdf);
+	}
+	if (keycode == Q)
+	{
+		fdf->cam->rot_z -= 0.02;
+		create_img(fdf);
+	}
+	if (keycode == E)
+	{
+		fdf->cam->rot_z += 0.02;
+		create_img(fdf);
+	}
 
 }
 
@@ -51,7 +71,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == LEFT_ARROW) // gauche
 	{
-		fdf->cam->offset_x -= 10;
+		fdf->cam->offset_x += 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
@@ -63,7 +83,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 	}
 	if (keycode == RIGHT_ARROW) // droite
 	{
-		fdf->cam->offset_x += 10;
+		fdf->cam->offset_x -= 10;
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}

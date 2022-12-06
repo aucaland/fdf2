@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:25:37 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:45:01 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ void	ft_hook_define(t_fdf *fdf);
 int ft_translate(int keycode, t_fdf *fdf);
 int ft_zoom(int keycode, int x, int y, t_fdf *fdf);
 void ft_rotate(int keycode, t_fdf *fdf);
-void ft_rotate_x(float *y, int *z, double alpha);
+void ft_rotate_x(float *y, int *z, double rot_x);
+void ft_rotate_y(float *x, int *z, double rot_y);
+void ft_rotate_z(float *x, float *y, double rot_z);
 
 /*					PARSING				*/
 

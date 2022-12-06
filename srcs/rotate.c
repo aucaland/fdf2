@@ -6,17 +6,37 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:55:20 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/06 09:30:56 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:19:39 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../fdf.h"
 
-void ft_rotate_x(float *y, int *z, double alpha)
+void ft_rotate_x(float *y, int *z, double rot_x)
 {
-	float previous_y;
+	float old_y;
 
-	previous_y = *y;
-	*y = previous_y * cos(alpha) + *z * sin(alpha);
-	*z = -previous_y * sin(alpha) + *z * cos(alpha);
+	old_y = *y;
+	*y = old_y * cos(rot_x) + *z * sin(rot_x);
+	*z = -old_y * sin(rot_x) + *z * cos(rot_x);
+}
+
+void ft_rotate_y(float *x, int *z, double rot_y)
+{
+	float old_x;
+	old_x = *x;
+
+	*x = old_x * cos(rot_y) + *z * sin(rot_y);
+	*z = -old_x * sin(rot_y) + *z * cos(rot_y);
+}
+
+void ft_rotate_z(float *x, float *y, double rot_z)
+{
+	float old_x;
+	float old_y;
+	old_x = *x;
+	old_y = *y;
+
+	*x = old_x * cos(rot_z) + old_y * sin(rot_z);
+	*y = -old_x * sin(rot_z) + old_y * cos(rot_z);
 }
