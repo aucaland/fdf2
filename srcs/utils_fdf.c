@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define_utils.h                                     :+:      :+:    :+:   */
+/*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:12:37 by aucaland         ###   ########.fr       */
+/*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
+/*   Updated: 2022/12/06 14:33:24 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_DEFINE_UTILS_H
-#define FDF_DEFINE_UTILS_H
+#include "../fdf.h"
 
-#include "fdf.h"
-
-#define BLUE_F 0x0000ff
-#define WHITE 0xffffff
-#define RED_F 0xff0000
-#define GREEN_F 0x00ff00
-
-typedef struct s_col
+int	ft_gradient_colors(t_fdf *fdf)
 {
-	float range;
-	int z_col;
-}				t_col;
+	float tmp;
 
-void	ft_gradient_colors(t_fdf *fdf);
+	tmp = fdf->map->min_coeff;
+	fdf->col.z_col = fdf->point.z;
+	if (fdf->map->min_coeff < 0)
+	{
+		fdf->map->min_coeff = fdf->map->min_coeff + fdf->map->min_coeff;
+		fdf->map->max_coeff = fdf->map->max_coeff + tmp;
+		fdf->col.z_col = fdf->point.z + tmp;
+	}
+	fdf->col->range = 255 / (fdf->map->max_coeff - fdf->map->min_coeff);
+	if (fdf->col)
 
-#endif //FDF_DEFINE_UTILS_H
+
+}
