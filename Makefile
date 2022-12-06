@@ -5,6 +5,7 @@ SRC_NAME	= test.c\
 			  hook_define.c\
 			  pars_map.c\
 			  graphics.c\
+			  rotate.c
 
 
 

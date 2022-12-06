@@ -13,10 +13,10 @@
 #ifndef FDF_DEFINE_UTILS_H
 #define FDF_DEFINE_UTILS_H
 
-#define BLUE 0x0000ff
+#define BLUE_F 0x0000ff
 #define WHITE 0xffffff
-#define RED 0xff0000
-#define GREEN 0x00ff00
+#define RED_F 0xff0000
+#define GREEN_F 0x00ff00
 
 
 #endif //FDF_DEFINE_UTILS_H

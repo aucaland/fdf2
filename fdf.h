@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/05 23:59:52 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/06 09:25:37 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf);
 void	ft_hook_define(t_fdf *fdf);
 int ft_translate(int keycode, t_fdf *fdf);
 int ft_zoom(int keycode, int x, int y, t_fdf *fdf);
-int ft_rotate(int keycode, t_fdf *fdf);
-void ft_rotate_x(t_fdf *fdf);
+void ft_rotate(int keycode, t_fdf *fdf);
+void ft_rotate_x(float *y, int *z, double alpha);
 
 /*					PARSING				*/
 

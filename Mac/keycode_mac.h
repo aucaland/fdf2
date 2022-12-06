@@ -19,4 +19,11 @@
 # define UP_ARROW		126
 
 # define ESC			53
+
+# define A				0
+# define W				13
+# define D				2
+# define S				1
+# define Q				12
+# define E				14
 #endif //FDF_KEYCODE_MAC_H
