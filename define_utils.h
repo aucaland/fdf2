@@ -6,14 +6,14 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 16:20:16 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:22:30 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_DEFINE_UTILS_H
 #define FDF_DEFINE_UTILS_H
 
-#include "fdf.h"
+# include "fdf.h"
 
 #define BLUE_F 0x0000ff
 #define WHITE 0xffffff
