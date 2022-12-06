@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:57:26 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:05:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,26 @@ t_point	proj(t_fdf *fdf)
 {
 	fdf->point.x *= fdf->cam->scale;
 	fdf->point.y *= fdf->cam->scale;
-	fdf->point.z *= ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
+	fdf->point.z *= ((fdf->map->max_coeff) / (fdf->map->height * 0.2));
 	fdf->data->color =  BLUE_F * 0.4 + RED_F * fdf->point.z * 0.4 + WHITE * 0.4;
 	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
 	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
 	ft_rotate_y(&fdf->point.x, &fdf->point.z, fdf->cam->rot_y);
 	ft_rotate_z(&fdf->point.x, &fdf->point.y, fdf->cam->rot_z);
-	isometric(&fdf->point.x, &fdf->point.y, fdf->point.z);
+	isometric(&fdf->point.x, &fdf->point.y, &fdf->point.z, fdf);
 	fdf->point.x += (fdf->map->width) / 2 + fdf->cam->offset_x;
 	fdf->point.y += (fdf->map->height) / 2 + fdf->cam->offset_y;
 	return (fdf->point);
 }
 
-void isometric(float *x, float *y, int z)
+void isometric(float *x, float *y, int *z, t_fdf *fdf)
 {
-	*x = (*x - *y) * cos(0.65);
-	*y = (*x + *y) * sin(0.65) - z;
+	(void)fdf;
+	*x = (*x - *y) * cos(0.5555);
+
+	*y = (*x + *y) * sin(0.5555) - *z * (cos(0.5555) - sin(0.5555)) * (fdf->cam->scale / fdf->map->height);
+	*z = cos(0.5555) - sin(0.5555);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

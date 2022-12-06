@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:55:20 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/06 10:19:39 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:14:18 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void ft_rotate_y(float *x, int *z, double rot_y)
 	float old_x;
 	old_x = *x;
 
-	*x = old_x * cos(rot_y) + *z * sin(rot_y);
-	*z = -old_x * sin(rot_y) + *z * cos(rot_y);
+	*x = old_x * cos(rot_y) - *z * sin(rot_y);
+	*z = old_x * sin(rot_y) + *z * cos(rot_y);
 }
 
 void ft_rotate_z(float *x, float *y, double rot_z)

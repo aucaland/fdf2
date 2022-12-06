@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:45:01 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:05:02 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void create_img(t_fdf *fdf);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_point	proj(t_fdf *fdf);
 t_fdf *new_point(int x, int y, t_fdf *fdf);
-void isometric(float *x, float *y, int z);
+void isometric(float *x, float *y, int *z, t_fdf *fdf);
 void bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
 
 
