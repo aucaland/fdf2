@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 16:26:44 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:24:47 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "LIBFT/libft.h"
 # include <math.h>
 # include "define_utils.h"
+# include <stdio.h> //TODO : delete
 #if defined(__linux__)
 # include "Linux/keycode_linux.h"
 #elif	defined(__MACH__)
@@ -80,6 +81,8 @@ typedef struct s_fdf
 
 }				t_fdf;
 
+
+
 /*					Rotate					*/
 
 int	is_space(const char str);
@@ -111,7 +114,11 @@ t_fdf *new_point(int x, int y, t_fdf *fdf);
 void isometric(float *x, float *y, int z, t_fdf *fdf);
 void bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
 
+/*						Colors					*/
 
+int	ft_gradient_colors(t_fdf *fdf);
+void colors_range(t_fdf *fdf);
+void ft_change_color(int keycode, t_fdf *fdf);
 
 
 #endif

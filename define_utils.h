@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 16:22:30 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:20:34 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,23 @@
 
 # include "fdf.h"
 
-#define BLUE_F 0x0000ff
-#define WHITE 0xffffff
-#define RED_F 0xff0000
-#define GREEN_F 0x00ff00
-
 typedef struct s_col
 {
 	float range;
 	//float max_coeff_reset;
 	//float min_coeff_reset;
-	enum e_MOD {neg, pos} mod;
+	int isneg;
+	int r;
+	int g;
+	int b;
 }				t_col;
+#define BLUE_F 0x0000ff
+#define WHITE 0xffffff
+#define RED_F 0xff0000
+#define GREEN_F 0x00ff00
 
-int	ft_gradient_colors(t_fdf *fdf);
-void colors_range(t_fdf *fdf);
+/*							Palette 					*/
+
+
 
 #endif //FDF_DEFINE_UTILS_H

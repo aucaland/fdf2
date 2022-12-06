@@ -127,7 +127,7 @@ void	parsing(char *path, t_fdf *fdf)
 //	dprintf(1, "%s", (char *)list_pars->content);
 //	dprintf(1, "%d", nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
-	ft_printf("%d", fdf->map->max_coeff );
+//	ft_printf("%d", fdf->map->max_coeff );
 //	ft_print_map(fdf);
 	close (fd);
 //	ft_printf("%d", fdf->map->tab[0][0]);

@@ -6,12 +6,51 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 13:23:48 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:38:26 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+void ft_change_color(int keycode, t_fdf *fdf)
+{
+	if (keycode == R)
+	{
+		fdf->col.r += 5;
+		fdf->col.range = fdf->col.r / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+	if (keycode == B)
+	{
+		fdf->col.b += 5;
+		fdf->col.range = fdf->col.b / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+	if (keycode == G)
+	{
+		fdf->col.g += 5;
+		fdf->col.range = fdf->col.g / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+	if (keycode == T)
+	{
+		fdf->col.r -= 5;
+		fdf->col.range = fdf->col.r / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+	if (keycode == N)
+	{
+		fdf->col.b -= 5;
+		fdf->col.range = fdf->col.b / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+	if (keycode == H)
+	{
+		fdf->col.g -= 5;
+		fdf->col.range = fdf->col.g / (fdf->map->max_coeff - fdf->map->min_coeff);
+		create_img(fdf);
+	}
+}
 
 void ft_rotate(int keycode, t_fdf *fdf)//TODO: refactor -25 line
 {
@@ -109,6 +148,8 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		ft_translate(keycode, fdf);
 	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q | keycode == E)
 		ft_rotate(keycode, fdf);
+	if (keycode == R || keycode == G || keycode == B || keycode == T || keycode == H || keycode == N)
+		ft_change_color(keycode, fdf);
 	return (0);
 }
 void	ft_hook_define(t_fdf *fdf)
