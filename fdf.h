@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 13:59:31 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:14:35 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct s_point
 	float x;
 	float y;
 	int z;
+	int new_z;
+	int z_for_grad;
 }				t_point;
 
 typedef struct s_fdf

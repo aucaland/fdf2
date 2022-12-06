@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 09:12:37 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:20:16 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 typedef struct s_col
 {
 	float range;
-	int z_col;
+	//float max_coeff_reset;
+	//float min_coeff_reset;
+	enum e_MOD {neg, pos} mod;
 }				t_col;
 
-void	ft_gradient_colors(t_fdf *fdf);
+int	ft_gradient_colors(t_fdf *fdf);
+void colors_range(t_fdf *fdf);
 
 #endif //FDF_DEFINE_UTILS_H

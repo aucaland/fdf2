@@ -17,8 +17,8 @@ t_point	proj(t_fdf *fdf)
 {
 	fdf->point.x *= fdf->cam->scale;
 	fdf->point.y *= fdf->cam->scale;
+	fdf->data->color = ft_gradient_colors(fdf);
 	fdf->point.z *= ((fdf->map->max_coeff * 0.8) / (fdf->map->height * 0.1));
-	fdf->data->color =  BLUE_F * 0.4 + RED_F * fdf->point.z * 0.2 + WHITE * 0.4;
 	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
 	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
