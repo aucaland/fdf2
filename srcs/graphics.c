@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 11:32:45 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:13:23 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	fdf->point.dy /= max;
 	fdf->point.curx = coord0.x;
 	fdf->point.cury = coord0.y;
-	fdf->point.cur_color =
+	fdf->point.cur_color = coord0.color;
 	while ((int) (coord0.x - coord1.x) || (int) (coord1.y - coord0.y))
 	{
 		if (coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
@@ -80,7 +80,9 @@ t_fdf *new_point(int x, int y, t_fdf *fdf)
 	fdf->point.x = x;
 //	ft_printf("%d", fdf->point.z);
 	fdf->point.y = y;
-	fdf->point.z = fdf->map->tab[y][x] * fdf->cam->inc_z;
+	fdf->point.z = fdf->map->tab[y][x];
+	fdf->point.color = get_default_color(fdf->point.z, fdf);
+	fdf->point.z *= fdf->cam->inc_z;
 	//TODO: color here
 	return (fdf);
 }

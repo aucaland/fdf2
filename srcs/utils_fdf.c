@@ -6,12 +6,28 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/07 10:53:29 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:27:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+int	get_default_color(int z, t_fdf *fdf)
+{
+	double	percentage;
+
+	percentage = percent(fdf->map->min_coeff, fdf->map->max_coeff, z);
+	if (percentage < 0.2)
+		return (CAM);
+	else if (percentage < 0.4)
+		return (PURP);
+	else if (percentage < 0.6)
+		return (PURPL);
+	else if (percentage < 0.8)
+		return (GRP);
+	else
+		return (BEIGE);
+}
 
 int	get_light(int start, int end, double percentage)
 {
@@ -23,15 +39,15 @@ int	get_light(int start, int end, double percentage)
 ** This function is needed to create linear gradient.
 */
 
-int	get_color(t_point start, t_point end, t_point point)
+int	get_color(t_point end, t_point start, t_point point)
 {
 	int		red;
 	int		green;
 	int		blue;
 	double	percentage;
 
-	if (current.color == end.color)
-		return (current.color);
+	if (point.cur_color == end.color)
+		return (point.cur_color);
 	if (point.dx > point.dy)
 		percentage = percent(start.x, end.x, point.curx);
 	else
@@ -46,7 +62,7 @@ int	get_color(t_point start, t_point end, t_point point)
 					 end.color & 0xFF,
 					 percentage);
 	return ((red << 16) | (green << 8) | blue);
-
+}
 double	percent(int start, int end, int current)
 {
 	double	placement;
@@ -54,7 +70,7 @@ double	percent(int start, int end, int current)
 
 	placement = current - start;
 	distance = end - start;
-	if (distance == 0);
+	if (distance == 0)
 		return (1.0);
 	return (placement / distance);
 }

@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 11:18:31 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:39:21 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void ft_change_color(int keycode, t_fdf *fdf);
 double	percent(int start, int end, int current);
 int	get_light(int start, int end, double percentage);
 int	get_color(t_point start, t_point end, t_point point);
+int	get_default_color(int z, t_fdf *fdf);
 
 /*						MENU					*/
 

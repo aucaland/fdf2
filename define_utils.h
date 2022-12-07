@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 09:10:47 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:41:46 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct s_col
 #define WHITE 0xffffff
 #define RED_F 0xff0000
 #define GREEN_F 0x00ff00
+
+# define	CAM 0xa67c00
+# define	PURP 0xa67c00
+# define	PURPL 0xa67c00
+# define	GRP 0x05878a
+# define	 BEIGE 0xbe9b7b
 
 /*							Palette 					*/
 
