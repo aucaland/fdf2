@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 11:39:21 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:30:40 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_tools
 	double rot_z;
 	float inc_z;
 
-
 }				t_tools;
 
 typedef struct s_point
@@ -75,6 +74,7 @@ typedef struct s_point
 	float cury;
 	unsigned int color;
 	unsigned cur_color;
+
 }				t_point;
 
 typedef struct s_fdf
@@ -133,6 +133,7 @@ double	percent(int start, int end, int current);
 int	get_light(int start, int end, double percentage);
 int	get_color(t_point start, t_point end, t_point point);
 int	get_default_color(int z, t_fdf *fdf);
+void fill_palett(t_fdf *fdf);
 
 /*						MENU					*/
 

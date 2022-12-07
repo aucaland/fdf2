@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 10:17:30 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:33:27 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void print_menu(t_fdf *fdf)
 {
-	fdf->str = ft_itoa(fdf->col.b);
-	fdf->str = ft_strjoin("BLUE",fdf->str);
+	fdf->str = ft_itoa(P0_1);
+	fdf->str = ft_strjoin("BLUE :",fdf->str);
 	mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, GREEN_F * 0.2, fdf->str);
 }
 
@@ -56,9 +56,10 @@ int	main(int argc, char **argv)
 	fdf->cam->mouse_y = 0;
 	fdf->cam->offset_x = fdf->map->width_win / 3;
 	fdf->cam->offset_y = fdf->map->height_win / 3;
-	fdf->cam->inc_z = 1;
+	fdf->cam->inc_z = 7;
 	//colors_range(fdf);
 	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
+	fill_palett(fdf);
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "Hello ok");
 	ft_hook_define(fdf);

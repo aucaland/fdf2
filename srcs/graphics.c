@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 14:05:01 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:49:09 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ t_point	proj(t_fdf *fdf)
 
 void isometric(float *x, float *y, int z, t_fdf *fdf)
 {
+	(void)fdf;
 	*x = (*x - *y) * cos(0.60);
-	*y = (*x + *y) * sin(0.60) - z * (cos(0.5555) - sin(0.5555)) * (fdf->cam->scale  / (fdf->map->height_win / fdf->map->height));
+	*y = (*x + *y) * sin(0.60) - z * (cos(0.5555) - sin(0.5555)) * (fdf->cam->scale / (fdf->map->height_win / fdf->map->height));
 	//*z = cos(0.5555) - sin(0.5555);
 }
 
@@ -61,15 +62,15 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	max = fmax(fabs(fdf->point.dx), fabs(fdf->point.dy));
 	fdf->point.dx /= max;
 	fdf->point.dy /= max;
-	fdf->point.curx = coord0.x;
-	fdf->point.cury = coord0.y;
-	fdf->point.cur_color = coord0.color;
+	fdf->point.curx = coord1.x;
+	fdf->point.cury = coord1.y;
+	fdf->point.cur_color = coord1.color;
 	while ((int) (coord0.x - coord1.x) || (int) (coord1.y - coord0.y))
 	{
 		if (coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
 			|| coord0.y >= fdf->map->height_win)
 			break;
-		my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, get_color(coord0, coord1, fdf->point));
+		my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, get_color(coord1, coord0, fdf->point));
 		coord0.x += fdf->point.dx;
 		coord0.y += fdf->point.dy;
 	}
@@ -81,8 +82,9 @@ t_fdf *new_point(int x, int y, t_fdf *fdf)
 //	ft_printf("%d", fdf->point.z);
 	fdf->point.y = y;
 	fdf->point.z = fdf->map->tab[y][x];
-	fdf->point.z *= fdf->cam->inc_z;
+//	printf("%d\n", get_default_color(fdf->point.z, fdf));
 	fdf->point.color = get_default_color(fdf->point.z, fdf);
+	fdf->point.z *= fdf->cam->inc_z;
 	//TODO: color here
 	return (fdf);
 }
@@ -100,9 +102,9 @@ void comput_line(t_fdf *fdf)
 		while (x < fdf->map->width)
 		{
 			if (x > 0)
-				bresenham(proj(new_point(x - 1, y, fdf)),proj(new_point(x, y, fdf)), fdf);
+				bresenham(proj(new_point(x, y, fdf)),proj(new_point(x - 1, y, fdf)), fdf);
 			if (y > 0)
-				bresenham(proj(new_point(x, y - 1, fdf)),proj(new_point(x, y, fdf)), fdf);
+				bresenham(proj(new_point(x, y, fdf)),proj(new_point(x, y - 1, fdf)), fdf);
 			x++;
 		}
 		y++;

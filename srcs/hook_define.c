@@ -6,11 +6,37 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 10:12:14 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:40:19 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void fill_palett(t_fdf *fdf)
+{
+	fdf->col.pal[0] = P0_1;
+	fdf->col.pal[1] = P0_2;
+	fdf->col.pal[2] = P0_3;
+	fdf->col.pal[3] = P0_4;
+	fdf->col.pal[4] = P0_5;
+	fdf->col.pal[5] = P0_6;
+	fdf->col.pal[6] = P0_7;
+	fdf->col.pal[7] = P0_8;
+	fdf->col.pal[8] = P0_9;
+	fdf->col.pal[9] = P0_10;
+
+	fdf->col.pal2[0] = P1_1;
+	fdf->col.pal2[1] = P1_2;
+	fdf->col.pal2[2] = P1_3;
+	fdf->col.pal2[3] = P1_4;
+	fdf->col.pal2[4] = P1_5;
+	fdf->col.pal2[5] = P1_6;
+	fdf->col.pal2[6] = P1_7;
+	fdf->col.pal2[7] = P1_8;
+	fdf->col.pal2[8] = P1_9;
+	fdf->col.pal2[9] = P1_10;
+
+}//TODO : changer tout
 
 void	ft_inc_z(int keycode, t_fdf *fdf)
 {
@@ -28,35 +54,25 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 
 void ft_change_color(int keycode, t_fdf *fdf)
 {
+	int i;
+
+	i = 0;
 	if (keycode == R)
 	{
-		fdf->col.r += 2;
+		while (i < 10)
+		{
+			fdf->col.palr[i] = fdf->col.pal[i];
+			i++;
+		}
 		create_img(fdf);
 	}
 	if (keycode == B)
 	{
-		fdf->col.b += 2;
-		print_menu(fdf);
-		create_img(fdf);
-	}
-	if (keycode == G)
-	{
-		fdf->col.g += 2;
-		create_img(fdf);
-	}
-	if (keycode == T)
-	{
-		fdf->col.r -= 2;
-		create_img(fdf);
-	}
-	if (keycode == N)
-	{
-		fdf->col.b -= 2;
-		create_img(fdf);
-	}
-	if (keycode == H)
-	{
-		fdf->col.g -= 2;
+		while (i < 10)
+		{
+			fdf->col.palr[i] = fdf->col.pal2[i];
+			i++;
+		}
 		create_img(fdf);
 	}
 }
@@ -102,12 +118,12 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	(void)y;
 	(void)x;
 
-	if (keycode == 4)
+	if (keycode == 5)
 	{
 		fdf->cam->scale *= 0.95;
 		create_img(fdf);
 	}
-	else if (keycode == 5)
+	else if (keycode == 4)
 	{
 		fdf->cam->scale *= 1.05;
 		create_img(fdf);
@@ -157,7 +173,7 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		ft_translate(keycode, fdf);
 	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q || keycode == E)
 		ft_rotate(keycode, fdf);
-	if (keycode == R || keycode == G || keycode == B || keycode == T || keycode == H || keycode == N)
+	if (keycode == R || keycode == G || keycode == B)
 		ft_change_color(keycode, fdf);
 	if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
