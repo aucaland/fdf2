@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/07 13:27:04 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:00:56 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	get_default_color(int z, t_fdf *fdf)
 {
 	double	percentage;
 
-	percentage = percent(fdf->map->min_coeff, fdf->map->max_coeff, z);
+	percentage = percent(fdf->map->min_coeff * fdf->cam->inc_z, fdf->map->max_coeff * fdf->cam->inc_z, z);
 	if (percentage < 0.2)
-		return (CAM);
-	else if (percentage < 0.4)
 		return (PURP);
-	else if (percentage < 0.6)
+	else if (percentage < 0.4)
 		return (PURPL);
+	else if (percentage < 0.6)
+		return (BEIGE);
 	else if (percentage < 0.8)
 		return (GRP);
 	else
-		return (BEIGE);
+		return (CAM);
 }
 
 int	get_light(int start, int end, double percentage)
@@ -39,13 +39,14 @@ int	get_light(int start, int end, double percentage)
 ** This function is needed to create linear gradient.
 */
 
-int	get_color(t_point end, t_point start, t_point point)
+int	get_color(t_point start, t_point end, t_point point)
 {
 	int		red;
 	int		green;
 	int		blue;
 	double	percentage;
 
+	//ft_printf("start : %x\nend : %x", start.color,end.color);
 	if (point.cur_color == end.color)
 		return (point.cur_color);
 	if (point.dx > point.dy)

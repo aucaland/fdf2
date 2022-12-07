@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 13:13:23 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:05:01 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_fdf *new_point(int x, int y, t_fdf *fdf)
 //	ft_printf("%d", fdf->point.z);
 	fdf->point.y = y;
 	fdf->point.z = fdf->map->tab[y][x];
-	fdf->point.color = get_default_color(fdf->point.z, fdf);
 	fdf->point.z *= fdf->cam->inc_z;
+	fdf->point.color = get_default_color(fdf->point.z, fdf);
 	//TODO: color here
 	return (fdf);
 }
@@ -100,9 +100,9 @@ void comput_line(t_fdf *fdf)
 		while (x < fdf->map->width)
 		{
 			if (x > 0)
-				bresenham(proj(new_point(x, y, fdf)), proj(new_point(x - 1, y, fdf)), fdf);
+				bresenham(proj(new_point(x - 1, y, fdf)),proj(new_point(x, y, fdf)), fdf);
 			if (y > 0)
-				bresenham(proj(new_point(x, y, fdf)), proj(new_point(x, y - 1, fdf)), fdf);
+				bresenham(proj(new_point(x, y - 1, fdf)),proj(new_point(x, y, fdf)), fdf);
 			x++;
 		}
 		y++;

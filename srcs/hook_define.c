@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 09:51:41 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 10:12:14 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 	}
 	if (keycode == MINUS)
 	{
-		 fdf->cam->inc_z *= 0.95;
+		fdf->cam->inc_z *= 0.95;
 		create_img(fdf);
 	}
 }
