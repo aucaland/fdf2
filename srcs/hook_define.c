@@ -3,17 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 16:40:19 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:33:35 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+void ft_chose_color(int keycode, t_fdf *fdf)
+{
+	if (keycode == NUM_P0)
+	{
+		fdf->col.palr[0] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P1)
+	{
+		fdf->col.palr[1] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P2)
+	{
+		fdf->col.palr[2] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P3)
+	{
+		fdf->col.palr[3] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P4)
+	{
+		fdf->col.palr[4] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P5)
+	{
+		fdf->col.palr[5] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P6)
+	{
+		fdf->col.palr[6] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P7)
+	{
+		fdf->col.palr[7] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P8)
+	{
+		fdf->col.palr[8] *= 1.05;
+		create_img(fdf);
+	}
+	if (keycode == NUM_P9)
+	{
+		fdf->col.palr[9] *= 1.05;
+		create_img(fdf);
+	}
+
+}
+
 void fill_palett(t_fdf *fdf)
 {
+	fdf->col.palr[0] = P2_1;
+	fdf->col.palr[1] = P2_2;
+	fdf->col.palr[2] = P2_3;
+	fdf->col.palr[3] = P2_4;
+	fdf->col.palr[4] = P2_5;
+	fdf->col.palr[5] = P2_6;
+	fdf->col.palr[6] = P2_7;
+	fdf->col.palr[7] = P2_8;
+	fdf->col.palr[8] = P2_9;
+	fdf->col.palr[9] = P2_10;
+
+	//fdf->col.pal3[0] = P2_1;
+	//fdf->col.pal3[1] = P2_2;
+	//fdf->col.pal3[2] = P2_3;
+	//fdf->col.pal3[3] = P2_4;
+	//fdf->col.pal3[4] = P2_5;
+	//fdf->col.pal3[5] = P2_6;
+	//fdf->col.pal3[6] = P2_7;
+	//fdf->col.pal3[7] = P2_8;
+	//fdf->col.pal3[8] = P2_9;
+	//fdf->col.pal3[9] = P2_10;
+
 	fdf->col.pal[0] = P0_1;
 	fdf->col.pal[1] = P0_2;
 	fdf->col.pal[2] = P0_3;
@@ -42,12 +119,12 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 {
 	if (keycode == PLUS)
 	{
-		 fdf->cam->inc_z *= 1.05;
+		 fdf->cam->inc_z += 0.5;
 		create_img(fdf);
 	}
 	if (keycode == MINUS)
 	{
-		fdf->cam->inc_z *= 0.95;
+		fdf->cam->inc_z -= 0.5;
 		create_img(fdf);
 	}
 }
@@ -71,6 +148,15 @@ void ft_change_color(int keycode, t_fdf *fdf)
 		while (i < 10)
 		{
 			fdf->col.palr[i] = fdf->col.pal2[i];
+			i++;
+		}
+		create_img(fdf);
+	}
+	if (keycode == G)
+	{
+		while (i < 10)
+		{
+			fdf->col.palr[i] = fdf->col.pal3[i];
 			i++;
 		}
 		create_img(fdf);
@@ -175,6 +261,10 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		ft_rotate(keycode, fdf);
 	if (keycode == R || keycode == G || keycode == B)
 		ft_change_color(keycode, fdf);
+	if (keycode == NUM_P0 || keycode == NUM_P1 || keycode == NUM_P2 || keycode == NUM_P3 || keycode == NUM_P4 \
+		|| keycode == NUM_P5 || keycode == NUM_P6 || keycode == NUM_P7 || keycode == NUM_P8 \
+			|| keycode == NUM_P9)
+			ft_chose_color(keycode, fdf);
 	if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
 	return (0);

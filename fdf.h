@@ -134,6 +134,7 @@ int	get_light(int start, int end, double percentage);
 int	get_color(t_point start, t_point end, t_point point);
 int	get_default_color(int z, t_fdf *fdf);
 void fill_palett(t_fdf *fdf);
+void ft_chose_color(int keycode, t_fdf *fdf);
 
 /*						MENU					*/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 16:41:52 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:28:31 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_col
 	int pal[10];
 	int pal2[10];
 	int palr[10];
+	int pal3[10];
 }				t_col;
 
 #define BLUE_F 0x0000ff
@@ -52,6 +53,18 @@ typedef struct s_col
 # define P1_8 0x0188a5
 # define P1_9 0x3e3264
 # define P1_10 0x352a55
+
+# define P2_1 0x78C0E0
+# define P2_2 0x449DD1
+# define P2_3 0x150578
+# define P2_4 0x0e0e52
+# define P2_5 0x3943b7
+# define P2_6 0x9d858d
+# define P2_7 0xbba0b2
+# define P2_8 0xA4A8D1
+# define P2_9 0xA4BFEB
+# define P2_10 0x8CABBE
+
 
 # define HEX "0123456789abcdef"
 
