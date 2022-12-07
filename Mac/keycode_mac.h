@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:12:40 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 18:23:37 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 08:54:05 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@
 # define T				17
 # define H				4
 # define N				45
+
+#define	PLUS			78
+#define	MINUS			69
 #endif //FDF_KEYCODE_MAC_H

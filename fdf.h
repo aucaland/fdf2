@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 21:20:42 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/07 11:18:31 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_tools
 	double rot_z;
 	float inc_z;
 
+
 }				t_tools;
 
 typedef struct s_point
@@ -66,8 +67,14 @@ typedef struct s_point
 	float x;
 	float y;
 	int z;
-	int new_z;
-	int z_for_grad;
+	float new_z;
+	float z_for_grad;
+	float dx;
+	float dy;
+	float curx;
+	float cury;
+	unsigned int color;
+	unsigned cur_color;
 }				t_point;
 
 typedef struct s_fdf
@@ -79,6 +86,7 @@ typedef struct s_fdf
 	t_tools	*cam;
 	t_point point;
 	t_col 	col;
+	char *str;
 
 }				t_fdf;
 
@@ -121,6 +129,12 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
 int	ft_gradient_colors(t_fdf *fdf);
 void colors_range(t_fdf *fdf);
 void ft_change_color(int keycode, t_fdf *fdf);
+double	percent(int start, int end, int current);
+int	get_light(int start, int end, double percentage);
+int	get_color(t_point start, t_point end, t_point point);
 
+/*						MENU					*/
+
+void print_menu(t_fdf *fdf);
 
 #endif

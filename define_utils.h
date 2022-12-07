@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 18:20:34 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/07 09:10:47 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ typedef struct s_col
 	//float max_coeff_reset;
 	//float min_coeff_reset;
 	int isneg;
-	int r;
-	int g;
-	int b;
+	float r;
+	float g;
+	float b;
+	float range_r;
+	float range_g;
+	float range_b;
+
 }				t_col;
+
 #define BLUE_F 0x0000ff
 #define WHITE 0xffffff
 #define RED_F 0xff0000

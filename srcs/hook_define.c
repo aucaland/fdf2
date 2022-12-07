@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/06 21:23:19 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/07 09:51:41 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,33 @@ void ft_change_color(int keycode, t_fdf *fdf)
 {
 	if (keycode == R)
 	{
-		fdf->col.r += 5;
-		fdf->col.range = fdf->col.r / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.r += 2;
 		create_img(fdf);
 	}
 	if (keycode == B)
 	{
-		fdf->col.b += 5;
-		fdf->col.range = fdf->col.b / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.b += 2;
+		print_menu(fdf);
 		create_img(fdf);
 	}
 	if (keycode == G)
 	{
-		fdf->col.g += 5;
-		fdf->col.range = fdf->col.g / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.g += 2;
 		create_img(fdf);
 	}
 	if (keycode == T)
 	{
-		fdf->col.r -= 5;
-		fdf->col.range = fdf->col.r / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.r -= 2;
 		create_img(fdf);
 	}
 	if (keycode == N)
 	{
-		fdf->col.b -= 5;
-		fdf->col.range = fdf->col.b / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.b -= 2;
 		create_img(fdf);
 	}
 	if (keycode == H)
 	{
-		fdf->col.g -= 5;
-		fdf->col.range = fdf->col.g / (fdf->map->max_coeff - fdf->map->min_coeff);
+		fdf->col.g -= 2;
 		create_img(fdf);
 	}
 }
