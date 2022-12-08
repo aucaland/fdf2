@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 20:33:35 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/08 12:42:32 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,52 @@ void ft_chose_color(int keycode, t_fdf *fdf)
 {
 	if (keycode == NUM_P0)
 	{
-		fdf->col.palr[0] *= 1.05;
+		fdf->col.palr[0] *= 1.002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P1)
 	{
-		fdf->col.palr[1] *= 1.05;
+		fdf->col.palr[1] *= 1.002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P2)
 	{
-		fdf->col.palr[2] *= 1.05;
+		fdf->col.palr[2] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P3)
 	{
-		fdf->col.palr[3] *= 1.05;
+		fdf->col.palr[3] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P4)
 	{
-		fdf->col.palr[4] *= 1.05;
+		fdf->col.palr[4] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P5)
 	{
-		fdf->col.palr[5] *= 1.05;
+		fdf->col.palr[5] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P6)
 	{
-		fdf->col.palr[6] *= 1.05;
+		fdf->col.palr[6] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P7)
 	{
-		fdf->col.palr[7] *= 1.05;
+		fdf->col.palr[7] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P8)
 	{
-		fdf->col.palr[8] *= 1.05;
+		fdf->col.palr[8] *= 1.0002;
 		create_img(fdf);
 	}
 	if (keycode == NUM_P9)
 	{
-		fdf->col.palr[9] *= 1.05;
+		fdf->col.palr[9] *= 1.0002;
 		create_img(fdf);
 	}
 
@@ -119,12 +119,22 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 {
 	if (keycode == PLUS)
 	{
-		 fdf->cam->inc_z += 0.5;
+		if (fdf->cam->inc_z <= 0.1 || fdf->cam->inc_z >= -0.1)
+			fdf->cam->inc_z += 1;
+		if (fdf->cam->inc_z < 0)
+			fdf->cam->inc_z *= 0.96;
+		else
+			fdf->cam->inc_z *= 1.04;
 		create_img(fdf);
 	}
 	if (keycode == MINUS)
 	{
-		fdf->cam->inc_z -= 0.5;
+		if (fdf->cam->inc_z <= 0.7 || fdf->cam->inc_z >= -0.7)
+			fdf->cam->inc_z -= 1;
+		if (fdf->cam->inc_z < 0)
+			fdf->cam->inc_z *= 1.04;
+		else
+			fdf->cam->inc_z *= 0.96;
 		create_img(fdf);
 	}
 }
