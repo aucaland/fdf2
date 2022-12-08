@@ -6,68 +6,38 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 15:29:39 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:33:35 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void ft_chose_color(int keycode, t_fdf *fdf)
+void	ft_chose_color(int keycode, t_fdf *fdf)
 {
 	if (keycode == NUM_P0)
-	{
 		fdf->col.palr[0] *= 1.002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P1)
-	{
+	else if (keycode == NUM_P1)
 		fdf->col.palr[1] *= 1.002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P2)
-	{
+	else if (keycode == NUM_P2)
 		fdf->col.palr[2] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P3)
-	{
+	else if (keycode == NUM_P3)
 		fdf->col.palr[3] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P4)
-	{
+	else if (keycode == NUM_P4)
 		fdf->col.palr[4] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P5)
-	{
+	else if (keycode == NUM_P5)
 		fdf->col.palr[5] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P6)
-	{
+	else if (keycode == NUM_P6)
 		fdf->col.palr[6] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P7)
-	{
+	else if (keycode == NUM_P7)
 		fdf->col.palr[7] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P8)
-	{
+	else if (keycode == NUM_P8)
 		fdf->col.palr[8] *= 1.0002;
-		create_img(fdf);
-	}
-	if (keycode == NUM_P9)
-	{
+	else if (keycode == NUM_P9)
 		fdf->col.palr[9] *= 1.0002;
-		create_img(fdf);
-	}
-
+	create_img(fdf);
 }
 
-void fill_palett(t_fdf *fdf)
+void	fill_palett(t_fdf *fdf)
 {
 	fdf->col.palr[0] = P2_1;
 	fdf->col.palr[1] = P2_2;
@@ -90,7 +60,9 @@ void fill_palett(t_fdf *fdf)
 	fdf->col.pal3[7] = P2_8;
 	fdf->col.pal3[8] = P2_9;
 	fdf->col.pal3[9] = P2_10;
-
+}
+void fill_palett_next(t_fdf *fdf)
+{
 	fdf->col.pal[0] = P0_1;
 	fdf->col.pal[1] = P0_2;
 	fdf->col.pal[2] = P0_3;
@@ -125,7 +97,6 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 			fdf->cam->inc_z *= 0.98;
 		else
 			fdf->cam->inc_z *= 1.02;
-		create_img(fdf);
 	}
 	if (keycode == MINUS)
 	{
@@ -135,8 +106,8 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 			fdf->cam->inc_z *= 1.02;
 		else
 			fdf->cam->inc_z *= 0.98;
-		create_img(fdf);
 	}
+	create_img(fdf);
 }
 
 void ft_change_color(int keycode, t_fdf *fdf)
@@ -186,44 +157,24 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	(void)x;
 
 	if (keycode == 5)
-	{
 		fdf->cam->scale *= 0.95;
-		create_img(fdf);
-	}
 	else if (keycode == 4)
-	{
 		fdf->cam->scale *= 1.05;
-		create_img(fdf);
-	}
+	create_img(fdf);
 	return (0);
 }
 
 int	ft_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == LEFT_ARROW) // gauche
-	{
 		fdf->cam->offset_x -= 10;
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		create_img(fdf);
-	}
-	if (keycode == UP_ARROW) // haut
-	{
+	else if (keycode == UP_ARROW) // haut
 		fdf->cam->offset_y -= 10;
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		create_img(fdf);
-	}
-	if (keycode == RIGHT_ARROW) // droite
-	{
+	else if (keycode == RIGHT_ARROW) // droite
 		fdf->cam->offset_x += 10;
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		create_img(fdf);
-	}
-	if (keycode == DOWN_ARROW) // bas
-	{
+	else if (keycode == DOWN_ARROW) // bas
 		fdf->cam->offset_y += 10;
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		create_img(fdf);
-	}
+	create_img(fdf);
 	return (0);
 }
 
@@ -233,12 +184,8 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
-	//if (keycode == 69)
-// ++
-	//if (keycode == 78)
-	//	--
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);
 	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q || keycode == E)
@@ -256,6 +203,5 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 void	ft_hook_define(t_fdf *fdf)
 {
 	mlx_hook(fdf->mlx_win, 2, 1L<<0, ft_hook_keycode, fdf);
-	/*				MOUSE				*/
 	mlx_mouse_hook(fdf->mlx_win, ft_zoom, fdf);
 }

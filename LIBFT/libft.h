@@ -111,6 +111,7 @@ long long int	ft_pow_long(long long int nbr_base, int p);
 /*				Fcking Malloc		*/
 
 void ft_free(void *ptr);
+int	**ft_freetabi(int **tab);
 
 /*				Utils_no_libft			*/
 

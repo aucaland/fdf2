@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 19:59:59 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:33:35 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,17 @@ int	main(int argc, char **argv)
 	t_fdf	*fdf;
 
 	fdf = init_struct_main();
+	if (!fdf)
+	{
+		ft_putstr_fd("Malloc allocation failed for struct", 2);
+		exit(EXIT_FAILURE);
+	}
 	parsing(argv[1], fdf);
 	init_default_value(fdf);
 	fill_palett(fdf);
+	fill_palett_next(fdf);
 	fdf->mlx = mlx_init();
-	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "Hello ok");
+	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "FdF");
 	ft_hook_define(fdf);
 	create_img(fdf);
 	print_menu(fdf);

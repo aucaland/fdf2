@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/08 19:57:05 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:08:13 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 static int	count_word(t_list *list)
 {
-	int	i;
-	int	nbr_word;
-	int	comp;
-	char *list_content;
+	int		i;
+	int		nbr_word;
+	int		comp;
+	char	*content;
 
 	i = 0;
 	nbr_word = 0;
-	list_content = list->content;
-	while ((list_content)[i])
+	content = list->content;
+	while ((content)[i])
 	{
 		comp = 0;
-		while (list_content[i] && ft_isspace(list_content[i]))
+		while (content[i] && ft_isspace(content[i]))
 			i++;
-		while (list_content[i] && !ft_isspace(list_content[i]) && list_content[i])
+		while (content[i] && !ft_isspace(content[i]) && content[i])
 		{
 			i++;
 			comp++;
@@ -48,13 +48,11 @@ static int	read_file(t_list **list_pars, int fd)
 	while (str != NULL)
 	{
 		ft_lstadd_back(list_pars, ft_lstnew(ft_strdup(str)));
-//		dprintf(1, "%s\n", (char *)(*list_pars)->content);
 		free(str);
 		count_line++;
 		str = get_next_line(fd);
 	}
 	return (count_line);
-
 }
 
 static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
@@ -66,26 +64,25 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 
 	i = 0;
 	top = list_pars;
-	fdf->map->max_coeff = 0;
-//	dprintf(1, "size=[%d;%d]\n", nbr_line, nbr_word);
 	while (i < nbr_line)
 	{
 		list_content = list_pars->content;
-	//	dprintf(1, "i=%d - %s\n", i, list_content);
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
-
+		if (!fdf->map->tab[i])
+		{
+			ft_freetabi(fdf->map->tab);
+			break ;
+		}
 		j = 0;
 		while (j < nbr_word)
 		{
-		//	dprintf(1, "tab[%d;%d]\n", i, j);
 			while (ft_isspace(*list_content))
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi((list_content));
 			fdf->map->max_coeff = fmax(fdf->map->max_coeff, fdf->map->tab[i][j]);
-			fdf->map->min_coeff = fmin(fdf->map->min_coeff, fdf->map->tab[i][j]);
+			fdf->map->min_coeff = fmin(fdf->map->min_coeff, fdf->map->tab[i][j++]);
 			while (!ft_isspace(*list_content))
 				list_content++;
-			j++;
 		}
 		list_pars = list_pars->next;
 		i++;
@@ -116,7 +113,6 @@ static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: ini
 void	parsing(char *path, t_fdf *fdf)
 {
 	t_list	*list_pars;
-//	char	*list_content;
 	int		nbr_line;
 	int		nbr_word;
 	int		fd;
@@ -128,25 +124,22 @@ void	parsing(char *path, t_fdf *fdf)
 		exit(EXIT_FAILURE);
 	}
 	list_pars = NULL;
-//	ft_printf("%s", path);
 	nbr_line = read_file(&list_pars, fd);
+	close(fd);
 	if (nbr_line <= 0)
 	{
 		ft_putstr_fd("Empty file or illegal content", 2);
 		exit(EXIT_FAILURE);
 	}
-//	list_content = list_pars->content;
-//	dprintf(1, "%s\n", (char *)list_pars->content);
 	nbr_word = count_word(list_pars);
-//	dprintf(1, "%d\n", nbr_word);
 	fdf = init_struct_map(fdf, nbr_line, nbr_word);
-//	dprintf(1, "%s", (char *)list_pars->content);
-//	dprintf(1, "%d", nbr_word);
+	fdf->map->max_coeff = 0;
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
-//	ft_printf("%d", fdf->map->max_coeff );
-//	ft_print_map(fdf);
-	close (fd);
-//	ft_printf("%d", fdf->map->tab[0][0]);
+	if (!fdf->map->tab)
+	{
+		ft_free_fdf(fdf);
+		exit(EXIT_FAILURE);
+	}
 }
 
 //void ft_print_map(t_fdf *fdf)

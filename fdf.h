@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 18:55:08 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:33:35 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,14 @@ int		get_color(t_point start, t_point end, t_point point);
 int		get_default_color(int z, t_fdf *fdf);
 void	fill_palett(t_fdf *fdf);
 void	ft_chose_color(int keycode, t_fdf *fdf);
+void fill_palett_next(t_fdf *fdf);
 
 /*						MENU					*/
 
 void	print_menu(t_fdf *fdf);
+
+/*						free					*/
+
+void ft_free_fdf(t_fdf *fdf);
 
 #endif

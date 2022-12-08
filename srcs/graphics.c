@@ -52,8 +52,6 @@ void bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	int max;
 	//int z0;
 	//int z1;
-
-
 	//z0 = fdf->map->tab[(int)y0][(int)x0] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
 	//z1 = fdf->map->tab[(int)y1][(int)x1] * ((fdf->map->max_coeff) / (fdf->map->height * 0.3));
 	/* zoom */
@@ -97,7 +95,6 @@ void comput_line(t_fdf *fdf)
 	y = 0;
 	while (y < fdf->map->height)
 	{
-
 		x = 0;
 		while (x < fdf->map->width)
 		{
@@ -116,7 +113,6 @@ void create_img(t_fdf *fdf)
 	fdf->data->img = mlx_new_image(fdf->mlx, fdf->map->width_win, fdf->map->height_win);
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, &fdf->data->bits_per_pixel, &fdf->data->line_length,
 										&fdf->data->endian);
-
 	comput_line(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img,0, 0);
 }
