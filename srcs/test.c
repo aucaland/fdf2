@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 12:20:06 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/08 19:59:59 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+
+void init_default_value(t_fdf *fdf)
+{
+	fdf->map->width_win = 1980;
+	fdf->map->height_win = 1080;
+	fdf->cam->offset_x = fdf->map->width_win / 3;
+	fdf->cam->offset_y = fdf->map->height_win / 3;
+	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
+	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
+}
 
 void print_menu(t_fdf *fdf)
 {
@@ -44,21 +54,16 @@ static t_fdf *init_struct_main()//TODO: init all struct
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	if (argc != 2)
+	{
+		fprintf(stderr, "ERROR : Only one argument is valid --> check an ex : './fdf user/map.fdf' ");
+		exit(EXIT_FAILURE);
+	}
 	t_fdf	*fdf;
 
 	fdf = init_struct_main();
 	parsing(argv[1], fdf);
-	fdf->map->width_win = 1980;
-	fdf->map->height_win = 1080;
-	fdf->cam->mouse_x = 0;
-	fdf->cam->mouse_y = 0;
-	fdf->cam->offset_x = fdf->map->width_win / 3;
-	fdf->cam->offset_y = fdf->map->height_win / 3;
-	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
-	//colors_range(fdf);
-	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
+	init_default_value(fdf);
 	fill_palett(fdf);
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "Hello ok");

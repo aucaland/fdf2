@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/08 17:01:06 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:57:05 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: ini
 		ft_free(fdf->map);
 		ft_free(fdf);
 	}
+	if (!fdf)
+	{
+		ft_putstr_fd("Malloc allocation failed for map", 2);
+		exit(EXIT_FAILURE);
+	}
 	return (fdf);
 }
 
@@ -114,16 +119,22 @@ void	parsing(char *path, t_fdf *fdf)
 //	char	*list_content;
 	int		nbr_line;
 	int		nbr_word;
-	int fd;
+	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit(-1);
+	{
+		perror(path);
+		exit(EXIT_FAILURE);
+	}
 	list_pars = NULL;
 //	ft_printf("%s", path);
 	nbr_line = read_file(&list_pars, fd);
 	if (nbr_line <= 0)
-		exit(-1);
+	{
+		ft_putstr_fd("Empty file or illegal content", 2);
+		exit(EXIT_FAILURE);
+	}
 //	list_content = list_pars->content;
 //	dprintf(1, "%s\n", (char *)list_pars->content);
 	nbr_word = count_word(list_pars);
