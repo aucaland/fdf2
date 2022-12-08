@@ -34,14 +34,12 @@ UNAME_S := $(shell uname -s)
 	endif
 
 ### DEBUG ####
-DEB = echo "deb"
-REAL = echo "REALEASE"
-DEBUG ?= 1
-ifeq ($(DEBUG), 1)
+D = 0
+ifeq ($(D), 1)
 	CC += -fsanitize=address -g3
 	MODE = echo "\033[0;31m MODE DEBUG SANITIZE \033[0m"
 endif
-ifneq ($(DEBUG), 1)
+ifneq ($(D), 1)
 	MODE = echo "\033[0;31m MODE RELEASE \033[0m"
 endif
 
