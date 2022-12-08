@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 15:28:50 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:29:39 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,36 +165,18 @@ void ft_change_color(int keycode, t_fdf *fdf)
 void ft_rotate(int keycode, t_fdf *fdf)//TODO: refactor -25 line
 {
 	if (keycode == W)
-	{
 		fdf->cam->rot_x -= 0.02;
-		create_img(fdf);
-	}
-	if (keycode == S)
-	{
+	else if (keycode == S)
 		fdf->cam->rot_x += 0.02;
-		create_img(fdf);
-	}
-	if (keycode == A)
-	{
+	else if (keycode == A)
 		fdf->cam->rot_y += 0.02;
-		create_img(fdf);
-	}
-	if (keycode == D)
-	{
+	else if (keycode == D)
 		fdf->cam->rot_y -= 0.02;
-		create_img(fdf);
-	}
-	if (keycode == Q)
-	{
+	else if (keycode == Q)
 		fdf->cam->rot_z -= 0.02;
-		create_img(fdf);
-	}
-	if (keycode == E)
-	{
+	else if (keycode == E)
 		fdf->cam->rot_z += 0.02;
-		create_img(fdf);
-	}
-
+	create_img(fdf);
 }
 
 int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
@@ -249,7 +231,10 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
 	ft_printf("%d\n", keycode);
 	if (keycode == ESC)
+	{
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
+		exit(0);
+	}
 	//if (keycode == 69)
 // ++
 	//if (keycode == 78)

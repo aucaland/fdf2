@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/04 22:40:35 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/08 17:01:06 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,12 @@ static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: ini
 	fdf->map->width = nbr_word;
 	fdf->map->tab = malloc(sizeof(int *) * nbr_line);
 	if (!(fdf->map->tab))
-		return (ft_free(fdf->map, sizeof(t_map)), ft_free(fdf, sizeof(t_fdf)), NULL);
+	{
+		ft_free(fdf->data);
+		ft_free(fdf->cam);
+		ft_free(fdf->map);
+		ft_free(fdf);
+	}
 	return (fdf);
 }
 

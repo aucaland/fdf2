@@ -18,7 +18,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 ####Compil####
 
-CC 		= gcc
+CC 		= gcc -O3
 CFLAGS 	= -Wall -Wextra -Werror
 
 #### OS ####
@@ -32,6 +32,18 @@ UNAME_S := $(shell uname -s)
 		MLX_FLAG = -lft -lmlx -framework OpenGL -framework Appkit
 		MLX = ./mlx/mlx_macos/
 	endif
+
+### DEBUG ####
+DEB = echo "deb"
+REAL = echo "REALEASE"
+DEBUG ?= 1
+ifeq ($(DEBUG), 1)
+	CC += -fsanitize=address -g3
+	MODE = echo "\033[0;31m MODE DEBUG SANITIZE \033[0m"
+endif
+ifneq ($(DEBUG), 1)
+	MODE = echo "\033[0;31m MODE RELEASE \033[0m"
+endif
 
 #####LIBS#####
 
@@ -54,6 +66,7 @@ $(MLX)/libmlx.a:
 $(NAME):	$(LIBS) $(OBJ)
 	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
+	@$(MODE)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)

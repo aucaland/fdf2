@@ -110,7 +110,7 @@ long long int	ft_pow_long(long long int nbr_base, int p);
 
 /*				Fcking Malloc		*/
 
-void ft_free(void *ptr, int size);
+void ft_free(void *ptr);
 
 /*				Utils_no_libft			*/
 

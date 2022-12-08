@@ -12,21 +12,8 @@
 
 #include "libft.h"
 //TODO: verif if valid
-void ft_free(void *ptr, int size)
+void ft_free(void *ptr)
 {
-	if (size > 0)
-	{
-		while (ptr && size > 0)
-		{
-			free(ptr);
-			ptr = NULL;
-			ptr++;
-			size--;
-		}
-	}
-	else
-	{
-		free(ptr);
-		ptr = NULL;
-	}
+	free(ptr);
+	ptr = NULL;
 }

@@ -22,22 +22,22 @@ void print_menu(t_fdf *fdf)
 
 static t_fdf *init_struct_main()//TODO: init all struct
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (free(fdf), fdf = NULL, NULL);
 	fdf->map = malloc(sizeof(t_map));
 	if (!(fdf->map))
-		return (ft_free(fdf->map, sizeof(t_map)), NULL);
+		return (ft_free(fdf), NULL);
 	fdf->data = malloc(sizeof(t_data));
 	if (!(fdf->data))
-		return (ft_free(fdf->map, sizeof(t_map)), ft_free(fdf, sizeof(t_fdf)), NULL);
+		return (ft_free(fdf->map), ft_free(fdf), NULL);
 	fdf->cam = malloc(sizeof(t_tools));
 	if (!(fdf->cam))
 	{
-		ft_free(fdf->map, sizeof(t_map));
-		return (ft_free(fdf->data, sizeof(t_data)), ft_free(fdf, sizeof(t_fdf)), NULL);
+		ft_free(fdf->data);
+		return (ft_free(fdf->map), ft_free(fdf), NULL);
 	}
 	return (fdf);
 }
