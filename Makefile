@@ -75,12 +75,12 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 clean:
 	@rm -rf $(OBJ)
 	@make clean -C LIBFT
-	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"         \033[0;32m [OK] \033[0m"
+	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"  for Fdf    	   \033[0;32m [OK] \033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C LIBFT
-	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"    \033[0;32m [OK] \033[0m"
+	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"    		   \033[0;32m [OK] \033[0m"
 
 re: fclean all
 

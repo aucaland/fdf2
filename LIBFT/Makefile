@@ -94,11 +94,11 @@ $(OBJS):		$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c $(INC)
 
 clean:
 	@rm -rf $(OBJS)
-	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"         \033[0;32m [OK] \033[0m"
+	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"  for Libft      \033[0;32m [OK] \033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"    \033[0;32m [OK] \033[0m"
+	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"            \033[0;32m [OK] \033[0m"
 
 re: fclean all
 
