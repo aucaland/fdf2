@@ -142,6 +142,6 @@ void	print_menu(t_fdf *fdf);
 
 /*						free					*/
 
-void ft_free_fdf(t_fdf *fdf);
+void ft_free_fdf(t_fdf *fdf, int i);
 
 #endif

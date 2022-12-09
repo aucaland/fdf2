@@ -12,12 +12,16 @@
 
 #include "../fdf.h"
 
-void ft_free_fdf(t_fdf *fdf)
+void ft_free_fdf(t_fdf *fdf, int i)
 {
 	ft_free(fdf->data);
 	ft_free(fdf->cam);
 	ft_free(fdf->map);
 	ft_free(fdf);
+	if (i == 0)
+		exit(EXIT_SUCCESS);
+	if (i == -1)
+		exit(EXIT_FAILURE);
 }
 
 int	get_default_color(int z, t_fdf *fdf)

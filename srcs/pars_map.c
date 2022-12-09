@@ -96,17 +96,7 @@ static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: ini
 	fdf->map->width = nbr_word;
 	fdf->map->tab = malloc(sizeof(int *) * nbr_line);
 	if (!(fdf->map->tab))
-	{
-		ft_free(fdf->data);
-		ft_free(fdf->cam);
-		ft_free(fdf->map);
-		ft_free(fdf);
-	}
-	if (!fdf)
-	{
-		ft_putstr_fd("Malloc allocation failed for map", 2);
-		exit(EXIT_FAILURE);
-	}
+		ft_free_fdf(fdf, -1);
 	return (fdf);
 }
 
@@ -129,17 +119,14 @@ void	parsing(char *path, t_fdf *fdf)
 	if (nbr_line <= 0)
 	{
 		ft_putstr_fd("Empty file or illegal content", 2);
-		exit(EXIT_FAILURE);
+		ft_free_fdf(fdf, -1);
 	}
 	nbr_word = count_word(list_pars);
 	fdf = init_struct_map(fdf, nbr_line, nbr_word);
 	fdf->map->max_coeff = 0;
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
 	if (!fdf->map->tab)
-	{
-		ft_free_fdf(fdf);
-		exit(EXIT_FAILURE);
-	}
+		ft_free_fdf(fdf, -1);
 }
 
 //void ft_print_map(t_fdf *fdf)

@@ -85,7 +85,7 @@ void fill_palett_next(t_fdf *fdf)
 	fdf->col.pal2[8] = P1_9;
 	fdf->col.pal2[9] = P1_10;
 
-}//TODO : changer tout
+}
 
 void	ft_inc_z(int keycode, t_fdf *fdf)
 {
@@ -186,17 +186,17 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
+	else if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);
-	if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q || keycode == E)
+	else if (keycode == A || keycode == W || keycode == D || keycode == S || keycode == Q || keycode == E)
 		ft_rotate(keycode, fdf);
-	if (keycode == R || keycode == G || keycode == B)
+	else if (keycode == R || keycode == G || keycode == B)
 		ft_change_color(keycode, fdf);
-	if (keycode == NUM_P0 || keycode == NUM_P1 || keycode == NUM_P2 || keycode == NUM_P3 || keycode == NUM_P4 \
+	else if (keycode == NUM_P0 || keycode == NUM_P1 || keycode == NUM_P2 || keycode == NUM_P3 || keycode == NUM_P4 \
 		|| keycode == NUM_P5 || keycode == NUM_P6 || keycode == NUM_P7 || keycode == NUM_P8 \
 			|| keycode == NUM_P9)
 			ft_chose_color(keycode, fdf);
-	if (keycode == PLUS || keycode == MINUS)
+	else if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
 	return (0);
 }
