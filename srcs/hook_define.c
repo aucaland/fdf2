@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 20:33:35 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/09 08:53:21 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,9 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-		exit(EXIT_SUCCESS);
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
+		ft_freetabi(fdf->map->tab);
+		ft_free_fdf(fdf, 0);
 	}
 	else if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);
