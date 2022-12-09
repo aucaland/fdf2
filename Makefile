@@ -6,7 +6,8 @@ SRC_NAME	= test.c\
 			  pars_map.c\
 			  graphics.c\
 			  rotate.c\
-			  utils_fdf.c
+			  utils_fdf.c\
+			  utils2_fdf.c
 
 
 
