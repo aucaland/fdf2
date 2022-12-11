@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/09 08:53:21 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:13:53 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_chose_color(int keycode, t_fdf *fdf)
 		fdf->col.palr[8] *= 1.0002;
 	else if (keycode == NUM_P9)
 		fdf->col.palr[9] *= 1.0002;
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 }
 
@@ -91,6 +92,8 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 {
 	if (keycode == PLUS)
 	{
+		if (fdf->cam->inc_z > 50)
+			return ;
 		if (fdf->cam->inc_z <= 0.1 || fdf->cam->inc_z >= -0.1)
 			fdf->cam->inc_z += 0.2;
 		if (fdf->cam->inc_z < 0)
@@ -100,6 +103,8 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 	}
 	if (keycode == MINUS)
 	{
+		if (fdf->cam->inc_z < -50)
+			return ;
 		if (fdf->cam->inc_z <= 0.1 || fdf->cam->inc_z >= -0.1)
 			fdf->cam->inc_z -= 0.2;
 		if (fdf->cam->inc_z < 0)
@@ -107,6 +112,7 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 		else
 			fdf->cam->inc_z *= 0.98;
 	}
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 }
 
@@ -130,10 +136,11 @@ void ft_change_color(int keycode, t_fdf *fdf)
 		while (++i < 10)
 			fdf->col.palr[i] = fdf->col.pal3[i];
 	}
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 }
 
-void ft_rotate(int keycode, t_fdf *fdf)//TODO: refactor -25 line
+void ft_rotate(int keycode, t_fdf *fdf)
 {
 	if (keycode == W)
 		fdf->cam->rot_x -= 0.02;
@@ -147,6 +154,7 @@ void ft_rotate(int keycode, t_fdf *fdf)//TODO: refactor -25 line
 		fdf->cam->rot_z -= 0.02;
 	else if (keycode == E)
 		fdf->cam->rot_z += 0.02;
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 }
 
@@ -160,6 +168,7 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 		fdf->cam->scale *= 0.95;
 	else if (keycode == 4)
 		fdf->cam->scale *= 1.05;
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	return (0);
 }
@@ -174,6 +183,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 		fdf->cam->offset_x += 10;
 	else if (keycode == DOWN_ARROW) // bas
 		fdf->cam->offset_y += 10;
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	return (0);
 }
@@ -183,8 +193,8 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	ft_printf("%d\n", keycode);
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
+		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 		ft_freetabi(fdf->map->tab);
 		ft_free_fdf(fdf, 0);
 	}

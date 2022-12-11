@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/07 16:15:29 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/11 15:49:01 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	get_color(t_point start, t_point end, t_point point)
 	int		red;
 	int		green;
 	int		blue;
+	int		alpha;
 	double	percentage;
 
 	//ft_printf("start : %x\nend : %x", start.color,end.color);
@@ -78,6 +79,9 @@ int	get_color(t_point start, t_point end, t_point point)
 		percentage = percent(start.x, end.x, point.curx);
 	else
 		percentage = percent(start.y, end.y, point.cury);
+	alpha = get_light((start.color >> 24) & 0xFF,
+					(end.color >> 24) & 0xFF,
+					percentage);
 	red = get_light((start.color >> 16) & 0xFF,
 					(end.color >> 16) & 0xFF,
 					percentage);
@@ -87,7 +91,7 @@ int	get_color(t_point start, t_point end, t_point point)
 	blue = get_light(start.color & 0xFF,
 					 end.color & 0xFF,
 					 percentage);
-	return ((red << 16) | (green << 8) | blue);
+	return ((alpha << 24) | (red << 16) | (green << 8) | blue);
 }
 double	percent(int start, int end, int current)
 {

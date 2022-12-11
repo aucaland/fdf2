@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 20:33:35 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/11 15:22:07 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ void init_default_value(t_fdf *fdf)
 
 void print_menu(t_fdf *fdf)
 {
-	fdf->str = ft_itoa(P0_1);
-	fdf->str = ft_strjoin("BLUE :",fdf->str);
+	char *str;
+
+	str = ft_itoa(P0_1);
+	fdf->str = ft_strjoin("BLUE :",str);
 	mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, GREEN_F * 0.2, fdf->str);
+	free(str);
+	free(fdf->str);
 }
 
 static t_fdf *init_struct_main()//TODO: init all struct

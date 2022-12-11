@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/09 09:02:35 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/11 15:50:21 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 			|| coord0.y >= fdf->map->height_win)
 			break ;
 		my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, \
-			get_color(coord1, coord0, fdf->point));
+			get_color(coord0, coord1, fdf->point));
 		coord0.x += fdf->point.dx;
 		coord0.y += fdf->point.dy;
 	}
