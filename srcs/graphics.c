@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/11 15:50:21 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/11 17:29:21 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	max = fmax(fabs(fdf->point.dx), fabs(fdf->point.dy));
 	fdf->point.dx /= max;
 	fdf->point.dy /= max;
-	fdf->point.curx = coord1.x;
-	fdf->point.cury = coord1.y;
-	fdf->point.cur_color = coord1.color;
-	while ((int)(coord0.x - coord1.x) || (int)(coord1.y - coord0.y))
+	fdf->point.curx = coord0.x;
+	fdf->point.cury = coord0.y;
+	fdf->point.cur_color = coord0.color;
+	while ((int)(coord1.x - coord0.x) || (int)(coord1.y - coord0.y))
 	{
 		if (coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
 			|| coord0.y >= fdf->map->height_win)
@@ -68,19 +68,21 @@ void	comput_line(t_fdf *fdf)
 	int	y;
 
 	y = 0;
+
 	while (y < fdf->map->height)
 	{
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			if (x > 0)
+			if (x < fdf->map->width - 1)
 				bresenham(proj(new_point(x, y, fdf)), \
-					proj(new_point(x - 1, y, fdf)), fdf);
-			if (y > 0)
+					proj(new_point(x + 1, y, fdf)), fdf);
+			if (y < fdf->map->height - 1)
 				bresenham(proj(new_point(x, y, fdf)), \
-					proj(new_point(x, y - 1, fdf)), fdf);
+					proj(new_point(x, y + 1, fdf)), fdf);
 			x++;
 		}
+		ft_printf("%d", fdf->map->width);
 		y++;
 	}
 }
