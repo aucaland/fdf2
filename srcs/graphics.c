@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/11 17:29:21 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/11 18:55:28 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	max = fmax(fabs(fdf->point.dx), fabs(fdf->point.dy));
 	fdf->point.dx /= max;
 	fdf->point.dy /= max;
-	fdf->point.curx = coord0.x;
-	fdf->point.cury = coord0.y;
-	fdf->point.cur_color = coord0.color;
+
 	while ((int)(coord1.x - coord0.x) || (int)(coord1.y - coord0.y))
 	{
-		if (coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
-			|| coord0.y >= fdf->map->height_win)
-			break ;
-		my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, \
-			get_color(coord0, coord1, fdf->point));
+		fdf->point.curx = coord0.x;
+		fdf->point.cury = coord0.y;
+		fdf->point.cur_color = coord0.color;
+		if (!(coord0.x >= fdf->map->width_win || coord0.x <= 0 || coord0.y <= 0 \
+			|| coord0.y >= fdf->map->height_win))
+			my_mlx_pixel_put(fdf->data, coord0.x, coord0.y, \
+				get_color(fdf->point, coord1, fdf->point));
 		coord0.x += fdf->point.dx;
 		coord0.y += fdf->point.dy;
 	}

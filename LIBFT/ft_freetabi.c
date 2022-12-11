@@ -6,18 +6,18 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 20:50:25 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/11 15:20:08 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/11 20:49:00 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_freetabi(int **tab)
+void	ft_freetabi(int **tab, int size)
 {
 	int	i;
 
 	i = 0;
-	while (*tab[i])
+	while (i < size)
 	{
 		free(tab[i]);
 		i++;

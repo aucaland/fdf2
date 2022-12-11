@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:19:32 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/04 20:46:00 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/11 15:19:44 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ long long int	ft_pow_long(long long int nbr_base, int p);
 /*				Fcking Malloc		*/
 
 void ft_free(void *ptr);
-void	ft_freetabi(int **tab);
+void	ft_freetabi(int **tab, int size);
 
 /*				Utils_no_libft			*/
 

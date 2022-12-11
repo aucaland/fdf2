@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/11 17:20:05 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/11 17:42:51 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	get_default_color(int z, t_fdf *fdf)
 
 int	get_light(int start, int end, double percentage)
 {
-	return ((int)((1 - percentage) * start + percentage * end) * 0.8);
+	return ((int)((1 - percentage) * start + percentage * end));
 }
 
 /*

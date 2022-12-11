@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/08 21:08:13 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:56:14 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	count_word(t_list *list)
 	return (nbr_word);
 }
 
-static int	read_file(t_list **list_pars, int fd)
+static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 {
 	char	*str;
 	int		count_line;
@@ -52,6 +52,7 @@ static int	read_file(t_list **list_pars, int fd)
 		count_line++;
 		str = get_next_line(fd);
 	}
+	fdf->map->nbr_line = count_line;
 	return (count_line);
 }
 
@@ -70,7 +71,7 @@ static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		if (!fdf->map->tab[i])
 		{
-			ft_freetabi(fdf->map->tab);
+			ft_freetabi(fdf->map->tab, nbr_word);
 			break ;
 		}
 		j = 0;
@@ -114,7 +115,7 @@ void	parsing(char *path, t_fdf *fdf)
 		exit(EXIT_FAILURE);
 	}
 	list_pars = NULL;
-	nbr_line = read_file(&list_pars, fd);
+	nbr_line = read_file(&list_pars, fdf, fd);
 	close(fd);
 	if (nbr_line <= 0)
 	{
