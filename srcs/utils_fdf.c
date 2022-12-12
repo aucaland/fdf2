@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/11 17:42:51 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/12 10:57:49 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_default_color(int z, t_fdf *fdf)
 {
 	double	percentage;
 
-	percentage = percent(fdf->map->min_coeff, fdf->map->max_coeff, z);
+	percentage = percent((float)fdf->map->min_coeff, (float)fdf->map->max_coeff, z);
 	if (percentage < 0.1)
 		return (fdf->col.palr[0]);
 	else if (percentage < 0.2)
@@ -69,11 +69,11 @@ int	get_color(t_point start, t_point end, t_point point)
 	int		blue;
 	double	percentage;
 
-	//ft_printf("start : %x\nend : %x", start.color,end.color);
-
+	//ft_printf("start : %xend : %x", start.color,end.color);
+	//printf("s[%f;%f] - e[%f;%f] -c[%f;%f]\n", start.x, start.y, end.x, end.y, point.curx, point.cury);
 	if (point.cur_color == end.color)
 		return (point.cur_color);
-	//printf("cur : %d ----- end : %d", point.cur_color , end.color);
+	//printf("cur : %d ----- end : %d\n", point.cur_color , end.color);
 	if (point.dx > point.dy)
 		percentage = percent(start.x, end.x, point.curx);
 	else
@@ -91,7 +91,7 @@ int	get_color(t_point start, t_point end, t_point point)
 					 percentage);
 	return ((red << 16) | (green << 8) | blue);
 }
-double	percent(int start, int end, int current)
+double	percent(int start, int end,  int current)
 {
 	double	placement;
 	double	distance;

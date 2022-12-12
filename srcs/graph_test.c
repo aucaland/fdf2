@@ -54,7 +54,7 @@ void	bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	}
 }
 
-t_fdf	*new_point(int x, int y, t_fdf *fdf)//TODO : tout mettre dans le parsing.
+t_fdf	*new_point(t_fdf *fdf)
 {
 	fdf->point.x = x;
 	fdf->point.y = y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/11 20:55:28 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/12 11:09:50 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,9 @@ int ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	(void)x;
 
 	if (keycode == 5)
-		fdf->cam->scale *= 0.95;
+		fdf->cam->scale *= 0.96;
 	else if (keycode == 4)
-		fdf->cam->scale *= 1.05;
+		fdf->cam->scale *= 1.04;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	return (0);
@@ -190,7 +190,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 
 int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
-	ft_printf("%d\n", keycode);
+	//ft_printf("%d\n", keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->data->img);

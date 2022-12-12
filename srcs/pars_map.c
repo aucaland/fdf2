@@ -12,6 +12,7 @@
 
 #include "../fdf.h"
 
+
 static int	count_word(t_list *list)
 {
 	int		i;
