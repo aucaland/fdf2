@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:20:14 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/02 11:39:03 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:38:14 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,25 @@ static char	*get_correct_line(char *line_buf)
 {
 	char	*str;
 	int		i;
+	int j;
 
 	i = 0;
+	j = 0;
 	while (line_buf[i] && line_buf[i] != '\n')
 		i++;
-	str = ft_substr_gnl(line_buf, 0, i + 1);
+	str = malloc(sizeof(char ) * (i + 1));
+	if (!str)
+	{
+		free(line_buf);
+		line_buf = NULL;
+		exit(EXIT_FAILURE);
+	}
+	str[i] = '\0';
+	while (j < i)
+	{
+		str[j] = line_buf[j];
+		j++;
+	}
 	return (str);
 }
 

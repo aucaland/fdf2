@@ -6,12 +6,12 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/11 20:56:14 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/22 19:09:01 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
+# include <time.h>
 
 static int	count_word(t_list *list)
 {
@@ -45,13 +45,11 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 	int		count_line;
 
 	count_line = 0;
-	str = get_next_line(fd);
-	while (str != NULL)
+	while ((str = get_next_line(fd)) != NULL)
 	{
 		ft_lstadd_back(list_pars, ft_lstnew(ft_strdup(str)));
 		free(str);
 		count_line++;
-		str = get_next_line(fd);
 	}
 	fdf->map->nbr_line = count_line;
 	return (count_line);
