@@ -1,7 +1,7 @@
 NAME		= fdf
 SRC_DIR		= srcs
 OBJ_DIR		= objs
-SRC_NAME	= test.c\
+SRC_NAME	= fdf.c\
 			  hook_define.c\
 			  pars_map.c\
 			  graphics.c\

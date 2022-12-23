@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/12 10:40:15 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:45:34 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	ft_inc_z(int keycode, t_fdf *fdf);
 void	parsing(char *path, t_fdf *fdf);
 int		ft_read_map(char *file);
 void	init_default_value(t_fdf *fdf);
+void	check_map(t_fdf *fdf, int nbr_word, int count);
 
 /*				Graph				*/
 
@@ -135,7 +136,7 @@ int		get_color(t_point start, t_point end, t_point point);
 int		get_default_color(int z, t_fdf *fdf);
 void	fill_palett(t_fdf *fdf);
 void	ft_chose_color(int keycode, t_fdf *fdf);
-void fill_palett_next(t_fdf *fdf);
+void	fill_palett_next(t_fdf *fdf);
 
 /*						MENU					*/
 

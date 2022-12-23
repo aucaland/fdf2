@@ -6,37 +6,40 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/22 19:09:01 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/23 19:12:41 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-# include <time.h>
 
-static int	count_word(t_list *list)
+static int	count_word(t_fdf *fdf, t_list *list)
 {
 	int		i;
-	int		nbr_word;
 	int		comp;
 	char	*content;
+	int		count;
+	int		nbr_word;
 
-	i = 0;
-	nbr_word = 0;
-	content = list->content;
-	while ((content)[i])
+	count = 0;
+	while (list != NULL)
 	{
-		comp = 0;
-		while (content[i] && ft_isspace(content[i]))
-			i++;
-		while (content[i] && !ft_isspace(content[i]) && content[i])
+		i = 0;
+		content = list->content;
+		nbr_word = 0;
+		while (content[i])
 		{
-			i++;
-			comp++;
+			comp = 0;
+			while (content[i] && ft_isspace(content[i]))
+				i++;
+			while (content[i] && !ft_isspace(content[i++]))
+				comp++;
+			if (comp > 0)
+				nbr_word++;
 		}
-		if (comp > 0)
-			nbr_word++;
+		list = list->next;
+		check_map(fdf, nbr_word, ++count);
 	}
-	return (nbr_word);
+	return (fdf->map->width);
 }
 
 static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
@@ -47,47 +50,41 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 	count_line = 0;
 	while ((str = get_next_line(fd)) != NULL)
 	{
-		ft_lstadd_back(list_pars, ft_lstnew(ft_strdup(str)));
-		free(str);
+		ft_lstadd_back(list_pars, ft_lstnew(str));
 		count_line++;
 	}
 	fdf->map->nbr_line = count_line;
 	return (count_line);
 }
 
-static void	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
+static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 {
-	t_list	*top;
 	char	*list_content;
 	int		i;
 	int		j;
 
-	i = 0;
-	top = list_pars;
-	while (i < nbr_line)
+	i = -1;
+	while (++i < nbr_line)
 	{
 		list_content = list_pars->content;
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		if (!fdf->map->tab[i])
-		{
-			ft_freetabi(fdf->map->tab, nbr_word);
-			break ;
-		}
+			return (ft_freetabi(fdf->map->tab, nbr_word), ft_free_fdf(fdf, -1), NULL);
 		j = 0;
 		while (j < nbr_word)
 		{
-			while (ft_isspace(*list_content))
+			while (*list_content != '\0' && ft_isspace(*list_content))
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi((list_content));
 			fdf->map->max_coeff = fmax(fdf->map->max_coeff, fdf->map->tab[i][j]);
 			fdf->map->min_coeff = fmin(fdf->map->min_coeff, fdf->map->tab[i][j++]);
-			while (!ft_isspace(*list_content))
+			while (*list_content != '\0' && !ft_isspace(*list_content))
 				list_content++;
 		}
 		list_pars = list_pars->next;
-		i++;
 	}
-	ft_lstclear(&top, &free);
+	ft_lstclear(&list_pars, &free);
+	return (NULL);
 }
 
 static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: init all struct
@@ -97,6 +94,7 @@ static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: ini
 	fdf->map->tab = malloc(sizeof(int *) * nbr_line);
 	if (!(fdf->map->tab))
 		ft_free_fdf(fdf, -1);
+	fdf->map->max_coeff = 0;
 	return (fdf);
 }
 
@@ -107,6 +105,7 @@ void	parsing(char *path, t_fdf *fdf)
 	int		nbr_word;
 	int		fd;
 
+	fdf->map->height = fdf->map->width = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -116,17 +115,14 @@ void	parsing(char *path, t_fdf *fdf)
 	list_pars = NULL;
 	nbr_line = read_file(&list_pars, fdf, fd);
 	close(fd);
-	if (nbr_line <= 0)
+	if (nbr_line <= 0 || list_pars == NULL)
 	{
 		ft_putstr_fd("Empty file or illegal content", 2);
 		ft_free_fdf(fdf, -1);
 	}
-	nbr_word = count_word(list_pars);
+	nbr_word = count_word(fdf, list_pars);
 	fdf = init_struct_map(fdf, nbr_line, nbr_word);
-	fdf->map->max_coeff = 0;
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
-	if (!fdf->map->tab)
-		ft_free_fdf(fdf, -1);
 }
 
 //void ft_print_map(t_fdf *fdf)

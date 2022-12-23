@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		fprintf(stderr, "ERROR : Only one argument is valid --> check an ex : './fdf user/map.fdf' ");
+		fprintf(stderr, "ERROR : Only one argument is valid --> Here an example : './fdf user/map.fdf' ");
 		exit(EXIT_FAILURE);
 	}
 	t_fdf	*fdf;
