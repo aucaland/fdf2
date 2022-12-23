@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:54:38 by aucaland          #+#    #+#             */
-/*   Updated: 2022/11/24 12:26:22 by aucaland         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:17:30 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	ft_atoi(const char *str)
 			sign *= -1;
 		i++;
 	}
+	if (!ft_isdigit((int)str[i]))
+		ft_printf("Be careful, there is some no-digits in the map");
 	while (str[i] >= '0' && str[i] <= '9')
 		n = n * 10 + (str[i++] - '0');
 	return ((int)(n * sign));
