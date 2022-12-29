@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/23 19:12:41 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/29 17:58:53 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,21 @@ static int	count_word(t_fdf *fdf, t_list *list)
 static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 {
 	char	*str;
+	t_list	*new;
 	int		count_line;
 
 	count_line = 0;
 	while ((str = get_next_line(fd)) != NULL)
 	{
-		ft_lstadd_back(list_pars, ft_lstnew(str));
+		new = ft_lstnew(str);
+		if (new == NULL)
+		{
+			ft_putstr_fd("New item List creation Failed", 2);
+			ft_lstclear(list_pars, free);
+			ft_free_fdf(fdf, -1);
+		}
+		ft_lstadd_back(list_pars, new);
+		//free(str);
 		count_line++;
 	}
 	fdf->map->nbr_line = count_line;
@@ -123,6 +132,7 @@ void	parsing(char *path, t_fdf *fdf)
 	nbr_word = count_word(fdf, list_pars);
 	fdf = init_struct_map(fdf, nbr_line, nbr_word);
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
+	ft_lstclear(&list_pars, free);
 }
 
 //void ft_print_map(t_fdf *fdf)
