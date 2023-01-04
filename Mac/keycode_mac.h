@@ -6,12 +6,12 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:12:40 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/08 15:19:59 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:23:53 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_KEYCODE_MAC_H
-#define FDF_KEYCODE_MAC_H
+#ifndef KEYCODE_MAC_H
+# define KEYCODE_MAC_H
 
 # define LEFT_ARROW		123
 # define RIGHT_ARROW	124
@@ -34,17 +34,18 @@
 # define H				4
 # define N				45
 
-#define	PLUS			78
-#define	MINUS			69
+# define PLUS			78
+# define MINUS			69
 
-# define NUM_P0 82
-# define NUM_P1 83
-# define NUM_P2 84
-# define NUM_P3 85
-# define NUM_P4 86
-# define NUM_P5 87
-# define NUM_P6 88
-# define NUM_P7 89
-# define NUM_P8 91
-# define NUM_P9 92
-#endif //FDF_KEYCODE_MAC_H
+# define NUM_P0			82
+# define NUM_P1			83
+# define NUM_P2			84
+# define NUM_P3			85
+# define NUM_P4			86
+# define NUM_P5			87
+# define NUM_P6			88
+# define NUM_P7			89
+# define NUM_P8			91
+# define NUM_P9			92
+
+#endif

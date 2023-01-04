@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   keycode_linux.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:09:46 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/07 20:03:46 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/04 10:24:48 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef FDF_KEYCODE_LINUX_H
-#define FDF_KEYCODE_LINUX_H
+#ifndef KEYCODE_LINUX_H
+# define KEYCODE_LINUX_H
 
 # define LEFT_ARROW		 65361
 # define RIGHT_ARROW	 65363
@@ -33,18 +32,18 @@
 # define H				104
 # define N				110
 
-#define	PLUS			65451
-#define	MINUS			65453
+# define PLUS			65451
+# define MINUS			65453
 
-# define NUM_P0 65438
-# define NUM_P1 65436
-# define NUM_P2 65433
-# define NUM_P3 65435
-# define NUM_P4 65430
-# define NUM_P5 65437
-# define NUM_P6 65432
-# define NUM_P7 65429
-# define NUM_P8 65431
-# define NUM_P9 65434
+# define NUM_P0			65438
+# define NUM_P1			65436
+# define NUM_P2			65433
+# define NUM_P3			65435
+# define NUM_P4			65430
+# define NUM_P5			65437
+# define NUM_P6			65432
+# define NUM_P7			65429
+# define NUM_P8			65431
+# define NUM_P9			65434
 
-#endif //FDF_KEYCODE_LINUX_H
+#endif
