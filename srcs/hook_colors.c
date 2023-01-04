@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:38:51 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/04 11:38:51 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:28:21 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_chose_color(int keycode, t_fdf *fdf)
 {
 	if (keycode == NUM_P0)
-		fdf->col.palr[0] *= 1.002;
+		fdf->col.palr[0] = ((fdf->col.palr[0] >> 16) + 2) + (fdf->col.palr[0] >> 8 & 255) + (fdf->col.palr[0] & 255);
 	else if (keycode == NUM_P1)
 		fdf->col.palr[1] *= 1.002;
 	else if (keycode == NUM_P2)
