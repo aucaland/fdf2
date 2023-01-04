@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_fdf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:03:16 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/23 18:01:13 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/04 11:25:55 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void check_map(t_fdf *fdf, int nbr_word, int count)
+void	check_map(t_fdf *fdf, int nbr_word, int count)
 {
 	if (nbr_word <= 0)
 	{

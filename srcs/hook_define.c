@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 11:40:40 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:49:41 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 int	ft_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == LEFT_ARROW)
-		fdf->cam->offset_x -= 10;
+		fdf->cam->offset_x -= 6;
 	else if (keycode == UP_ARROW)
-		fdf->cam->offset_y -= 10;
+		fdf->cam->offset_y -= 6;
 	else if (keycode == RIGHT_ARROW)
-		fdf->cam->offset_x += 10;
+		fdf->cam->offset_x += 6;
 	else if (keycode == DOWN_ARROW)
-		fdf->cam->offset_y += 10;
+		fdf->cam->offset_y += 6;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/29 17:58:53 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/04 11:53:02 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 	int		count_line;
 
 	count_line = 0;
-	while ((str = get_next_line(fd)) != NULL)
+	str = get_next_line(fd);
+	while (str != NULL)
 	{
 		new = ft_lstnew(str);
 		if (new == NULL)
@@ -59,8 +60,8 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 			ft_free_fdf(fdf, -1);
 		}
 		ft_lstadd_back(list_pars, new);
-		//free(str);
 		count_line++;
+		str = get_next_line(fd);
 	}
 	fdf->map->nbr_line = count_line;
 	return (count_line);
@@ -78,15 +79,18 @@ static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 		list_content = list_pars->content;
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		if (!fdf->map->tab[i])
-			return (ft_freetabi(fdf->map->tab, nbr_word), ft_free_fdf(fdf, -1), NULL);
+			return (ft_freetabi(fdf->map->tab, nbr_word), \
+				ft_free_fdf(fdf, -1), NULL);
 		j = 0;
 		while (j < nbr_word)
 		{
 			while (*list_content != '\0' && ft_isspace(*list_content))
 				list_content++;
 			fdf->map->tab[i][j] = ft_atoi((list_content));
-			fdf->map->max_coeff = fmax(fdf->map->max_coeff, fdf->map->tab[i][j]);
-			fdf->map->min_coeff = fmin(fdf->map->min_coeff, fdf->map->tab[i][j++]);
+			fdf->map->max_coeff = fmax(fdf->map->max_coeff, \
+				fdf->map->tab[i][j]);
+			fdf->map->min_coeff = fmin(fdf->map->min_coeff, \
+				fdf->map->tab[i][j++]);
 			while (*list_content != '\0' && !ft_isspace(*list_content))
 				list_content++;
 		}
@@ -96,7 +100,7 @@ static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 	return (NULL);
 }
 
-static t_fdf *init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: init all struct
+static t_fdf	*init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: init all struct
 {
 	fdf->map->height = nbr_line;
 	fdf->map->width = nbr_word;
@@ -114,7 +118,8 @@ void	parsing(char *path, t_fdf *fdf)
 	int		nbr_word;
 	int		fd;
 
-	fdf->map->height = fdf->map->width = 0;
+	fdf->map->height = 0;
+	fdf->map->width = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
