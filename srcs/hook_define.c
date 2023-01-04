@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 11:49:41 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:19:55 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_inc_z(int keycode, t_fdf *fdf)
 	}
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 }
 
 void	ft_rotate(int keycode, t_fdf *fdf)
@@ -56,6 +58,8 @@ void	ft_rotate(int keycode, t_fdf *fdf)
 		fdf->cam->rot_z += 0.02;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 }
 
 int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
@@ -68,6 +72,8 @@ int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 		fdf->cam->scale *= 1.04;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 	return (0);
 }
 
@@ -83,12 +89,14 @@ int	ft_translate(int keycode, t_fdf *fdf)
 		fdf->cam->offset_y += 6;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 	return (0);
 }
 
 int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
-	if (keycode == ESC)
+	if (keycode == ESC && fdf->cam->h_on == 0)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
@@ -112,5 +120,15 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		ft_chose_color(keycode, fdf);
 	else if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
+	else if (keycode == H)
+	{
+		fdf->cam->h_on = 1;
+		print_menu(fdf, H);
+	}
+	else if (keycode == ESC && fdf->cam->h_on == 1)
+	{
+		fdf->cam->h_on = 0;
+		create_img(fdf);
+	}
 	return (0);
 }

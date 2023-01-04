@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 10:27:11 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:53 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_data {
 	void			*img;
+	void			*img2;
 	char			*addr;
 	int				bits_per_pixel;
 	int				line_length;
@@ -58,6 +59,7 @@ typedef struct s_tools
 	double			rot_y;
 	double			rot_z;
 	float			inc_z;
+	int				h_on;
 
 }						t_tools;
 
@@ -77,7 +79,9 @@ typedef struct s_point
 typedef struct s_fdf
 {
 	void			*mlx;
+	void			*mlx2;
 	void			*mlx_win;
+	void			*mlx_win2;
 	char			*str;
 	t_map			*map;
 	t_data			*data;
@@ -135,7 +139,7 @@ void				fill_palett_next(t_fdf *fdf);
 
 			/*						MENU					*/
 
-void				print_menu(t_fdf *fdf);
+void	print_menu(t_fdf *fdf, int Keycode);
 
 			/*						free					*/
 

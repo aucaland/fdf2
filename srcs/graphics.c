@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 11:34:00 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:08:38 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ void	create_img(t_fdf *fdf)
 			&fdf->data->line_length, &fdf->data->endian);
 	comput_line(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img, 0, 0);
-	print_menu(fdf);
+	print_menu(fdf, 0);
 }

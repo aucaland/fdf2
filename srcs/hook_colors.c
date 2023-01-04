@@ -6,34 +6,46 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:38:51 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/04 13:28:21 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:23:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+static int convert_rgb(t_fdf *fdf, int nbr_rgb, int nbr_tab)
+{
+	if (nbr_rgb == 0)
+		return (fdf->col.palr[nbr_tab] + 5 );
+	else if (nbr_rgb == 1)
+		return (fdf->col.palr[nbr_tab] + (5 << 8));
+	else
+		return (fdf->col.palr[nbr_tab] + (5 << 16));
+
+}
+
 void	ft_chose_color(int keycode, t_fdf *fdf)
 {
-	if (keycode == NUM_P0)
-		fdf->col.palr[0] = ((fdf->col.palr[0] >> 16) + 2) + (fdf->col.palr[0] >> 8 & 255) + (fdf->col.palr[0] & 255);
-	else if (keycode == NUM_P1)
-		fdf->col.palr[1] *= 1.002;
+	if (keycode == NUM_P3)
+		fdf->col.palr[0] = convert_rgb(fdf, 0, 0);
 	else if (keycode == NUM_P2)
-		fdf->col.palr[2] *= 1.0002;
-	else if (keycode == NUM_P3)
-		fdf->col.palr[3] *= 1.0002;
-	else if (keycode == NUM_P4)
-		fdf->col.palr[4] *= 1.0002;
-	else if (keycode == NUM_P5)
-		fdf->col.palr[5] *= 1.0002;
-	else if (keycode == NUM_P6)
-		fdf->col.palr[6] *= 1.0002;
-	else if (keycode == NUM_P7)
-		fdf->col.palr[7] *= 1.0002;
-	else if (keycode == NUM_P8)
-		fdf->col.palr[8] *= 1.0002;
+		fdf->col.palr[0] = convert_rgb(fdf, 1, 0);
+	else if (keycode == NUM_P1)
+		fdf->col.palr[0] = convert_rgb(fdf, 2, 0);
 	else if (keycode == NUM_P9)
-		fdf->col.palr[9] *= 1.0002;
+		fdf->col.palr[9] = convert_rgb(fdf, 0, 9);
+	else if (keycode == NUM_P8)
+		fdf->col.palr[9] = convert_rgb(fdf, 1, 9);
+	else if (keycode == NUM_P7)
+		fdf->col.palr[9] = convert_rgb(fdf, 2, 9);
+	if (keycode == NUM_P0)
+	{
+		fdf->col.palr[0] = 12632256;
+		fdf->col.palr[9] = 12632256;
+	}
+	else if (keycode == NUM_P4)
+		fdf->col.palr[0] = 12632256;
+	else if (keycode == NUM_P5)
+		fdf->col.palr[9] = 12632256;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 }
@@ -108,4 +120,6 @@ void	ft_change_color(int keycode, t_fdf *fdf)
 	}
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 }
