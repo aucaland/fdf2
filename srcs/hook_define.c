@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 16:19:55 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:37:55 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,12 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		ft_chose_color(keycode, fdf);
 	else if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
-	else if (keycode == H)
+	else if (keycode == H && fdf->cam->h_on == 0)
 	{
 		fdf->cam->h_on = 1;
 		print_menu(fdf, H);
 	}
-	else if (keycode == ESC && fdf->cam->h_on == 1)
+	else if (keycode == H && fdf->cam->h_on == 1)
 	{
 		fdf->cam->h_on = 0;
 		create_img(fdf);
