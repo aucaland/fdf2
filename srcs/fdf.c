@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/11 15:22:07 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/04 11:30:36 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-
-void init_default_value(t_fdf *fdf)
+void	init_default_value(t_fdf *fdf)
 {
 	fdf->map->width_win = 1980;
 	fdf->map->height_win = 1080;
 	fdf->cam->offset_x = fdf->map->width_win / 3;
 	fdf->cam->offset_y = fdf->map->height_win / 3;
 	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
-	fdf->cam->scale = (fdf->map->height_win / fmax(fdf->map->width, fdf->map->height));
+	fdf->cam->scale = (fdf->map->height_win / \
+		fmax(fdf->map->width, fdf->map->height));
 }
 
-void print_menu(t_fdf *fdf)
+void	print_menu(t_fdf *fdf)//TODO : integrer
 {
-	char *str;
+	char	*str;
 
 	str = ft_itoa(P0_1);
-	fdf->str = ft_strjoin("BLUE :",str);
+	fdf->str = ft_strjoin("BLUE :", str);
 	mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, GREEN_F * 0.2, fdf->str);
 	free(str);
 	free(fdf->str);
 }
 
-static t_fdf *init_struct_main()//TODO: init all struct
+static t_fdf	*init_struct_main(void)
 {
 	t_fdf	*fdf;
 
@@ -58,13 +58,14 @@ static t_fdf *init_struct_main()//TODO: init all struct
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		fprintf(stderr, "ERROR : Only one argument is valid --> Here an example : './fdf user/map.fdf' ");
-		exit(EXIT_FAILURE);
-	}
 	t_fdf	*fdf;
 
+	if (argc != 2)
+	{
+		fprintf(stderr, "ERROR : Only one argument is valid -->\
+			Here an example : './fdf user/map.fdf' ");
+		exit(EXIT_FAILURE);
+	}
 	fdf = init_struct_main();
 	if (!fdf)
 	{
@@ -76,7 +77,8 @@ int	main(int argc, char **argv)
 	fill_palett(fdf);
 	fill_palett_next(fdf);
 	fdf->mlx = mlx_init();
-	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, fdf->map->height_win, "FdF");
+	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, \
+		fdf->map->height_win, "FdF");
 	ft_hook_define(fdf);
 	create_img(fdf);
 	print_menu(fdf);

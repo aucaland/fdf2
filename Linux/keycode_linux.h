@@ -13,10 +13,10 @@
 #ifndef KEYCODE_LINUX_H
 # define KEYCODE_LINUX_H
 
-# define LEFT_ARROW		 65361
-# define RIGHT_ARROW	 65363
-# define UP_ARROW		 65362
-# define DOWN_ARROW		 65364
+# define LEFT_ARROW		65361
+# define RIGHT_ARROW	65363
+# define UP_ARROW		65362
+# define DOWN_ARROW		65364
 # define ESC			65307
 # define A				97
 # define W				119

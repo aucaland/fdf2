@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2022/12/23 15:36:42 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/04 11:33:43 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ void	bresenham(t_point coord0, t_point coord1, t_fdf *fdf)
 	max = fmax(fabs(fdf->point.dx), fabs(fdf->point.dy));
 	fdf->point.dx /= max;
 	fdf->point.dy /= max;
-
 	fdf->point.cur_color = coord0.color;
 	fdf->point.curx = coord0.x;
 	fdf->point.cury = coord0.y;
-	while ((int)(coord1.x - fdf->point.curx) || (int)(coord1.y - fdf->point.cury))
+	while ((int)(coord1.x - fdf->point.curx) || \
+		(int)(coord1.y - fdf->point.cury))
 	{
-		if (!(fdf->point.curx >= fdf->map->width_win || fdf->point.curx <= 0 || fdf->point.cury <= 0 \
-			|| fdf->point.cury >= fdf->map->height_win))
+		if (!(fdf->point.curx >= fdf->map->width_win || \
+			fdf->point.curx <= 0 || fdf->point.cury <= 0 \
+				|| fdf->point.cury >= fdf->map->height_win))
 		{
 			my_mlx_pixel_put(fdf->data, fdf->point.curx, fdf->point.cury, \
 				get_color(coord0, coord1, fdf->point));
@@ -70,7 +71,6 @@ void	comput_line(t_fdf *fdf)
 	int	y;
 
 	y = 0;
-
 	while (y < fdf->map->height)
 	{
 		x = 0;
@@ -84,7 +84,6 @@ void	comput_line(t_fdf *fdf)
 					proj(new_point(x, y + 1, fdf)), fdf);
 			x++;
 		}
-		//ft_printf("%d", fdf->map->width);
 		y++;
 	}
 }

@@ -36,10 +36,7 @@ void check_map(t_fdf *fdf, int nbr_word, int count)
 		ft_free_fdf(fdf, -1);
 	}
 	if (count == 1)
-	{
 		fdf->map->width = nbr_word;
-		printf("AFFIL %d\n", fdf->map->height);
-	}
 	printf("OLD = %d-----NEW = %d\n", fdf->map->width, nbr_word);
 	if (nbr_word != fdf->map->width)
 	{
