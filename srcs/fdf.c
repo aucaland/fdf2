@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 16:15:01 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:44:48 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,28 @@ void	print_menu(t_fdf *fdf, int Keycode)//TODO : integrer
 	{
 		while (i <= 9)
 		{
-			int	r = fdf->col.palr[i] >> 16 & 255;
-			int	g = fdf->col.palr[i] >> 8 & 255;
-			int	b = fdf->col.palr[i] & 255;
+			char	*r = ft_itoa(fdf->col.palr[i] >> 16 & 255);
+			char	*g = ft_itoa(fdf->col.palr[i] >> 8 & 255);
+			char	*b = ft_itoa(fdf->col.palr[i] & 255);
+
 			if (i == 0)
-				fdf->str = ft_strjoin("ALT MIN : R=", ft_itoa(r));
+				fdf->str = ft_strjoin("ALT MIN : R=", r);
 			else
-				fdf->str = ft_strjoin("ALT MAX : R=", ft_itoa(r));
-			str1 = ft_strjoin(" G=", ft_itoa(g));
-			str2 = ft_strjoin(" B=", ft_itoa(b));
+				fdf->str = ft_strjoin("ALT MAX : R=", r);
+			str1 = ft_strjoin(" G=", g);
+			str2 = ft_strjoin(" B=", b);
 			mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, GREEN_F * 0.5, "--Manual Colors--\n");
 			mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 50 + i * 3, GREEN_F * 0.9, fdf->str);
 			mlx_string_put(fdf->mlx, fdf->mlx_win, 215, 50 + i * 3, GREEN_F * 0.9, str1);
 			mlx_string_put(fdf->mlx, fdf->mlx_win, 275, 50 + i * 3, GREEN_F * 0.9, str2);
 			free(fdf->str);
+			free(str1);
+			free(str2);
+			free(r);
+			free(g);
+			free(b);
 			i += 9;
+
 		}
 		if (Keycode == H)
 		{

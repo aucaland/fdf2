@@ -131,7 +131,7 @@ void				bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
 int					ft_gradient_colors(t_fdf *fdf);
 void				colors_range(t_fdf *fdf);
 double				percent(int start, int end, int current);
-int					get_light(int start, int end, double percentage);
+int					find_gradient_value(int start, int end, double percentage);
 int					get_color(t_point start, t_point end, t_point point);
 int					get_default_color(int z, t_fdf *fdf);
 void				fill_palett(t_fdf *fdf);

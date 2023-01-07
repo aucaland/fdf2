@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/07 01:22:19 by aurel            ###   ########.fr       */
+/*   Updated: 2022/12/12 10:57:49 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	get_color(t_point start, t_point end, t_point point)
 	if (point.dx > point.dy)
 		percentage = percent(start.x, end.x, point.curx);
 	else
+		percentage = percent(start.y, end.y, point.cury);
 	red = find_gradient_value((start.color >> 16) & 0xFF,
 					(end.color >> 16) & 0xFF,
 					percentage);
