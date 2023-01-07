@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/12 10:57:49 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:22:19 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ int	get_default_color(int z, t_fdf *fdf)
 
 }
 
-int	get_light(int start, int end, double percentage)
+int	find_gradient_value(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
-
-/*
-** Get color. Result depends on point position.
-** This function is needed to create linear gradient.
-*/
 
 int	get_color(t_point start, t_point end, t_point point)
 {
@@ -69,24 +64,18 @@ int	get_color(t_point start, t_point end, t_point point)
 	int		blue;
 	double	percentage;
 
-	//ft_printf("start : %xend : %x", start.color,end.color);
-	//printf("s[%f;%f] - e[%f;%f] -c[%f;%f]\n", start.x, start.y, end.x, end.y, point.curx, point.cury);
 	if (point.cur_color == end.color)
 		return (point.cur_color);
-	//printf("cur : %d ----- end : %d\n", point.cur_color , end.color);
 	if (point.dx > point.dy)
 		percentage = percent(start.x, end.x, point.curx);
 	else
-		percentage = percent(start.y, end.y, point.cury);
-	//if (percentage != 0)
-		//dprintf(1, "%f", percentage);
-	red = get_light((start.color >> 16) & 0xFF,
+	red = find_gradient_value((start.color >> 16) & 0xFF,
 					(end.color >> 16) & 0xFF,
 					percentage);
-	green = get_light((start.color >> 8) & 0xFF,
+	green = find_gradient_value((start.color >> 8) & 0xFF,
 					  (end.color >> 8) & 0xFF,
 					  percentage);
-	blue = get_light(start.color & 0xFF,
+	blue = find_gradient_value(start.color & 0xFF,
 					 end.color & 0xFF,
 					 percentage);
 	return ((red << 16) | (green << 8) | blue);
