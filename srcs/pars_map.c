@@ -139,19 +139,3 @@ void	parsing(char *path, t_fdf *fdf)
 	fill_tab(list_pars, fdf, nbr_line, nbr_word);
 	ft_lstclear(&list_pars, free);
 }
-
-//void ft_print_map(t_fdf *fdf)
-//{
-//	int i;
-//	int j;
-//
-//	i = 0;
-//	while (i < fdf->map->height)
-//	{
-//		j = 0;
-//		while (j < fdf->map->width)
-//			ft_printf("%d ", fdf->map->tab[i][j++]);
-//		ft_printf("\n");
-//		i++;
-//	}
-//}

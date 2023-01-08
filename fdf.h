@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 16:11:53 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:22:36 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ typedef struct s_point
 	unsigned int	cur_color;
 }						t_point;
 
+typedef struct s_point2
+{
+	float x;
+	float y;
+	int z;
+	unsigned int color;
+}		t_point2;
+
 typedef struct s_fdf
 {
 	void			*mlx;
@@ -87,6 +95,7 @@ typedef struct s_fdf
 	t_data			*data;
 	t_tools			*cam;
 	t_point			point;
+	t_point2		points;
 	t_col			col;
 }						t_fdf;
 
@@ -144,5 +153,4 @@ void	print_menu(t_fdf *fdf, int Keycode);
 			/*						free					*/
 
 void				ft_free_fdf(t_fdf *fdf, int i);
-
 #endif
