@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 16:29:13 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:50:45 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ typedef struct s_point
 
 typedef struct s_point2
 {
-	float x;
-	float y;
-	int z;
-	unsigned int color;
+	float			x;
+	float			y;
+	int				z;
+	unsigned int	color;
 }		t_point2;
 
 typedef struct s_fdf
@@ -118,6 +118,7 @@ void				ft_inc_z(int keycode, t_fdf *fdf);
 void				ft_inc_z2(t_fdf *fdf);
 void				ft_change_color(int keycode, t_fdf *fdf);
 void				ft_chose_color(int keycode, t_fdf *fdf);
+int					button_press(int keycode, t_fdf *fdf);
 
 			/*					PARSING				*/
 

@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:41:44 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/09 16:23:28 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:59:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_hook_define(t_fdf *fdf)
 {
 	mlx_hook(fdf->mlx_win, 2, 1L << 0, ft_hook_keycode, fdf);
+	mlx_hook(fdf->mlx_win, 2, 1L << 0, button_press, fdf);
 	mlx_mouse_hook(fdf->mlx_win, ft_zoom, fdf);
 }
 
@@ -51,4 +52,16 @@ void	ft_inc_z2(t_fdf *fdf)
 	create_img(fdf);
 	if (fdf->cam->h_on == 1)
 		print_menu(fdf, H);
+}
+
+int	button_press(int keycode, t_fdf *fdf)
+{
+	if (keycode == 17)
+	{
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
+		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
+		ft_freetabi(fdf->map->tab, fdf->map->nbr_line);
+		ft_free_fdf(fdf, 0);
+	}
+	return (0);
 }

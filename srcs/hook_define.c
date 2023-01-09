@@ -70,7 +70,6 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-		ft_printf("%d", fdf->map->nbr_line);
 		ft_freetabi(fdf->map->tab, fdf->map->nbr_line);
 		ft_free_fdf(fdf, 0);
 	}
