@@ -100,7 +100,7 @@ static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 	return (NULL);
 }
 
-static t_fdf	*init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)//TODO: init all struct
+static t_fdf	*init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)
 {
 	fdf->map->height = nbr_line;
 	fdf->map->width = nbr_word;

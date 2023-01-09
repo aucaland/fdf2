@@ -6,13 +6,13 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/12 10:57:49 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:22:45 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void ft_free_fdf(t_fdf *fdf, int i)
+void	ft_free_fdf(t_fdf *fdf, int i)
 {
 	ft_free(fdf->data);
 	ft_free(fdf->cam);
@@ -28,7 +28,8 @@ int	get_default_color(int z, t_fdf *fdf)
 {
 	double	percentage;
 
-	percentage = percent((float)fdf->map->min_coeff, (float)fdf->map->max_coeff, z);
+	percentage = percent((float)fdf->map->min_coeff, \
+	(float)fdf->map->max_coeff, z);
 	if (percentage < 0.1)
 		return (fdf->col.palr[0]);
 	else if (percentage < 0.2)
@@ -49,7 +50,6 @@ int	get_default_color(int z, t_fdf *fdf)
 		return (fdf->col.palr[8]);
 	else
 		return (fdf->col.palr[9]);
-
 }
 
 int	find_gradient_value(int start, int end, double percentage)
@@ -71,17 +71,18 @@ int	get_color(t_point start, t_point end, t_point point)
 	else
 		percentage = percent(start.y, end.y, point.cury);
 	red = find_gradient_value((start.color >> 16) & 0xFF,
-					(end.color >> 16) & 0xFF,
-					percentage);
+			(end.color >> 16) & 0xFF,
+			percentage);
 	green = find_gradient_value((start.color >> 8) & 0xFF,
-					  (end.color >> 8) & 0xFF,
-					  percentage);
+			(end.color >> 8) & 0xFF,
+			percentage);
 	blue = find_gradient_value(start.color & 0xFF,
-					 end.color & 0xFF,
-					 percentage);
+			end.color & 0xFF,
+			percentage);
 	return ((red << 16) | (green << 8) | blue);
 }
-double	percent(int start, int end,  int current)
+
+double	percent(int start, int end, int current)
 {
 	double	placement;
 	double	distance;

@@ -106,7 +106,7 @@ int					is_space(const char str);
 			/*				HOOKs			*/
 
 int					ft_hook_keycode(int keycode, t_fdf *fdf);
-int				ft_hook_keycode2(int keycode, t_fdf *fdf);
+int					ft_hook_keycode2(int keycode, t_fdf *fdf);
 void				ft_hook_define(t_fdf *fdf);
 int					ft_translate(int keycode, t_fdf *fdf);
 int					ft_zoom(int keycode, int x, int y, t_fdf *fdf);
