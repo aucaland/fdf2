@@ -17,10 +17,15 @@
 
 typedef struct s_col
 {
-	int	pal[10];
-	int	pal2[10];
-	int	palr[10];
-	int	pal3[10];
+	int		pal[10];
+	int		pal2[10];
+	int		palr[10];
+	int		pal3[10];
+	char	*r;
+	char	*g;
+	char	*b;
+	char	*str1;
+	char 	*str2;
 }				t_col;
 
 # define BLUE_F 0x0000ff

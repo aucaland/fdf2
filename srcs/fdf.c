@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 13:45:27 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:11:25 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,93 +22,11 @@ void	init_default_value(t_fdf *fdf)
 	fdf->cam->scale = (fdf->map->height_win / \
 		fmax(fdf->map->width, fdf->map->height));
 	fdf->cam->h_on = 0;
-}
-
-void	print_menu(t_fdf *fdf, int Keycode)
-{
-	char	*str;
-	char	*str1;
-	char	*str2;
-
-	str = NULL;
-	str1 = NULL;
-	str2 = NULL;
-	if (Keycode == H)
-	{
-		fdf->data->img2 = mlx_new_image(fdf->mlx, 500, 900);
-		mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img2, 0, 0);
-	}
-	if (fdf->col.palr[0] == P0_1 && fdf->col.palr[9] == P0_1)
-		str = "Palette 1 HYPERCHILL";
-	if (fdf->col.palr[0] == P1_1 && fdf->col.palr[9] == P1_1)
-		str = "Palette 2 NEON_SPACE";
-	if (fdf->col.palr[0] == P2_1 && fdf->col.palr[9] == P2_1)
-		str = "Palette 3 Perso";
-	if (str != NULL)
-	{
-		fdf->str = ft_strjoin("Colors :", str);
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, GREEN_F * 0.5, fdf->str);
-		free(fdf->str);
-	}
-	if (str == NULL)
-		print_menu2(fdf, str1, str2, Keycode);
-}
-
-void	print_menu2(t_fdf *fdf, char *str1, char *str2, int Keycode)
-{
-	char	*r;
-	char	*g;
-	char	*b;
-	int		i;
-	i = 0;
-	while (i <= 9)
-	{
-		r = ft_itoa(fdf->col.palr[i] >> 16 & 255);
-		g = ft_itoa(fdf->col.palr[i] >> 8 & 255);
-		b = ft_itoa(fdf->col.palr[i] & 255);
-		if (i == 0)
-			fdf->str = ft_strjoin("ALT MIN : R=", r);
-		else
-			fdf->str = ft_strjoin("ALT MAX : R=", r);
-		str1 = ft_strjoin(" G=", g);
-		str2 = ft_strjoin(" B=", b);
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 20, \
-		GREEN_F * 0.5, "--Manual Colors--\n");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 50 + i * 3, \
-		GREEN_F * 0.9, fdf->str);
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 215, 50 + i * 3, \
-		GREEN_F * 0.9, str1);
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 275, 50 + i * 3, \
-		GREEN_F * 0.9, str2);
-		free_menu(str2, r, g, b);
-		i += 9;
-	}
-	print_menu3(fdf, str1, Keycode);
-}
-
-void	print_menu3(t_fdf *fdf, char *str1, int Keycode)
-{
-	if (Keycode == H)
-	{
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 200, \
-		GREEN_F * 0.9, "ALT 0 : NUM1/2/3 = R/G/B");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 230, \
-		GREEN_F * 0.9, "ALT 1 : NUM7/8/9 = R/G/B");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 260, \
-		GREEN_F * 0.9, "Reset Color : 0");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 290, \
-		GREEN_F * 0.9, "Reset ALT 0 : 0");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 320, \
-		GREEN_F * 0.9, "Reset ALT 1 : 0");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 350, \
-		GREEN_F * 0.9, "Zoom : +/-");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 380, \
-		GREEN_F * 0.9, "Rotate Z : E/Q");
-		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 410, \
-		GREEN_F * 0.9, "Translate : Arrows");
-	}
-	free(fdf->str);
-	free(str1);
+	fdf->col.str1 = NULL;
+	fdf->col.str2 = NULL;
+	fdf->col.r = NULL;
+	fdf->col.g = NULL;
+	fdf->col.b = NULL;
 }
 
 static t_fdf	*init_struct_main(void)

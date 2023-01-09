@@ -6,21 +6,20 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:38:51 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/04 15:23:04 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:18:48 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int convert_rgb(t_fdf *fdf, int nbr_rgb, int nbr_tab)
+static int	convert_rgb(t_fdf *fdf, int nbr_rgb, int nbr_tab)
 {
 	if (nbr_rgb == 0)
-		return (fdf->col.palr[nbr_tab] + 5 );
+		return (fdf->col.palr[nbr_tab] + 5);
 	else if (nbr_rgb == 1)
 		return (fdf->col.palr[nbr_tab] + (5 << 8));
 	else
 		return (fdf->col.palr[nbr_tab] + (5 << 16));
-
 }
 
 void	ft_chose_color(int keycode, t_fdf *fdf)
@@ -39,13 +38,13 @@ void	ft_chose_color(int keycode, t_fdf *fdf)
 		fdf->col.palr[9] = convert_rgb(fdf, 2, 9);
 	if (keycode == NUM_P0)
 	{
-		fdf->col.palr[0] = 12632256;
-		fdf->col.palr[9] = 12632256;
+		fdf->col.palr[0] = 0x303030;
+		fdf->col.palr[9] = 0x303030;
 	}
 	else if (keycode == NUM_P4)
-		fdf->col.palr[0] = 12632256;
+		fdf->col.palr[0] = 0x303030;
 	else if (keycode == NUM_P5)
-		fdf->col.palr[9] = 12632256;
+		fdf->col.palr[9] = 0x303030;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	if (fdf->cam->h_on == 1)

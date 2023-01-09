@@ -6,41 +6,11 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 16:37:55 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:29:13 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	ft_inc_z(int keycode, t_fdf *fdf)
-{
-	if (keycode == PLUS)
-	{
-		if (fdf->cam->inc_z > 50)
-			return ;
-		if (fdf->cam->inc_z <= 0.1 || fdf->cam->inc_z >= -0.1)
-			fdf->cam->inc_z += 0.2;
-		if (fdf->cam->inc_z < 0)
-			fdf->cam->inc_z *= 0.98;
-		else
-			fdf->cam->inc_z *= 1.02;
-	}
-	if (keycode == MINUS)
-	{
-		if (fdf->cam->inc_z < -50)
-			return ;
-		if (fdf->cam->inc_z <= 0.1 || fdf->cam->inc_z >= -0.1)
-			fdf->cam->inc_z -= 0.2;
-		if (fdf->cam->inc_z < 0)
-			fdf->cam->inc_z *= 1.02;
-		else
-			fdf->cam->inc_z *= 0.98;
-	}
-	mlx_destroy_image(fdf->mlx, fdf->data->img);
-	create_img(fdf);
-	if (fdf->cam->h_on == 1)
-		print_menu(fdf, H);
-}
 
 void	ft_rotate(int keycode, t_fdf *fdf)
 {
@@ -118,7 +88,14 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 		keycode == NUM_P7 || keycode == NUM_P8 \
 		|| keycode == NUM_P9)
 		ft_chose_color(keycode, fdf);
-	else if (keycode == PLUS || keycode == MINUS)
+	else
+		ft_hook_keycode2(keycode, fdf);
+	return (0);
+}
+
+int	ft_hook_keycode2(int keycode, t_fdf *fdf)
+{
+	if (keycode == PLUS || keycode == MINUS)
 		ft_inc_z(keycode, fdf);
 	else if (keycode == H && fdf->cam->h_on == 0)
 	{

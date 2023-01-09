@@ -10,6 +10,7 @@ SRC_NAME	= fdf.c\
 			  utils2_fdf.c\
 			  hook_colors.c\
 			  hook_define2.c\
+			  menu.c
 
 
 

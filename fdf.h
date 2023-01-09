@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 13:34:04 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:29:13 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int					is_space(const char str);
 			/*				HOOKs			*/
 
 int					ft_hook_keycode(int keycode, t_fdf *fdf);
+int				ft_hook_keycode2(int keycode, t_fdf *fdf);
 void				ft_hook_define(t_fdf *fdf);
 int					ft_translate(int keycode, t_fdf *fdf);
 int					ft_zoom(int keycode, int x, int y, t_fdf *fdf);
@@ -114,6 +115,7 @@ void				ft_rotate_x(float *y, int *z, double rot_x);
 void				ft_rotate_y(float *x, int *z, double rot_y);
 void				ft_rotate_z(float *x, float *y, double rot_z);
 void				ft_inc_z(int keycode, t_fdf *fdf);
+void				ft_inc_z2(t_fdf *fdf);
 void				ft_change_color(int keycode, t_fdf *fdf);
 void				ft_chose_color(int keycode, t_fdf *fdf);
 
@@ -149,9 +151,11 @@ void				fill_palett_next(t_fdf *fdf);
 			/*						MENU					*/
 
 void	print_menu(t_fdf *fdf, int Keycode);
-void	print_menu2(t_fdf *fdf, char *str1, char *str2, int Keycode);
-void	free_menu(char *str2, char *r, char *g, char *b);
-void	print_menu3(t_fdf *fdf, char *str1, int Keycode);
+void	print_menu2(t_fdf *fdf, int Keycode);
+void	free_menu(t_fdf *fdf, char *str1, char *str2);
+void	print_menu3(t_fdf *fdf, int Keycode);
+void	colors_menu(t_fdf *fdf, int i);
+void	colors_menu2(t_fdf *fdf, int i);
 			/*						free					*/
 
 void				ft_free_fdf(t_fdf *fdf, int i);
