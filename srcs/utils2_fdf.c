@@ -44,3 +44,11 @@ void	check_map(t_fdf *fdf, int nbr_word, int count)
 		ft_free_fdf(fdf, -1);
 	}
 }
+
+void	free_menu(char *str2, char *r, char *g, char *b)
+{
+	free(str2);
+	free(r);
+	free(g);
+	free(b);
+}

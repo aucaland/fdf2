@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/07 12:22:36 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/09 13:34:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,9 @@ void				fill_palett_next(t_fdf *fdf);
 			/*						MENU					*/
 
 void	print_menu(t_fdf *fdf, int Keycode);
-
+void	print_menu2(t_fdf *fdf, char *str1, char *str2, int Keycode);
+void	free_menu(char *str2, char *r, char *g, char *b);
+void	print_menu3(t_fdf *fdf, char *str1, int Keycode);
 			/*						free					*/
 
 void				ft_free_fdf(t_fdf *fdf, int i);
