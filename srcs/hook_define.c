@@ -96,7 +96,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 
 int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
-	if (keycode == ESC && fdf->cam->h_on == 0)
+	if (keycode == ESC)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);

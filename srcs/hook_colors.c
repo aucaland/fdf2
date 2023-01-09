@@ -48,6 +48,8 @@ void	ft_chose_color(int keycode, t_fdf *fdf)
 		fdf->col.palr[9] = 12632256;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 }
 
 void	fill_palett(t_fdf *fdf)
