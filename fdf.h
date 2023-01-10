@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/10 13:42:59 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:57:11 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "LIBFT/libft.h"
 # include <math.h>
 # include "define_utils.h"
-# include <stdio.h> //TODO : delete
+# include <stdio.h>
 # include <string.h>
 # include <errno.h>
 
@@ -126,7 +126,8 @@ void				parsing(char *path, t_fdf *fdf);
 int					ft_read_map(char *file);
 void				init_default_value(t_fdf *fdf);
 void				check_map(t_fdf *fdf, int nbr_word, int count);
-void				set_mapZ(t_fdf *fdf, int nbr_word, char *list_content, int i);
+void				set_map_z(t_fdf *fdf, int nbr_word, \
+						char *list_content, int i);
 
 			/*				Graph				*/
 

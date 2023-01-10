@@ -3,7 +3,8 @@ SRC_DIR		= srcs
 OBJ_DIR		= objs
 SRC_NAME	= fdf.c\
 			  hook_define.c\
-			  pars_map.c\
+			  parsing.c\
+			  parsing2.c\
 			  graphics.c\
 			  rotate.c\
 			  utils_fdf.c\
@@ -12,6 +13,10 @@ SRC_NAME	= fdf.c\
 			  hook_define2.c\
 			  menu.c
 
+INCS_FDF	= fdf.h\
+			  define_utils.h\
+			  ./Mac/keycode_mac.h\
+			  ./LINUX/keycode_linux.h
 
 
 
@@ -20,7 +25,7 @@ OBJ_NAME		=	$(SRC_NAME:%.c=%.o)
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
-####Compil####
+#### Compil ####
 
 CC 		= gcc -O3
 CFLAGS 	= -Wall -Wextra -Werror
@@ -38,6 +43,7 @@ UNAME_S := $(shell uname -s)
 	endif
 
 ### DEBUG ####
+
 D = 0
 ifeq ($(D), 1)
 	CC += -fsanitize=address -g3
@@ -47,9 +53,8 @@ ifneq ($(D), 1)
 	MODE = echo "\033[0;31m MODE RELEASE \033[0m"
 endif
 
-#####LIBS#####
+#### LIBS ####
 
-LIBS	= LIBFT/libft.a $(MLX)/libmlx.a
 LDFLAG	= -LLIBFT -L$(MLX)
 CH_FLAG	= -I. -I$(MLX) -ILIBFT
 
@@ -57,20 +62,16 @@ CH_FLAG	= -I. -I$(MLX) -ILIBFT
 
 all:			$(NAME)
 
-LIBFT/libft.a:
+$(NAME):	 $(OBJ)
 	@echo "Making LIBFT"
 	@make all -C LIBFT
-
-$(MLX)/libmlx.a:
 	@echo "Making MLX"
 	@make all -C $(MLX)
-
-$(NAME):	$(LIBS) $(OBJ)
 	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 	@$(MODE)
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INCS_FDF)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CH_FLAG) -o $@ -c $<
 	@echo "-\033[1;92mCompiling : \033[0m $?"

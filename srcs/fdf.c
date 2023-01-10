@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 16:11:25 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:15:47 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "ERROR : Only one argument is valid -->\
-			Here an example : './fdf user/map.fdf' ");
+		ft_putstr_fd("ERROR : Only one argument is valid -->\
+			Here an example : './fdf user/map.fdf' ", 2);
 		exit(EXIT_FAILURE);
 	}
 	fdf = init_struct_main();

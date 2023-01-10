@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_map.c                                         :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/10 13:57:07 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:53:58 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,12 @@ static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 		if (!fdf->map->tab[i])
 			return (ft_freetabi(fdf->map->tab, nbr_word), \
 				ft_free_fdf(fdf, -1), NULL);
-		set_mapZ(fdf, nbr_word, list_content, i);
+		set_map_z(fdf, nbr_word, list_content, i);
 		list_pars = list_pars->next;
 	}
 	ft_lstclear(&list_pars, &free);
 	return (NULL);
 }
-
 
 static t_fdf	*init_struct_map(t_fdf *fdf, int nbr_line, int nbr_word)
 {

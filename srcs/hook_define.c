@@ -12,24 +12,11 @@
 
 #include "../fdf.h"
 
-void	ft_rotate(int keycode, t_fdf *fdf)
+void	ft_hook_define(t_fdf *fdf)
 {
-	if (keycode == W)
-		fdf->cam->rot_x -= 0.02;
-	else if (keycode == S)
-		fdf->cam->rot_x += 0.02;
-	else if (keycode == A)
-		fdf->cam->rot_y += 0.02;
-	else if (keycode == D)
-		fdf->cam->rot_y -= 0.02;
-	else if (keycode == Q)
-		fdf->cam->rot_z -= 0.02;
-	else if (keycode == E)
-		fdf->cam->rot_z += 0.02;
-	mlx_destroy_image(fdf->mlx, fdf->data->img);
-	create_img(fdf);
-	if (fdf->cam->h_on == 1)
-		print_menu(fdf, H);
+	mlx_hook(fdf->mlx_win, 2, 1L << 0, ft_hook_keycode, fdf);
+	mlx_hook(fdf->mlx_win, 17, 1L << 0, button_press, fdf);
+	mlx_mouse_hook(fdf->mlx_win, ft_zoom, fdf);
 }
 
 int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)

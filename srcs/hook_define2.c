@@ -6,17 +6,30 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:41:44 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/10 13:18:31 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:19:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_hook_define(t_fdf *fdf)
+void	ft_rotate(int keycode, t_fdf *fdf)
 {
-	mlx_hook(fdf->mlx_win, 2, 1L << 0, ft_hook_keycode, fdf);
-	mlx_hook(fdf->mlx_win, 17, 1L << 0, button_press, fdf);
-	mlx_mouse_hook(fdf->mlx_win, ft_zoom, fdf);
+	if (keycode == W)
+		fdf->cam->rot_x -= 0.02;
+	else if (keycode == S)
+		fdf->cam->rot_x += 0.02;
+	else if (keycode == A)
+		fdf->cam->rot_y += 0.02;
+	else if (keycode == D)
+		fdf->cam->rot_y -= 0.02;
+	else if (keycode == Q)
+		fdf->cam->rot_z -= 0.02;
+	else if (keycode == E)
+		fdf->cam->rot_z += 0.02;
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
+	create_img(fdf);
+	if (fdf->cam->h_on == 1)
+		print_menu(fdf, H);
 }
 
 void	ft_inc_z(int keycode, t_fdf *fdf)

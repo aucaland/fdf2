@@ -1,10 +1,10 @@
 NAME		= libft.a
 INC_DIR		= ./
 INC			= libft.h
-SRCS_DIR 	= ./
-OBJS_DIR	= ./
+SRCS_DIR 	= srcs
+OBJS_DIR	= objs
 
-SRCS		=	ft_atoi.c\
+SRCS_NAME		=	ft_atoi.c\
 				ft_isalpha.c\
 				ft_isdigit.c\
 				ft_isalnum.c\
@@ -59,19 +59,21 @@ SRCS		=	ft_atoi.c\
 				ft_convert_base2.c\
 				ft_freetabi.c
 
-OBJS		=	$(SRCS:%.c=$(OBJS_DIR)%.o)
+OBJS		=	$(SRCS_NAME:%.c=%.o)
+OBJ = $(addprefix $(OBJS_DIR)/,$(OBJS))
+SRC = $(addprefix $(SRCS_DIR)/,$(SRCS_NAME))
 
-####Compil####
+#### Compil ####
 
 CC 		= gcc
 CFLAGS 	= -Wall -Wextra -Werror
 
-## Rules ##
+#### Rules ####
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
-	@ar rc $@ $(OBJS)
+$(NAME):		$(OBJ)
+	@ar rc $@ $(OBJ)
 	@ranlib $@
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 	@echo ""
@@ -87,13 +89,13 @@ $(NAME):		$(OBJS)
 	@echo  "   \033[1;30m|\033[0m\033[1;31m#####\033[0m\033[1;30m|\033[0m              \033[1;30m|\033[0m\033[1;31m#####\033[0m\033[1;30m|\033[0m   \033[1;30m|\033[0m\033[1;31m######\033[0m\033[1;30m|\033[0m              \033[1;30m|\033[0m\033[1;31m######\033[0m\033[1;30m|\033[0m   \033[1;30m|\033[0m\033[1;31m######\033[0m\033[1;30m|\033[0m     \033[1;30m|\033[0m\033[1;31m######\033[0m\033[1;30m|\033[0m   \033[1;30m|\033[0m\033[1;31m#############\033[0m\033[1;30m|\033[0m   \033[1;30m|\033[0m\033[1;31m###\033[0m\033[1;39m125\033[0m\033[1;31m#####\033[0m\033[1;30m|\033[0m      "
 	@echo ""
 
-$(OBJS):		$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c $(INC)
-	@mkdir -p $(dir $@)
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c $(INC)
+	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS)  -c $< -o $@ -I$(INC_DIR)
 	@echo "-\033[1;92mCompiling : \033[0m $?"
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJ)
 	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"  for Libft      \033[0;32m [OK] \033[0m"
 
 fclean: clean
