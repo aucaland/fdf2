@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//TODO: verif if valid
-void ft_free(void *ptr)
+
+void	ft_free(void *ptr)
 {
 	free(ptr);
 	ptr = NULL;

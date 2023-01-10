@@ -25,7 +25,7 @@ typedef struct s_col
 	char	*g;
 	char	*b;
 	char	*str1;
-	char 	*str2;
+	char	*str2;
 }				t_col;
 
 # define BLUE_F 0x0000ff

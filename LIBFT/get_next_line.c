@@ -43,7 +43,7 @@ static char	*get_correct_line(char *line_buf)
 {
 	char	*str;
 	int		i;
-	int j;
+	int		j;
 
 	i = 0;
 	j = 0;

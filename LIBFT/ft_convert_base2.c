@@ -26,7 +26,7 @@ char	*ft_itoa_base(long long int nb, char *base_to)
 {
 	int				i;
 	long long int	nbr_base;
-	size_t	nb_un;
+	size_t			nb_un;
 	char			*str;
 	int				len_final;
 
@@ -66,4 +66,3 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	result = ft_itoa_base(nb, base_to);
 	return (result);
 }
-

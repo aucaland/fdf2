@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 18:50:45 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:42:59 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void				ft_inc_z(int keycode, t_fdf *fdf);
 void				ft_inc_z2(t_fdf *fdf);
 void				ft_change_color(int keycode, t_fdf *fdf);
 void				ft_chose_color(int keycode, t_fdf *fdf);
-int					button_press(int keycode, t_fdf *fdf);
+int					button_press(t_fdf *fdf);
 
 			/*					PARSING				*/
 
@@ -126,6 +126,7 @@ void				parsing(char *path, t_fdf *fdf);
 int					ft_read_map(char *file);
 void				init_default_value(t_fdf *fdf);
 void				check_map(t_fdf *fdf, int nbr_word, int count);
+void				set_mapZ(t_fdf *fdf, int nbr_word, char *list_content, int i);
 
 			/*				Graph				*/
 
@@ -151,12 +152,12 @@ void				fill_palett_next(t_fdf *fdf);
 
 			/*						MENU					*/
 
-void	print_menu(t_fdf *fdf, int Keycode);
-void	print_menu2(t_fdf *fdf, int Keycode);
-void	free_menu(t_fdf *fdf, char *str1, char *str2);
-void	print_menu3(t_fdf *fdf, int Keycode);
-void	colors_menu(t_fdf *fdf, int i);
-void	colors_menu2(t_fdf *fdf, int i);
+void				print_menu(t_fdf *fdf, int Keycode);
+void				print_menu2(t_fdf *fdf, int Keycode);
+void				free_menu(t_fdf *fdf, char *str, char *str1, char *str2);
+void				print_menu3(t_fdf *fdf, int Keycode);
+void				colors_menu(t_fdf *fdf, int i);
+void				colors_menu2(t_fdf *fdf, int i);
 			/*						free					*/
 
 void				ft_free_fdf(t_fdf *fdf, int i);

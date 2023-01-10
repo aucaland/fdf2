@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:14:17 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/09 16:15:23 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:26:50 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_menu2(t_fdf *fdf, int Keycode)
 		GREEN_F * 0.9, fdf->col.str1);
 		mlx_string_put(fdf->mlx, fdf->mlx_win, 275, 50 + i * 3, \
 		GREEN_F * 0.9, fdf->col.str2);
-		free_menu(fdf, fdf->col.str1, fdf->col.str2);
+		free_menu(fdf, fdf->str, fdf->col.str1, fdf->col.str2);
 		i += 9;
 	}
 	print_menu3(fdf, Keycode);
@@ -82,7 +82,6 @@ void	print_menu3(t_fdf *fdf, int Keycode)
 		mlx_string_put(fdf->mlx, fdf->mlx_win, 65, 410, \
 		GREEN_F * 0.9, "Translate : Arrows");
 	}
-	free(fdf->str);
 }
 
 void	colors_menu(t_fdf *fdf, int i)
@@ -112,14 +111,10 @@ void	colors_menu2(t_fdf *fdf, int i)
 	else
 		fdf->str = ft_strjoin("ALT MAX : R=", fdf->col.r);
 	if (!fdf->str)
-	{
-		free(fdf->str);
 		ft_free_fdf(fdf, -1);
-	}
 	fdf->col.str1 = ft_strjoin(" G=", fdf->col.g);
 	if (!fdf->col.str1)
 	{
-		free(fdf->col.str1);
 		free(fdf->str);
 		ft_free_fdf(fdf, -1);
 	}
@@ -127,7 +122,6 @@ void	colors_menu2(t_fdf *fdf, int i)
 	if (!fdf->col.str2)
 	{
 		free(fdf->col.str1);
-		free(fdf->col.str2);
 		free(fdf->str);
 		ft_free_fdf(fdf, -1);
 	}
