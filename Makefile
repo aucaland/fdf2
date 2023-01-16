@@ -16,7 +16,7 @@ SRC_NAME	= fdf.c\
 INCS_FDF	= fdf.h\
 			  define_utils.h\
 			  ./Mac/keycode_mac.h\
-			  ./LINUX/keycode_linux.h
+			  ./Linux/keycode_linux.h
 
 
 
@@ -27,7 +27,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 #### Compil ####
 
-CC 		= gcc -O3
+CC 		= gcc -O2
 CFLAGS 	= -Wall -Wextra -Werror
 
 #### OS ####
