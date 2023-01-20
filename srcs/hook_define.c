@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/09 16:29:13 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:30:49 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 	if (keycode == ESC)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
+		mlx_destroy_image(fdf->mlx, fdf->data->img2);
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 		ft_freetabi(fdf->map->tab, fdf->map->nbr_line);
 		ft_free_fdf(fdf, 0);
@@ -85,12 +86,23 @@ int	ft_hook_keycode2(int keycode, t_fdf *fdf)
 		ft_inc_z(keycode, fdf);
 	else if (keycode == H && fdf->cam->h_on == 0)
 	{
-		fdf->cam->h_on = 1;
 		print_menu(fdf, H);
+		fdf->cam->h_on = 1;
 	}
 	else if (keycode == H && fdf->cam->h_on == 1)
 	{
 		fdf->cam->h_on = 0;
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
+		mlx_destroy_image(fdf->mlx, fdf->data->img2);
+		create_img(fdf);
+	}
+	else if (keycode == P)
+	{
+		if (fdf->cam->proj == 0)
+			fdf->cam->proj = 1;
+		else
+			fdf->cam->proj = 0;
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
 		create_img(fdf);
 	}
 	return (0);

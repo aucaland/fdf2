@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:14:17 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/10 13:26:50 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:37:31 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	print_menu(t_fdf *fdf, int Keycode)
 	str = NULL;
 	if (Keycode == H)
 	{
+		if (fdf->cam->h_on == 1)
+			mlx_destroy_image(fdf->mlx, fdf->data->img2);
 		fdf->data->img2 = mlx_new_image(fdf->mlx, 400, 900);
 		mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img2, 0, 0);
 	}

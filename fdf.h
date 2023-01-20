@@ -60,7 +60,7 @@ typedef struct s_tools
 	double			rot_z;
 	float			inc_z;
 	int				h_on;
-
+	int 			proj;
 }						t_tools;
 
 typedef struct s_point

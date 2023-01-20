@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 16:08:38 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:34:31 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_point	proj(t_fdf *fdf)
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
 	ft_rotate_y(&fdf->point.x, &fdf->point.z, fdf->cam->rot_y);
 	ft_rotate_z(&fdf->point.x, &fdf->point.y, fdf->cam->rot_z);
-	isometric(&fdf->point.x, &fdf->point.y, fdf->point.z, fdf);
+	if (fdf->cam->proj == 1)
+		isometric(&fdf->point.x, &fdf->point.y, fdf->point.z, fdf);
 	fdf->point.x += (fdf->map->width) / 2 + fdf->cam->offset_x;
 	fdf->point.y += (fdf->map->height) / 2 + fdf->cam->offset_y;
 	return (fdf->point);

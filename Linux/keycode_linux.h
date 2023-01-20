@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode_linux.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:09:46 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 10:24:48 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:37:47 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@
 # define NUM_P7			65429
 # define NUM_P8			65431
 # define NUM_P9			65434
+
+# define P				112
 
 #endif

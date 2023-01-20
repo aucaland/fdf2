@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/10 14:15:47 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:05:08 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	init_default_value(t_fdf *fdf)
 {
 	fdf->map->width_win = 1980;
 	fdf->map->height_win = 1080;
+	fdf->cam->proj = 1;
 	fdf->cam->offset_x = fdf->map->width_win / 3;
 	fdf->cam->offset_y = fdf->map->height_win / 3;
 	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
 	fdf->cam->scale = (fdf->map->height_win / \
 		fmax(fdf->map->width, fdf->map->height));
-	fdf->cam->h_on = 0;
 	fdf->col.str1 = NULL;
 	fdf->col.str2 = NULL;
 	fdf->col.r = NULL;
@@ -74,8 +74,9 @@ int	main(int argc, char **argv)
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, \
 		fdf->map->height_win, "FdF");
-	print_menu(fdf, H);
 	ft_hook_define(fdf);
 	create_img(fdf);
+	print_menu(fdf, H);
+	fdf->cam->h_on = 1;
 	mlx_loop(fdf->mlx);
 }
