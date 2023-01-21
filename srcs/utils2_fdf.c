@@ -32,14 +32,14 @@ void	check_map(t_fdf *fdf, int nbr_word, int count)
 {
 	if (nbr_word <= 0)
 	{
-		ft_putstr_fd("Error parsing : X coordinates are not homogeneous", 2);
+		ft_putendl_fd("Error parsing : X coordinates are not homogeneous", 2);
 		ft_free_fdf(fdf, -1);
 	}
 	if (count == 1)
 		fdf->map->width = nbr_word;
 	if (nbr_word != fdf->map->width)
 	{
-		ft_putstr_fd("Error parsing : X coordinates are not homogeneous", 2);
+		ft_putendl_fd("Error parsing : X coordinates are not homogeneous", 2);
 		ft_free_fdf(fdf, -1);
 	}
 }

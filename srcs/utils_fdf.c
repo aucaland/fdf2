@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/09 18:22:45 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/21 12:01:02 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	ft_free_fdf(t_fdf *fdf, int i)
 {
-	ft_free(fdf->data);
-	ft_free(fdf->cam);
-	ft_free(fdf->map);
+	if (fdf->data)
+		ft_free(fdf->data);
+	if (fdf->cam)
+		ft_free(fdf->cam);
+	if (fdf->map->tab)
+		ft_freetabi(fdf->map->tab, fdf->map->nbr_line);
+	if (fdf->cam)
+		ft_free(fdf->map);
 	ft_free(fdf);
 	if (i == 0)
 		exit(EXIT_SUCCESS);

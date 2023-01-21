@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:46:51 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/04 10:21:54 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:07:05 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,18 @@ typedef struct s_col
 # define P1_9 0x3e3264
 # define P1_10 0x352a55
 
-# define P2_1 0xF7F6CF
-# define P2_2 0xB6D8F2
-# define P2_3 0xF4CFDF
-# define P2_4 0x5784BA
-# define P2_5 0x9AC8EB
-# define P2_6 0xF08488
-# define P2_7 0xFF9CB6
-# define P2_8 0xFFD0E6
-# define P2_9 0xC49FFF
-# define P2_10 0x7D4FFE
+	/* 3		BLUE		*/
+
+# define P2_1 0x03045e
+# define P2_2 0x023e8a
+# define P2_3 0x0077b6
+# define P2_4 0x0096c7
+# define P2_5 0x00b4d8
+# define P2_6 0x48cae4
+# define P2_7 0x90e0ef
+# define P2_8 0xade8f4
+# define P2_9 0xcaf0f8
+# define P2_10 0xedf2f4
 
 # define HEX "0123456789abcdef"
 

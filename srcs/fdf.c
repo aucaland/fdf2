@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/20 16:05:08 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/21 12:52:41 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	init_default_value(t_fdf *fdf)
 	fdf->map->width_win = 1980;
 	fdf->map->height_win = 1080;
 	fdf->cam->proj = 1;
-	fdf->cam->offset_x = fdf->map->width_win / 3;
-	fdf->cam->offset_y = fdf->map->height_win / 3;
+	fdf->cam->offset_x = fdf->map->width_win / 2.3;
+	fdf->cam->offset_y = fdf->map->height_win / 2.3;
+	if (fdf->map->max_coeff >= -1 && fdf->map->max_coeff <= 1)
+		fdf->map->max_coeff += 1;
 	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
 	fdf->cam->scale = (fdf->map->height_win / \
 		fmax(fdf->map->width, fdf->map->height));
@@ -48,6 +50,7 @@ static t_fdf	*init_struct_main(void)
 		ft_free(fdf->data);
 		return (ft_free(fdf->map), ft_free(fdf), NULL);
 	}
+	fdf->map->tab = NULL;
 	return (fdf);
 }
 
@@ -57,14 +60,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("ERROR : Only one argument is valid -->\
+		ft_putendl_fd("ERROR : Only one argument is valid -->\
 			Here an example : './fdf user/map.fdf' ", 2);
 		exit(EXIT_FAILURE);
 	}
 	fdf = init_struct_main();
 	if (!fdf)
 	{
-		ft_putstr_fd("Malloc allocation failed for struct", 2);
+		ft_putendl_fd("Malloc allocation failed for struct", 2);
 		exit(EXIT_FAILURE);
 	}
 	parsing(argv[1], fdf);
