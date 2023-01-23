@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/23 09:16:12 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:42:24 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "mlx/mlx_linux/mlx.h"
+# include "mlx/mlx_macos/mlx.h"
 # include "LIBFT/libft.h"
 # include <math.h>
 # include "define_utils.h"
