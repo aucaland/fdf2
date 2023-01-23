@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/20 16:30:49 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/23 08:58:25 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
 	if (keycode == ESC)
 	{
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		mlx_destroy_image(fdf->mlx, fdf->data->img2);
-		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 		ft_free_fdf(fdf, 0);
 	}
 	else if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || \

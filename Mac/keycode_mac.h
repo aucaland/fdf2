@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:12:40 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/10 14:57:20 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/23 08:58:25 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@
 # define NUM_P7			89
 # define NUM_P8			91
 # define NUM_P9			92
+
+# define P				35
 
 #endif

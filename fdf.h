@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/10 14:57:11 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:16:12 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_tools
 	double			rot_z;
 	float			inc_z;
 	int				h_on;
-	int 			proj;
+	int				proj;
 }						t_tools;
 
 typedef struct s_point
@@ -119,6 +119,7 @@ void				ft_inc_z2(t_fdf *fdf);
 void				ft_change_color(int keycode, t_fdf *fdf);
 void				ft_chose_color(int keycode, t_fdf *fdf);
 int					button_press(t_fdf *fdf);
+int					ft_hook_key_release(int keycode, t_fdf *fdf);
 
 			/*					PARSING				*/
 
