@@ -69,8 +69,6 @@ void	ft_inc_z2(t_fdf *fdf)
 
 int	button_press(t_fdf *fdf)
 {
-	mlx_destroy_image(fdf->mlx, fdf->data->img);
-	mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 	ft_free_fdf(fdf, 0);
 	return (0);
 }

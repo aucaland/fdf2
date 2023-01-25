@@ -6,7 +6,7 @@
 /*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/23 09:53:21 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:29:59 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ static t_fdf	*init_struct_main(void)
 		ft_free(fdf->data);
 		return (ft_free(fdf->map), ft_free(fdf), NULL);
 	}
+	fdf->cam->h_on = 0;
 	fdf->map->tab = NULL;
+	fdf->data->img = NULL;
 	return (fdf);
 }
 
@@ -61,7 +63,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putendl_fd("ERROR : Only one argument is valid -->\
-			Here an example : './fdf user/map.fdf' ", 2);
+			Here an example : './fdf test_maps/42.fdf' ", 2);
 		exit(EXIT_FAILURE);
 	}
 	fdf = init_struct_main();

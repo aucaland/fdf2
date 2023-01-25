@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/21 12:40:42 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/25 19:36:31 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	parsing(char *path, t_fdf *fdf)
 	close(fd);
 	if (nbr_line <= 0 || list_pars == NULL)
 	{
-		ft_putstr_fd("Empty file or illegal content", 2);
+		perror(path);
 		ft_free_fdf(fdf, -1);
 	}
 	count_word(fdf, list_pars);
