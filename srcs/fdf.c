@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/25 19:29:59 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/28 23:24:50 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	init_default_value(t_fdf *fdf)
 	fdf->col.r = NULL;
 	fdf->col.g = NULL;
 	fdf->col.b = NULL;
+	fdf->col.str1 = NULL;
+	fdf->col.str2 = NULL;
 }
 
 static t_fdf	*init_struct_main(void)
@@ -50,10 +52,41 @@ static t_fdf	*init_struct_main(void)
 		ft_free(fdf->data);
 		return (ft_free(fdf->map), ft_free(fdf), NULL);
 	}
+	return (fdf);
+}
+
+void	init_mlx(t_fdf **fdf)
+{
+	(*fdf)->mlx = mlx_init();
+	if (!(*fdf)->mlx)
+	{
+		dprintf(2, "OK");
+		ft_putendl_fd("ERROR in MLX init", 2);
+		ft_free_fdf(*fdf, -1);
+	}
+	(*fdf)->mlx_win = mlx_new_window((*fdf)->mlx, (*fdf)->map->width_win, \
+		(*fdf)->map->height_win, "FdF");
+}
+
+void	clean_fdf(t_fdf *fdf)
+{
+	fdf->mlx = NULL;
+	fdf->mlx2 = NULL;
+	fdf->mlx_win = NULL;
+	fdf->mlx_win2 = NULL;
+	fdf->map = NULL;
+	fdf->data = NULL;
+	fdf->cam = NULL;
+}
+
+void	clean_fdf_sub(t_fdf *fdf)
+{
 	fdf->cam->h_on = 0;
 	fdf->map->tab = NULL;
 	fdf->data->img = NULL;
-	return (fdf);
+	fdf->data->img = NULL;
+	fdf->data->img2 = NULL;
+	fdf->data->addr = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -61,24 +94,20 @@ int	main(int argc, char **argv)
 	t_fdf	*fdf;
 
 	if (argc != 2)
-	{
-		ft_putendl_fd("ERROR : Only one argument is valid -->\
-			Here an example : './fdf test_maps/42.fdf' ", 2);
-		exit(EXIT_FAILURE);
-	}
+		exit_fdf(fdf, ARGC_ERR, "", 1);
+	clean_fdf(fdf);
 	fdf = init_struct_main();
+	clean_fdf_sub(fdf);
 	if (!fdf)
 	{
 		ft_putendl_fd("Malloc allocation failed for struct", 2);
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	parsing(argv[1], fdf);
 	init_default_value(fdf);
 	fill_palett(fdf);
 	fill_palett_next(fdf);
-	fdf->mlx = mlx_init();
-	fdf->mlx_win = mlx_new_window(fdf->mlx, fdf->map->width_win, \
-		fdf->map->height_win, "FdF");
+//	init_mlx(&fdf);
 	ft_hook_define(fdf);
 	create_img(fdf);
 	print_menu(fdf, H);

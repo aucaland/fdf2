@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/23 11:42:24 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/28 23:34:07 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx/mlx_linux/mlx.h"
 # include "mlx/mlx_macos/mlx.h"
 # include "LIBFT/libft.h"
+# include "errors.h"
 # include <math.h>
 # include "define_utils.h"
 # include <stdio.h>
@@ -163,5 +164,5 @@ void				colors_menu(t_fdf *fdf, int i);
 void				colors_menu2(t_fdf *fdf, int i);
 			/*						free					*/
 
-void				ft_free_fdf(t_fdf *fdf, int i);
+void				ft_free_fdf(t_fdf *fdf, int state);
 #endif

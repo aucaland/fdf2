@@ -12,16 +12,16 @@
 
 #include "libft.h"
 
-void	ft_freetabi(int **tab, int size)
+void	ft_freetabi(int ***tab, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		free(tab[i]);
+		free(*(tab[i]));
 		i++;
 	}
-	free(tab);
-	tab = NULL;
+	free(*tab);
+	*tab = NULL;
 }

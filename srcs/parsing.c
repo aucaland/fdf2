@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/25 19:36:31 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/28 23:19:45 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	*fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 		list_content = list_pars->content;
 		fdf->map->tab[i] = malloc(sizeof(int) * nbr_word);
 		if (!fdf->map->tab[i])
-			return (ft_freetabi(fdf->map->tab, i), \
+			return (ft_freetabi(&fdf->map->tab, i), \
 				ft_free_fdf(fdf, -1), NULL);
 		set_map_z(fdf, nbr_word, list_content, i);
 		list_pars = list_pars->next;
@@ -109,6 +109,7 @@ void	parsing(char *path, t_fdf *fdf)
 		ft_free_fdf(fdf, -1);
 	}
 	list_pars = NULL;
+	dprintf(2, "OK countword\n");
 	nbr_line = read_file(&list_pars, fdf, fd);
 	close(fd);
 	if (nbr_line <= 0 || list_pars == NULL)

@@ -11,10 +11,12 @@ SRC_NAME	= fdf.c\
 			  utils2_fdf.c\
 			  hook_colors.c\
 			  hook_define2.c\
-			  menu.c
+			  menu.c\
+			  errors.c\
 
 INCS_FDF	= fdf.h\
 			  define_utils.h\
+			  errors.h\
 			  ./Mac/keycode_mac.h\
 			  ./Linux/keycode_linux.h
 
@@ -60,13 +62,15 @@ CH_FLAG	= -I. -I$(MLX) -ILIBFT
 
 ## Rules ##
 
-all:			$(NAME)
+all:			build_lib $(NAME)
 
-$(NAME):	 $(OBJ)
+build_lib:
 	@echo "Making LIBFT"
 	@make all -C LIBFT
 	@echo "Making MLX"
 	@make all -C $(MLX)
+
+$(NAME):	 $(OBJ)
 	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 	@$(MODE)

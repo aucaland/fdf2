@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:24:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/25 19:22:40 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/28 23:11:46 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	ft_free_fdf(t_fdf *fdf, int i)
-{
-	if (fdf->cam->h_on == 1)
-		mlx_destroy_image(fdf->mlx, fdf->data->img2);
-	if (fdf->data->img != NULL)
-	{
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-	}
-	if (fdf->data)
-		ft_free(fdf->data);
-	if (fdf->cam)
-		ft_free(fdf->cam);
-	if (fdf->map->tab)
-		ft_freetabi(fdf->map->tab, fdf->map->nbr_line);
-	if (fdf->cam)
-		ft_free(fdf->map);
-	ft_free(fdf);
-	if (i == 0)
-		exit(EXIT_SUCCESS);
-	if (i == -1)
-		exit(EXIT_FAILURE);
-}
 
 int	get_default_color(int z, t_fdf *fdf)
 {
