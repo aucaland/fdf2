@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/20 16:34:31 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 18:40:22 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,13 @@ void	create_img(t_fdf *fdf)
 {
 	fdf->data->img = mlx_new_image(fdf->mlx, \
 	fdf->map->width_win, fdf->map->height_win);
+	if (!fdf->data->img)
+		exit_fdf(fdf, MLX_IMG_ERR, "for 'fdf->data->img' in 'create_img'", 0);
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, \
 	&fdf->data->bits_per_pixel, \
 			&fdf->data->line_length, &fdf->data->endian);
+	if (!fdf->data->addr)
+		exit_fdf(fdf, MLX_DATA_ERR, "for 'fdf->data->addr' in 'create_img", 0);
 	comput_line(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img, 0, 0);
 	print_menu(fdf, 0);

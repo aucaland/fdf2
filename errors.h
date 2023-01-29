@@ -8,5 +8,7 @@
 # define	PERROR			"PERROR"
 # define 	MLX_INIT_ERR	"ERROR in 'MLX' lib initialization "
 # define 	MLX_WIN_ERR		"ERROR in 'MLX' window creation "
+# define 	MLX_IMG_ERR		"ERROR in 'MLX' image creation "
+# define 	MLX_DATA_ERR	"ERROR in 'MLX' add data "
 # define 	MAP_ERR			"Error parsing : X coordinates are not homogeneous"
 #endif //FDF_ERRORS_H

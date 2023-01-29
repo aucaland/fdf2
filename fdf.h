@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 17:02:32 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 18:45:51 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ void				fill_palett_next(t_fdf *fdf);
 			/*						MENU					*/
 
 void				print_menu(t_fdf *fdf, int Keycode);
-void				print_menu2(t_fdf *fdf, int Keycode);
-void				print_menu3(t_fdf *fdf, int Keycode);
+void				print_menu_curr_colors(t_fdf *fdf, int Keycode);
+void				print_menu_guide(t_fdf *fdf, int Keycode);
 void				colors_menu(t_fdf *fdf, int i);
 void				colors_menu2(t_fdf *fdf, int i);
 			/*						free					*/
@@ -168,9 +168,9 @@ void				colors_menu2(t_fdf *fdf, int i);
 void				ft_free_fdf(t_fdf *fdf, int state);
 void				exit_fdf(t_fdf *fdf, char *err, char *location, int state);
 void				protect_alloc(t_fdf *fdf, void *ptr, void *ptr_two, char *location);
-void				protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_two, char *location);
+void				protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_list, char *location);
 void				ft_free_fdf_end(t_fdf *fdf);
-void				free_menu(t_fdf *fdf, char *str, char *str1, char *str2);
+void				free_menu(t_fdf *fdf);
 void				clean_fdf_sub(t_fdf *fdf);
 void				clean_fdf(t_fdf *fdf);
 

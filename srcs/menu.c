@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:14:17 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/23 09:27:28 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:51:24 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,19 @@
 
 void	print_menu(t_fdf *fdf, int Keycode)
 {
-	char	*str;
-
-	str = NULL;
 	if (Keycode == H)
 	{
 		if (fdf->cam->h_on == 1)
 			mlx_destroy_image(fdf->mlx, fdf->data->img2);
 		fdf->data->img2 = mlx_new_image(fdf->mlx, 400, 900);
+		if (!fdf->data->img2)
+			exit_fdf(fdf, MLX_IMG_ERR, "for 'fdf->img2' in 'print_menu'",0);
 		mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img2, 0, 0);
 	}
-	if (fdf->col.palr[0] == P0_1 && fdf->col.palr[9] == P0_1)
-		str = "Palette 1 HYPERCHILL";
-	if (fdf->col.palr[0] == P1_1 && fdf->col.palr[9] == P1_1)
-		str = "Palette 2 NEON_SPACE";
-	if (fdf->col.palr[0] == P2_1 && fdf->col.palr[9] == P2_1)
-		str = "Palette 3 Perso";
-	if (str != NULL)
-	{
-		fdf->str = ft_strjoin("Colors :", str);
-		mlx_string_put(fdf->mlx, fdf->mlx_win, \
-			65, 20, GREEN_F * 0.55, fdf->str);
-		free(fdf->str);
-	}
-	else
-		print_menu2(fdf, Keycode);
+	print_menu_curr_colors(fdf, Keycode);
 }
 
-void	print_menu2(t_fdf *fdf, int Keycode)
+void	print_menu_curr_colors(t_fdf *fdf, int Keycode)
 {
 	int		i;
 
@@ -49,7 +34,6 @@ void	print_menu2(t_fdf *fdf, int Keycode)
 	while (i <= 9)
 	{
 		colors_menu(fdf, i);
-		colors_menu2(fdf, i);
 		mlx_string_put(fdf->mlx, fdf->mlx_win, 122, 20, \
 		GREEN_F * 0.48, "--CURRENT COLORS--\n");
 		mlx_string_put(fdf->mlx, fdf->mlx_win, 70, 50 + i * 3, \
@@ -58,13 +42,13 @@ void	print_menu2(t_fdf *fdf, int Keycode)
 		WHITE * 0.55, fdf->col.str1);
 		mlx_string_put(fdf->mlx, fdf->mlx_win, 295, 50 + i * 3, \
 		WHITE * 0.55, fdf->col.str2);
-		free_menu(fdf, fdf->str, fdf->col.str1, fdf->col.str2);
+		free_menu(fdf);
 		i += 9;
 	}
-	print_menu3(fdf, Keycode);
+	print_menu_guide(fdf, Keycode);
 }
 
-void	print_menu3(t_fdf *fdf, int Keycode)
+void	print_menu_guide(t_fdf *fdf, int Keycode)
 {
 	if (Keycode == H)
 	{
@@ -92,42 +76,49 @@ void	print_menu3(t_fdf *fdf, int Keycode)
 void	colors_menu(t_fdf *fdf, int i)
 {
 	fdf->col.r = ft_itoa(fdf->col.palr[i] >> 16 & 255);
-	if (fdf->col.r == NULL)
-		ft_free_fdf(fdf, -1);
+	protect_alloc(fdf, fdf->col.r, NULL, "for 'fdf->col.r' in 'colors_menu'");
 	fdf->col.g = ft_itoa(fdf->col.palr[i] >> 8 & 255);
 	if (fdf->col.g == NULL)
-	{
-		free(fdf->col.r);
-		ft_free_fdf(fdf, -1);
-	}
+		protect_alloc(fdf, fdf->col.g, fdf->col.r, "for 'col.g' in col_menu");
 	fdf->col.b = ft_itoa(fdf->col.palr[i] & 255);
 	if (fdf->col.b == NULL)
 	{
-		free(fdf->col.r);
-		free(fdf->col.g);
-		ft_free_fdf(fdf, -1);
+		free_menu(fdf);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->col.b' in 'colors_menu'", 0);
 	}
+	if (i == 0)
+	{
+		fdf->str = ft_strjoin("ALT_MIN_Z : R=", fdf->col.r);
+		if (!fdf->str)
+		{
+			free_menu(fdf);
+			exit_fdf(fdf, MALLOC_ERR, "for 'fdf->str' in 'colors_menu'", 0);
+		}
+	}
+	colors_menu2(fdf, i);
 }
 
 void	colors_menu2(t_fdf *fdf, int i)
 {
-	if (i == 0)
-		fdf->str = ft_strjoin("ALT_MIN_Z : R=", fdf->col.r);
-	else
+	if (i != 0)
+	{
 		fdf->str = ft_strjoin("ALT_MAX_Z : R=", fdf->col.r);
-	if (!fdf->str)
-		ft_free_fdf(fdf, -1);
+		if (!fdf->str)
+		{
+			free_menu(fdf);
+			exit_fdf(fdf, MALLOC_ERR, "for 'fdf->str' in 'colors_menu2'", 0);
+		}
+	}
 	fdf->col.str1 = ft_strjoin(" G=", fdf->col.g);
 	if (!fdf->col.str1)
 	{
-		free(fdf->str);
-		ft_free_fdf(fdf, -1);
+		free_menu(fdf);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->col->str1' in 'colors_menu2", 0);
 	}
 	fdf->col.str2 = ft_strjoin(" B=", fdf->col.b);
 	if (!fdf->col.str2)
 	{
-		free(fdf->col.str1);
-		free(fdf->str);
-		ft_free_fdf(fdf, -1);
+		free_menu(fdf);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->col->str2' in 'colors_menu2", 0);
 	}
 }

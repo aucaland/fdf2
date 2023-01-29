@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:07:03 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 17:08:49 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 18:49:54 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,24 @@ void	clean_fdf_sub(t_fdf *fdf)
 	fdf->data->addr = NULL;
 }
 
-void	free_menu(t_fdf *fdf, char *str, char *str1, char *str2)
+void	free_menu(t_fdf *fdf)
 {
-	free(str);
-	str = NULL;
-	free(str2);
-	str2 = NULL;
-	free(str1);
-	str1 = NULL;
-	free(fdf->col.r);
+	if (fdf->str)
+		free(fdf->str);
+	fdf->str = NULL;
+	if (fdf->col.str2)
+		free(fdf->col.str2);
+	fdf->col.str2 = NULL;
+	if (fdf->col.str1)
+		free(fdf->col.str1);
+	fdf->col.str1 = NULL;
+	if (fdf->col.r)
+		free(fdf->col.r);
 	fdf->col.r = NULL;
-	free(fdf->col.g);
+	if (fdf->col.g)
+		free(fdf->col.g);
 	fdf->col.g = NULL;
-	free(fdf->col.b);
+	if (fdf->col.b)
+		free(fdf->col.b);
 	fdf->col.b = NULL;
 }

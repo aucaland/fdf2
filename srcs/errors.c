@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:30:04 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 17:02:32 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 18:10:28 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	exit_fdf(t_fdf *fdf, char *err, char *location, int state)
 void	ft_free_fdf(t_fdf *fdf, int state)
 {
 	(void)state;
-	if (fdf->cam->h_on == 1)
+	if (fdf->data && fdf->data->img2)
 		mlx_destroy_image(fdf->mlx, fdf->data->img2);
-	if (fdf->data->img)
+	if (fdf->data && fdf->data->img)
 		mlx_destroy_image(fdf->mlx, fdf->data->img);
-	if (fdf->map->tab)
+	if (fdf->map && fdf->map->tab)
 	{
 		ft_freetabi(&fdf->map->tab, fdf->map->nbr_line);
 		free(fdf->map->tab);
@@ -75,10 +75,10 @@ void	protect_alloc(t_fdf *fdf, void *ptr, void *ptr_two, char *location)
 	exit_fdf(fdf, MALLOC_ERR, location, 0);
 }
 
-void	protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_two, char *location)
+void	protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_list, char *location)
 {
 	if (ptr)
 		return ;
-	ft_lstclear((t_list**)ptr_two, free);
+	ft_lstclear((t_list**)ptr_list, free);
 	exit_fdf(fdf, MALLOC_ERR, location, 0);
 }

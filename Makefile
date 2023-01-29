@@ -30,7 +30,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 #### Compil ####
 
-CC 		= gcc -O2
+CC 		= gcc -O2 -g
 CFLAGS 	= -Wall -Wextra -Werror
 
 #### OS ####
