@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/29 03:35:59 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:38:25 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 	int		i;
 
 	i = -1;
+	fdf->map->min_coeff = 0;
 	while (++i < nbr_line)
 	{
 		list_content = list_pars->content;
@@ -109,7 +110,7 @@ void	parsing(char *path, t_fdf *fdf)
 	nbr_line = read_file(&list_pars, fdf, fd);
 	close(fd);
 	count_word(fdf, list_pars);
-	if (fdf->map->map_valid == 0)
+	if (!fdf->map->map_valid)
 	{
 		ft_lstclear(&list_pars, free);
 		exit_fdf(fdf, MAP_ERR, "", 0);

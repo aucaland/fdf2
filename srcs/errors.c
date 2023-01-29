@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:30:04 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 02:51:48 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 17:02:32 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,29 @@ void	exit_fdf(t_fdf *fdf, char *err, char *location, int state)
 
 void	ft_free_fdf(t_fdf *fdf, int state)
 {
-	if (state == 1)
+	(void)state;
+	if (fdf->cam->h_on == 1)
+		mlx_destroy_image(fdf->mlx, fdf->data->img2);
+	if (fdf->data->img)
+		mlx_destroy_image(fdf->mlx, fdf->data->img);
+	if (fdf->map->tab)
 	{
-		if (fdf->map->tab)
-			ft_freetabi(&fdf->map->tab, fdf->map->nbr_line);
-		if (fdf->cam->h_on == 1)
-			mlx_destroy_image(fdf->mlx, fdf->data->img2);
-		if (fdf->data->img)
-		{
-			mlx_destroy_image(fdf->mlx, fdf->data->img);
-			mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-		}
+		ft_freetabi(&fdf->map->tab, fdf->map->nbr_line);
+		free(fdf->map->tab);
+	}
+	ft_free_fdf_end(fdf);
+}
+
+void	ft_free_fdf_end(t_fdf *fdf)
+{
+	if (fdf->mlx_win)
+		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
+	if (fdf->mlx_win2)
+		mlx_destroy_window(fdf->mlx, fdf->mlx_win2);
+	if (fdf->mlx)
+	{
+		mlx_destroy_display(fdf->mlx);
+		free(fdf->mlx);
 	}
 	if (fdf->data)
 		ft_free(fdf->data);

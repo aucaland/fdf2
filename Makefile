@@ -13,6 +13,7 @@ SRC_NAME	= fdf.c\
 			  hook_define2.c\
 			  menu.c\
 			  errors.c\
+			  errors2.c
 
 INCS_FDF	= fdf.h\
 			  define_utils.h\

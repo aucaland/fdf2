@@ -1,53 +1,607 @@
-==51717== Memcheck, a memory error detector
-==51717== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==51717== Using Valgrind-3.20.0 and LibVEX; rerun with -h for copyright info
-==51717== Command: ./fdf test_maps/42.fdf
-==51717== Parent PID: 8427
-==51717== 
-==51717== 
-==51717== HEAP SUMMARY:
-==51717==     in use at exit: 120 bytes in 3 blocks
-==51717==   total heap usage: 57 allocs, 54 frees, 6,244 bytes allocated
-==51717== 
-==51717== 40 bytes in 1 blocks are still reachable in loss record 1 of 3
-==51717==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
-==51717==    by 0x489BE49: XInitThreads (locking.c:606)
-==51717==    by 0x4004CDD: call_init (dl-init.c:70)
-==51717==    by 0x4004CDD: call_init (dl-init.c:26)
-==51717==    by 0x4004DCB: _dl_init (dl-init.c:117)
-==51717==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-==51717==    by 0x1: ???
-==51717==    by 0x1FFEFFFE3E: ???
-==51717==    by 0x1FFEFFFE44: ???
-==51717== 
-==51717== 40 bytes in 1 blocks are still reachable in loss record 2 of 3
-==51717==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
-==51717==    by 0x489BE66: XInitThreads (locking.c:608)
-==51717==    by 0x4004CDD: call_init (dl-init.c:70)
-==51717==    by 0x4004CDD: call_init (dl-init.c:26)
-==51717==    by 0x4004DCB: _dl_init (dl-init.c:117)
-==51717==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-==51717==    by 0x1: ???
-==51717==    by 0x1FFEFFFE3E: ???
-==51717==    by 0x1FFEFFFE44: ???
-==51717== 
-==51717== 40 bytes in 1 blocks are still reachable in loss record 3 of 3
-==51717==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
-==51717==    by 0x489BE83: XInitThreads (locking.c:613)
-==51717==    by 0x4004CDD: call_init (dl-init.c:70)
-==51717==    by 0x4004CDD: call_init (dl-init.c:26)
-==51717==    by 0x4004DCB: _dl_init (dl-init.c:117)
-==51717==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-==51717==    by 0x1: ???
-==51717==    by 0x1FFEFFFE3E: ???
-==51717==    by 0x1FFEFFFE44: ???
-==51717== 
-==51717== LEAK SUMMARY:
-==51717==    definitely lost: 0 bytes in 0 blocks
-==51717==    indirectly lost: 0 bytes in 0 blocks
-==51717==      possibly lost: 0 bytes in 0 blocks
-==51717==    still reachable: 120 bytes in 3 blocks
-==51717==         suppressed: 0 bytes in 0 blocks
-==51717== 
-==51717== For lists of detected and suppressed errors, rerun with: -s
-==51717== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==67810== Memcheck, a memory error detector
+==67810== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==67810== Using Valgrind-3.20.0 and LibVEX; rerun with -h for copyright info
+==67810== Command: ./fdf test_maps/42.fdf
+==67810== Parent PID: 55797
+==67810== 
+==67810== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==67810==    at 0x5116E64: writev (writev.c:26)
+==67810==    by 0x49DC17B: UnknownInlinedFun (xcb_conn.c:277)
+==67810==    by 0x49DC17B: _xcb_conn_wait.part.0 (xcb_conn.c:522)
+==67810==    by 0x49DC2EF: UnknownInlinedFun (xcb_out.c:463)
+==67810==    by 0x49DC2EF: _xcb_out_send (xcb_out.c:464)
+==67810==    by 0x49DD487: UnknownInlinedFun (xcb_out.c:412)
+==67810==    by 0x49DD487: xcb_writev (xcb_out.c:405)
+==67810==    by 0x48B3C24: _XSend (xcb_io.c:587)
+==67810==    by 0x48B7D7F: _XReadEvents (xcb_io.c:461)
+==67810==    by 0x48B812B: XWindowEvent (WinEvent.c:79)
+==67810==    by 0x40669A: mlx_int_wait_first_expose (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40647B: mlx_new_window (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402726: init_mlx (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024DC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Address 0x51fef5c is 28 bytes inside a block of size 16,384 alloc'd
+==67810==    at 0x4E09C7D: calloc (vg_replace_malloc.c:1340)
+==67810==    by 0x48A2258: XOpenDisplay (OpenDis.c:240)
+==67810==    by 0x406250: mlx_init (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402702: init_mlx (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024DC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a stack allocation
+==67810==    at 0x406600: mlx_int_anti_resize_win (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40337E: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403399: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C3B468: fmax (s_fmax.S:25)
+==67810==    by 0x4030DD: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403191: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403155: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x40315A: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403168: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Use of uninitialised value of size 8
+==67810==    at 0x403A23: my_mlx_pixel_put (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40326A: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4031A0: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40341A: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403548: ft_rotate_x (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FBB: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x4035C8: ft_rotate_y (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FCF: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DAA: __sincos_fma (s_sincos.c:46)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73DC2: __sincos_fma (s_sincos.c:50)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C73FCC: __sincos_fma (s_sincos.c:53)
+==67810==    by 0x403638: ft_rotate_z (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x402FE3: proj (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403438: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4C3B468: fmax (s_fmax.S:25)
+==67810==    by 0x4030DD: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403191: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403155: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x40315A: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403168: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Use of uninitialised value of size 8
+==67810==    at 0x403A23: my_mlx_pixel_put (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x40326A: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x4031A0: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403839: get_color (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403251: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403869: get_color (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403251: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403491: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403839: get_color (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403251: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== Conditional jump or move depends on uninitialised value(s)
+==67810==    at 0x403869: get_color (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403251: bresenham (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4033E9: comput_line (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x403507: create_img (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==    by 0x4024EC: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810==  Uninitialised value was created by a heap allocation
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x402490: main (in /home/aurel/Documents/CLionProjects/FdF/fdf)
+==67810== 
+==67810== 
+==67810== HEAP SUMMARY:
+==67810==     in use at exit: 120 bytes in 3 blocks
+==67810==   total heap usage: 324 allocs, 321 frees, 108,632 bytes allocated
+==67810== 
+==67810== 40 bytes in 1 blocks are still reachable in loss record 1 of 3
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x489BE49: XInitThreads (locking.c:606)
+==67810==    by 0x4004CDD: call_init (dl-init.c:70)
+==67810==    by 0x4004CDD: call_init (dl-init.c:26)
+==67810==    by 0x4004DCB: _dl_init (dl-init.c:117)
+==67810==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==67810==    by 0x1: ???
+==67810==    by 0x1FFEFFFE3A: ???
+==67810==    by 0x1FFEFFFE40: ???
+==67810== 
+==67810== 40 bytes in 1 blocks are still reachable in loss record 2 of 3
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x489BE66: XInitThreads (locking.c:608)
+==67810==    by 0x4004CDD: call_init (dl-init.c:70)
+==67810==    by 0x4004CDD: call_init (dl-init.c:26)
+==67810==    by 0x4004DCB: _dl_init (dl-init.c:117)
+==67810==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==67810==    by 0x1: ???
+==67810==    by 0x1FFEFFFE3A: ???
+==67810==    by 0x1FFEFFFE40: ???
+==67810== 
+==67810== 40 bytes in 1 blocks are still reachable in loss record 3 of 3
+==67810==    at 0x4E050C5: malloc (vg_replace_malloc.c:393)
+==67810==    by 0x489BE83: XInitThreads (locking.c:613)
+==67810==    by 0x4004CDD: call_init (dl-init.c:70)
+==67810==    by 0x4004CDD: call_init (dl-init.c:26)
+==67810==    by 0x4004DCB: _dl_init (dl-init.c:117)
+==67810==    by 0x401B8DF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==67810==    by 0x1: ???
+==67810==    by 0x1FFEFFFE3A: ???
+==67810==    by 0x1FFEFFFE40: ???
+==67810== 
+==67810== LEAK SUMMARY:
+==67810==    definitely lost: 0 bytes in 0 blocks
+==67810==    indirectly lost: 0 bytes in 0 blocks
+==67810==      possibly lost: 0 bytes in 0 blocks
+==67810==    still reachable: 120 bytes in 3 blocks
+==67810==         suppressed: 0 bytes in 0 blocks
+==67810== 
+==67810== For lists of detected and suppressed errors, rerun with: -s
+==67810== ERROR SUMMARY: 115999 errors from 55 contexts (suppressed: 0 from 0)

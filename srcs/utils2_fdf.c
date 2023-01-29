@@ -44,19 +44,3 @@ void	check_map(t_fdf *fdf, int nbr_word, int count)
 	}
 	fdf->map->map_valid = 1;
 }
-
-void	free_menu(t_fdf *fdf, char *str, char *str1, char *str2)
-{
-	free(str);
-	str = NULL;
-	free(str2);
-	str2 = NULL;
-	free(str1);
-	str1 = NULL;
-	free(fdf->col.r);
-	fdf->col.r = NULL;
-	free(fdf->col.g);
-	fdf->col.g = NULL;
-	free(fdf->col.b);
-	fdf->col.b = NULL;
-}

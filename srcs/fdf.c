@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 01:06:30 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 16:50:51 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,44 +36,25 @@ void	init_default_value(t_fdf *fdf)
 static void	init_struct_main(t_fdf *fdf)
 {
 	fdf->map = malloc(sizeof(t_map));
-	if (!(fdf->map))
-		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->map' in 'init_struct_main'", 0);
+	protect_alloc(fdf, (t_map *)fdf->map, NULL, \
+									"for 'fdf->map' in 'init_struct_main'");
 	fdf->data = malloc(sizeof(t_data));
-	if (!(fdf->data))
-		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->data' in 'init_struct_main'", 0);
+	protect_alloc(fdf, (t_data *)fdf->data, NULL, \
+									"for 'fdf->data' in 'init_struct_main'");
 	fdf->cam = malloc(sizeof(t_tools));
-	if (!(fdf->cam))
-		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->cam' in 'init_struct_main'", 0);
+	protect_alloc(fdf, (t_tools *)fdf->cam, NULL, \
+									"for 'fdf->cam' in 'init_struct_main'");
 }
 
 void	init_mlx(t_fdf **fdf)
 {
 	(*fdf)->mlx = mlx_init();
-	if (!((*fdf)->mlx))
-		exit_fdf(*fdf, MLX_ERR, "in 'init_mlx", 0);
+	if (!(*fdf)->mlx)
+		exit_fdf(*fdf, MLX_INIT_ERR, "in 'init_mlx", 0);
 	(*fdf)->mlx_win = mlx_new_window((*fdf)->mlx, (*fdf)->map->width_win, \
 		(*fdf)->map->height_win, "FdF");
-}
-
-void	clean_fdf(t_fdf *fdf)
-{
-	fdf->mlx = NULL;
-	fdf->mlx2 = NULL;
-	fdf->mlx_win = NULL;
-	fdf->mlx_win2 = NULL;
-	fdf->map = NULL;
-	fdf->data = NULL;
-	fdf->cam = NULL;
-}
-
-void	clean_fdf_sub(t_fdf *fdf)
-{
-	fdf->cam->h_on = 0;
-	fdf->map->tab = NULL;
-	fdf->data->img = NULL;
-	fdf->data->img = NULL;
-	fdf->data->img2 = NULL;
-	fdf->data->addr = NULL;
+	if (!(*fdf)->mlx_win)
+		exit_fdf(*fdf, MLX_WIN_ERR, "in 'ml_new_window'", 0);
 }
 
 int	main(int argc, char **argv)
