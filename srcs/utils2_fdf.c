@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_fdf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:03:16 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/10 14:14:20 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/29 03:20:00 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ void	check_map(t_fdf *fdf, int nbr_word, int count)
 {
 	if (nbr_word <= 0)
 	{
-		ft_putendl_fd("Error parsing : X coordinates are not homogeneous", 2);
-		ft_free_fdf(fdf, -1);
+		fdf->map->map_valid = 0;
+		return ;
 	}
 	if (count == 1)
 		fdf->map->width = nbr_word;
 	if (nbr_word != fdf->map->width)
 	{
-		ft_putendl_fd("Error parsing : X coordinates are not homogeneous", 2);
-		ft_free_fdf(fdf, -1);
+		fdf->map->map_valid = 0;
+		return ;
 	}
+	fdf->map->map_valid = 1;
 }
 
 void	free_menu(t_fdf *fdf, char *str, char *str1, char *str2)

@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:20:56 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/28 23:34:07 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 02:31:56 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data {
 	int				line_length;
 	int				endian;
 	int				color;
+
 }						t_data;
 
 typedef struct s_map
@@ -49,6 +50,7 @@ typedef struct s_map
 	int				height_win;
 	int				width_win;
 	int				nbr_line;
+	int				map_valid;
 
 }						t_map;
 
@@ -165,4 +167,7 @@ void				colors_menu2(t_fdf *fdf, int i);
 			/*						free					*/
 
 void				ft_free_fdf(t_fdf *fdf, int state);
+void				exit_fdf(t_fdf *fdf, char *err, char *location, int state);
+void				protect_alloc(t_fdf *fdf, void *ptr, void *ptr_two, char *location);
+void				protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_two, char *location);
 #endif

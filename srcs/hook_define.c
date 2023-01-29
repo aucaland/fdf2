@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_define.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:13:45 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/23 08:58:25 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/01/29 00:13:29 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	ft_translate(int keycode, t_fdf *fdf)
 int	ft_hook_keycode(int keycode, t_fdf *fdf)
 {
 	if (keycode == ESC)
-	{
-		ft_free_fdf(fdf, 0);
-	}
+		exit_fdf(fdf, "", "", 0);
 	else if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || \
 		keycode == UP_ARROW || keycode == DOWN_ARROW)
 		ft_translate(keycode, fdf);

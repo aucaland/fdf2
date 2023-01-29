@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/28 23:24:50 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 01:06:30 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,24 @@ void	init_default_value(t_fdf *fdf)
 	fdf->col.str2 = NULL;
 }
 
-static t_fdf	*init_struct_main(void)
+static void	init_struct_main(t_fdf *fdf)
 {
-	t_fdf	*fdf;
-
-	fdf = malloc(sizeof(t_fdf));
-	if (!fdf)
-		return (free(fdf), fdf = NULL, NULL);
 	fdf->map = malloc(sizeof(t_map));
 	if (!(fdf->map))
-		return (ft_free(fdf), NULL);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->map' in 'init_struct_main'", 0);
 	fdf->data = malloc(sizeof(t_data));
 	if (!(fdf->data))
-		return (ft_free(fdf->map), ft_free(fdf), NULL);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->data' in 'init_struct_main'", 0);
 	fdf->cam = malloc(sizeof(t_tools));
 	if (!(fdf->cam))
-	{
-		ft_free(fdf->data);
-		return (ft_free(fdf->map), ft_free(fdf), NULL);
-	}
-	return (fdf);
+		exit_fdf(fdf, MALLOC_ERR, "for 'fdf->cam' in 'init_struct_main'", 0);
 }
 
 void	init_mlx(t_fdf **fdf)
 {
 	(*fdf)->mlx = mlx_init();
-	if (!(*fdf)->mlx)
-	{
-		dprintf(2, "OK");
-		ft_putendl_fd("ERROR in MLX init", 2);
-		ft_free_fdf(*fdf, -1);
-	}
+	if (!((*fdf)->mlx))
+		exit_fdf(*fdf, MLX_ERR, "in 'init_mlx", 0);
 	(*fdf)->mlx_win = mlx_new_window((*fdf)->mlx, (*fdf)->map->width_win, \
 		(*fdf)->map->height_win, "FdF");
 }
@@ -94,20 +81,19 @@ int	main(int argc, char **argv)
 	t_fdf	*fdf;
 
 	if (argc != 2)
-		exit_fdf(fdf, ARGC_ERR, "", 1);
-	clean_fdf(fdf);
-	fdf = init_struct_main();
-	clean_fdf_sub(fdf);
+		exit_fdf(NULL, ARGC_ERR, "", 1);
+	fdf = NULL;
+	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
-	{
-		ft_putendl_fd("Malloc allocation failed for struct", 2);
-		exit(EXIT_SUCCESS);
-	}
+		exit_fdf(fdf, MALLOC_ERR, "for 't_fdf' in 'main'", 1);
+	clean_fdf(fdf);
+	init_struct_main(fdf);
+	clean_fdf_sub(fdf);
 	parsing(argv[1], fdf);
 	init_default_value(fdf);
 	fill_palett(fdf);
 	fill_palett_next(fdf);
-//	init_mlx(&fdf);
+	init_mlx(&fdf);
 	ft_hook_define(fdf);
 	create_img(fdf);
 	print_menu(fdf, H);

@@ -6,11 +6,11 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 20:50:25 by aucaland          #+#    #+#             */
-/*   Updated: 2022/12/11 20:49:00 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/29 00:50:01 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	ft_freetabi(int ***tab, int size)
 {
@@ -19,7 +19,7 @@ void	ft_freetabi(int ***tab, int size)
 	i = 0;
 	while (i < size)
 	{
-		free(*(tab[i]));
+		free((*tab)[i]);
 		i++;
 	}
 	free(*tab);

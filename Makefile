@@ -67,10 +67,10 @@ all:			build_lib $(NAME)
 build_lib:
 	@echo "Making LIBFT"
 	@make all -C LIBFT
-	@echo "Making MLX"
-	@make all -C $(MLX)
 
 $(NAME):	 $(OBJ)
+	@echo "Making MLX"
+	@make all -C $(MLX)
 	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
 	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
 	@$(MODE)
