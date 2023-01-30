@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:30:04 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 18:10:28 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/30 10:15:04 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,12 @@ void	ft_free_fdf_end(t_fdf *fdf)
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 	if (fdf->mlx_win2)
 		mlx_destroy_window(fdf->mlx, fdf->mlx_win2);
-	if (fdf->mlx)
-	{
-		mlx_destroy_display(fdf->mlx);
-		free(fdf->mlx);
-	}
 	if (fdf->data)
 		ft_free(fdf->data);
 	if (fdf->cam)
 		ft_free(fdf->cam);
 	if (fdf->map)
 		ft_free(fdf->map);
-	ft_free(fdf);
 	exit(EXIT_SUCCESS);
 }
 
@@ -75,10 +69,11 @@ void	protect_alloc(t_fdf *fdf, void *ptr, void *ptr_two, char *location)
 	exit_fdf(fdf, MALLOC_ERR, location, 0);
 }
 
-void	protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_list, char *location)
+void	protect_alloc_list(t_fdf *fdf, void *ptr, void **ptr_list,
+															char *location)
 {
 	if (ptr)
 		return ;
-	ft_lstclear((t_list**)ptr_list, free);
+	ft_lstclear((t_list **)ptr_list, free);
 	exit_fdf(fdf, MALLOC_ERR, location, 0);
 }

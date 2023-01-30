@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_fdf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:03:16 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/29 03:20:00 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/30 09:43:29 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel));
 	*(unsigned int *)dst = color;
 }
 

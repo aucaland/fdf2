@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 18:02:54 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/30 09:40:00 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	init_default_value(t_fdf *fdf)
 
 static void	init_struct_main(t_fdf *fdf)
 {
-	fdf->map = malloc(sizeof(t_map));
+	fdf->map = ft_calloc(sizeof(t_map), 1);
 	protect_alloc(fdf, fdf->map, NULL, \
 									"for 'fdf->map' in 'init_struct_main'");
-	fdf->data = malloc(sizeof(t_data));
+	fdf->data = ft_calloc(sizeof(t_data), 1);
 	protect_alloc(fdf, fdf->data, NULL, \
 									"for 'fdf->data' in 'init_struct_main'");
-	fdf->cam = malloc(sizeof(t_tools));
+	fdf->cam = ft_calloc(sizeof(t_tools), 1);
 	protect_alloc(fdf, fdf->cam, NULL, \
 									"for 'fdf->cam' in 'init_struct_main'");
 }
@@ -60,25 +60,20 @@ void	init_mlx(t_fdf *fdf)
 
 int	main(int argc, char **argv)
 {
-	t_fdf	*fdf;
+	t_fdf	fdf;
 
 	if (argc != 2)
 		exit_fdf(NULL, ARGC_ERR, "", 1);
-	fdf = NULL;
-	fdf = malloc(sizeof(t_fdf));
-	if (!fdf)
-		exit_fdf(fdf, MALLOC_ERR, "for 't_fdf' in 'main'", 1);
-	clean_fdf(fdf);
-	init_struct_main(fdf);
-	clean_fdf_sub(fdf);
-	parsing(argv[1], fdf);
-	init_default_value(fdf);
-	fill_palett(fdf);
-	fill_palett_next(fdf);
-	init_mlx(fdf);
-	ft_hook_define(fdf);
-	create_img(fdf);
-	print_menu(fdf, H);
-	fdf->cam->h_on = 1;
-	mlx_loop(fdf->mlx);
+	ft_bzero(&fdf, sizeof (t_fdf));
+	init_struct_main(&fdf);
+	parsing(argv[1], &fdf);
+	init_default_value(&fdf);
+	fill_palett(&fdf);
+	fill_palett_next(&fdf);
+	init_mlx(&fdf);
+	ft_hook_define(&fdf);
+	create_img(&fdf);
+	print_menu(&fdf, H);
+	fdf.cam->h_on = 1;
+	mlx_loop(fdf.mlx);
 }

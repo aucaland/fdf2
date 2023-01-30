@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:13:28 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/29 16:38:25 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/30 10:13:14 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 	count_line = 0;
 	new = NULL;
 	line = get_next_line(fd);
+	if (!line)
+		close(fd);
 	protect_alloc(fdf, (char *)line, NULL, "for 'line' or empty map");
 	while (line != NULL)
 	{
@@ -57,7 +59,8 @@ static int	read_file(t_list **list_pars, t_fdf *fdf, int fd)
 		if (new == NULL)
 		{
 			free(line);
-			protect_alloc_list(fdf, (t_list *)new,  (void **)list_pars, "for lsnew");
+			close(fd);
+			protect_alloc_list(fdf, (t_list *)new, (void **)list_pars, "newl");
 		}
 		ft_lstadd_back(list_pars, new);
 		count_line++;
@@ -86,7 +89,8 @@ static int	fill_tab(t_list *list_pars, t_fdf *fdf, int nbr_line, int nbr_word)
 	return (1);
 }
 
-static void	init_struct_map(t_fdf *fdf, t_list **list_pars, int nbr_line, int nbr_word)
+static void	init_struct_map(t_fdf *fdf, t_list **list_pars, int nbr_line,
+																int nbr_word)
 {
 	fdf->map->height = nbr_line;
 	fdf->map->width = nbr_word;

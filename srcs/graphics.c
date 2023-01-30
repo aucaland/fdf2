@@ -98,6 +98,7 @@ void	create_img(t_fdf *fdf)
 	fdf->data->addr = mlx_get_data_addr(fdf->data->img, \
 	&fdf->data->bits_per_pixel, \
 			&fdf->data->line_length, &fdf->data->endian);
+	fdf->data->bits_per_pixel /= 8;
 	if (!fdf->data->addr)
 		exit_fdf(fdf, MLX_DATA_ERR, "for 'fdf->data->addr' in 'create_img", 0);
 	comput_line(fdf);

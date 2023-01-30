@@ -20,7 +20,7 @@ void	print_menu(t_fdf *fdf, int Keycode)
 			mlx_destroy_image(fdf->mlx, fdf->data->img2);
 		fdf->data->img2 = mlx_new_image(fdf->mlx, 400, 900);
 		if (!fdf->data->img2)
-			exit_fdf(fdf, MLX_IMG_ERR, "for 'fdf->img2' in 'print_menu'",0);
+			exit_fdf(fdf, MLX_IMG_ERR, "for 'fdf->img2' in 'print_menu'", 0);
 		mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->data->img2, 0, 0);
 	}
 	print_menu_curr_colors(fdf, Keycode);

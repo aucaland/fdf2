@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:07:03 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 18:49:54 by aurel            ###   ########.fr       */
+/*   Updated: 2023/01/30 10:14:32 by aucaland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../fdf.h"
-
-void	clean_fdf(t_fdf *fdf)
-{
-	fdf->mlx = NULL;
-	fdf->mlx2 = NULL;
-	fdf->mlx_win = NULL;
-	fdf->mlx_win2 = NULL;
-	fdf->map = NULL;
-	fdf->data = NULL;
-	fdf->cam = NULL;
-}
-
-void	clean_fdf_sub(t_fdf *fdf)
-{
-	fdf->cam->h_on = 0;
-	fdf->map->tab = NULL;
-	fdf->data->img = NULL;
-	fdf->data->img = NULL;
-	fdf->data->img2 = NULL;
-	fdf->data->addr = NULL;
-}
+#include "../fdf.h"
 
 void	free_menu(t_fdf *fdf)
 {
