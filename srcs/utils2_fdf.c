@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_fdf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:03:16 by aucaland          #+#    #+#             */
-/*   Updated: 2023/01/30 09:43:29 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/02/03 23:21:38 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	isometric(float *x, float *y, int z, t_fdf *fdf)
 {
 	(void)fdf;
-	*x = (*x - *y) * cos(0.60);
-	*y = (*x + *y) * sin(0.60) - z * (cos(0.5555) - sin(0.5555)) \
-		* (fdf->cam->scale / (fdf->map->height_win / fdf->map->height));
+	(void)z;
+	float tmp_x;
+
+	tmp_x = *x;
+	*x = (*x - *y) * cos(0.35);
+	*y = (tmp_x + *y) * sin(0.35) - z;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

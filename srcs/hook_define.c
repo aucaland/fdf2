@@ -24,9 +24,15 @@ int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	(void)y;
 	(void)x;
 	if (keycode == 5)
+	{
+		fdf->cam->inc_z *= 0.96;
 		fdf->cam->scale *= 0.96;
+	}
 	else if (keycode == 4)
+	{
+		fdf->cam->inc_z *= 1.04;
 		fdf->cam->scale *= 1.04;
+	}
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	if (fdf->cam->h_on == 1)

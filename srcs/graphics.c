@@ -6,7 +6,7 @@
 /*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:35:19 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/29 18:40:22 by aurel            ###   ########.fr       */
+/*   Updated: 2023/02/04 00:06:38 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ t_point	proj(t_fdf *fdf)
 {
 	fdf->point.x *= fdf->cam->scale;
 	fdf->point.y *= fdf->cam->scale;
-	fdf->point.z *= ((fdf->map->max_coeff * 0.4) / (fdf->map->height * 0.1));
+	if (fdf->map->width > 300)
+		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / (fdf->map->height * 0.4));
+	else
+		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / (fdf->map->height * 0.1));
 	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
 	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
@@ -62,6 +65,8 @@ t_fdf	*new_point(int x, int y, t_fdf *fdf)
 	fdf->point.y = y;
 	fdf->point.z = fdf->map->tab[y][x];
 	fdf->point.color = get_default_color(fdf->point.z, fdf);
+	if (fdf->map->width > 300)
+		fdf->point.z *= 1.2;
 	fdf->point.z *= fdf->cam->inc_z;
 	return (fdf);
 }

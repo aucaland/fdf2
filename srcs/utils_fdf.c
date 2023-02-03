@@ -19,25 +19,25 @@ int	get_default_color(int z, t_fdf *fdf)
 	percentage = percent((float)fdf->map->min_coeff, \
 	(float)fdf->map->max_coeff, z);
 	if (percentage < 0.1)
-		return (fdf->col.palr[0]);
+		return (fdf->col.pal2[0]);
 	else if (percentage < 0.2)
-		return (fdf->col.palr[1]);
+		return (fdf->col.pal2[1]);
 	else if (percentage < 0.3)
-		return (fdf->col.palr[2]);
+		return (fdf->col.pal2[2]);
 	else if (percentage < 0.4)
-		return (fdf->col.palr[3]);
+		return (fdf->col.pal2[3]);
 	else if (percentage < 0.5)
-		return (fdf->col.palr[4]);
+		return (fdf->col.pal2[4]);
 	else if (percentage < 0.6)
-		return (fdf->col.palr[5]);
+		return (fdf->col.pal2[5]);
 	else if (percentage < 0.7)
-		return (fdf->col.palr[6]);
+		return (fdf->col.pal2[6]);
 	else if (percentage < 0.8)
-		return (fdf->col.palr[7]);
+		return (fdf->col.pal2[7]);
 	else if (percentage < 0.9)
-		return (fdf->col.palr[8]);
+		return (fdf->col.pal2[8]);
 	else
-		return (fdf->col.palr[9]);
+		return (fdf->col.pal2[9]);
 }
 
 int	find_gradient_value(int start, int end, double percentage)

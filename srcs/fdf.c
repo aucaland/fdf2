@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aucaland <aucaland@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aurel <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 18:31:35 by aurel             #+#    #+#             */
-/*   Updated: 2023/01/30 09:40:00 by aucaland         ###   ########.fr       */
+/*   Updated: 2023/02/04 00:12:42 by aurel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	init_default_value(t_fdf *fdf)
 {
-	fdf->map->width_win = 1980;
-	fdf->map->height_win = 1080;
+	fdf->map->width_win = 1600;
+	fdf->map->height_win = 800;
 	fdf->cam->proj = 1;
 	fdf->cam->h_on = 0;
 	fdf->cam->offset_x = fdf->map->width_win / 2.3;
 	fdf->cam->offset_y = fdf->map->height_win / 2.3;
 	if (fdf->map->max_coeff >= -1 && fdf->map->max_coeff <= 1)
 		fdf->map->max_coeff += 1;
-	fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
+	if (fdf->map->width > 25)
+		fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 2;
+	else if (fdf->map->width > 12)
+		fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
 	fdf->cam->scale = (fdf->map->height_win / \
 		fmax(fdf->map->width, fdf->map->height));
 	fdf->col.str1 = NULL;
@@ -74,6 +77,7 @@ int	main(int argc, char **argv)
 	ft_hook_define(&fdf);
 	create_img(&fdf);
 	print_menu(&fdf, H);
+	dprintf(2, "%d", fdf.map->width);
 	fdf.cam->h_on = 1;
 	mlx_loop(fdf.mlx);
 }

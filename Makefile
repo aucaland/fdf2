@@ -30,7 +30,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 #### Compil ####
 
-CC 		= gcc -O2 -g
+CC 		= gcc -O2
 CFLAGS 	= -Wall -Wextra -Werror
 
 #### OS ####
@@ -50,10 +50,10 @@ UNAME_S := $(shell uname -s)
 D = 0
 ifeq ($(D), 1)
 	CC += -fsanitize=address -g3
-	MODE = echo "\033[0;31m MODE DEBUG SANITIZE \033[0m"
+	MODE = printf %b "\033[0;31m MODE DEBUG SANITIZE \033[0m"
 endif
 ifneq ($(D), 1)
-	MODE = echo "\033[0;31m MODE RELEASE \033[0m"
+	MODE = printf %b "\033[0;31m MODE RELEASE \033[0m"
 endif
 
 #### LIBS ####
@@ -66,30 +66,31 @@ CH_FLAG	= -I. -I$(MLX) -ILIBFT
 all:			build_lib $(NAME)
 
 build_lib:
-	@echo "Making LIBFT"
-	@make all -C LIBFT
+	@make --no-print-directory all -C LIBFT
 
 $(NAME):	 $(OBJ)
-	@echo "Making MLX"
-	@make all -C $(MLX)
+	@make --no-print-directory all -C $(MLX)
 	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAG) $(CH_FLAG) $(MLX_FLAG)
-	@echo  "-\033[1;35mEdit/Create: \033[0m $?                    \033[0;32m[OK]\033[0m"
+	@printf %b  "\033[1;35m-[$(NAME)]__Edit/Create .o in \033[0m  \033[0;32m[OK]\033[0m\n"
+	@printf %b  "\r"
 	@$(MODE)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INCS_FDF)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CH_FLAG) -o $@ -c $<
-	@echo "-\033[1;92mCompiling : \033[0m $?"
+	@printf %b "-\033[1;35m[$(NAME)]\033[0m__Compiling \033[1;92m$<\033[0m in \033[1;92m$@\033[0m..."
+	@printf "\r"
+
 
 clean:
 	@rm -rf $(OBJ)
-	@make clean -C LIBFT
-	@echo  "-\033[1;33m Remove objs file  \033[0m  \".o\"  for Fdf    	   \033[0;32m [OK] \033[0m"
+	@make --no-print-directory clean -C LIBFT
+	@printf %b  "-\033[1;33m[$(NAME)]__Remove objs file  \033[0m  \".o\"         \033[0;32m [OK] \033[0m\n"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C LIBFT
-	@echo  "-\033[1;33m Remove \033[0m             \"$(NAME)\"    		   \033[0;32m [OK] \033[0m"
+	@make --no-print-directory fclean -C LIBFT
+	@printf %b  "-\033[1;33m[$(NAME)]__Remove \033[0m             \"$(NAME)\"    \033[0;32m [OK] \033[0m\n"
 
 re: fclean all
 
