@@ -14,13 +14,12 @@
 
 void	isometric(float *x, float *y, int z, t_fdf *fdf)
 {
-	(void)fdf;
-	(void)z;
-	float tmp_x;
+	float	tmp_x;
 
+	(void)fdf;
 	tmp_x = *x;
-	*x = (*x - *y) * cos(0.35);
-	*y = (tmp_x + *y) * sin(0.35) - z;
+	*x = (*x - *y) * cos(0.45);
+	*y = (tmp_x + *y) * sin(0.45) - z;
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

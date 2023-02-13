@@ -14,12 +14,15 @@
 
 void	init_default_value(t_fdf *fdf)
 {
-	fdf->map->width_win = 1600;
-	fdf->map->height_win = 800;
+	fdf->map->width_win = 1900;
+	fdf->map->height_win = 1100;
 	fdf->cam->proj = 1;
 	fdf->cam->h_on = 0;
-	fdf->cam->offset_x = fdf->map->width_win / 2.3;
-	fdf->cam->offset_y = fdf->map->height_win / 2.3;
+	if (fdf->map->width > 220)
+	{
+		fdf->cam->offset_x = fdf->map->width_win / 2.9;
+		fdf->cam->offset_y = fdf->map->height_win / 3;
+	}
 	if (fdf->map->max_coeff >= -1 && fdf->map->max_coeff <= 1)
 		fdf->map->max_coeff += 1;
 	if (fdf->map->width > 25)
@@ -27,7 +30,7 @@ void	init_default_value(t_fdf *fdf)
 	else if (fdf->map->width > 12)
 		fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
 	fdf->cam->scale = (fdf->map->height_win / \
-		fmax(fdf->map->width, fdf->map->height));
+		(fmax(fdf->map->width, fdf->map->height)));
 	fdf->col.str1 = NULL;
 	fdf->col.str2 = NULL;
 	fdf->col.r = NULL;
@@ -48,6 +51,8 @@ static void	init_struct_main(t_fdf *fdf)
 	fdf->cam = ft_calloc(sizeof(t_tools), 1);
 	protect_alloc(fdf, fdf->cam, NULL, \
 									"for 'fdf->cam' in 'init_struct_main'");
+	fdf->cam->translate_x = 0;
+	fdf->cam->translate_y = 0;
 }
 
 void	init_mlx(t_fdf *fdf)
@@ -77,7 +82,6 @@ int	main(int argc, char **argv)
 	ft_hook_define(&fdf);
 	create_img(&fdf);
 	print_menu(&fdf, H);
-	dprintf(2, "%d", fdf.map->width);
 	fdf.cam->h_on = 1;
 	mlx_loop(fdf.mlx);
 }

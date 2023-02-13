@@ -58,15 +58,12 @@ int	get_color(t_point start, t_point end, t_point point)
 		percentage = percent(start.x, end.x, point.curx);
 	else
 		percentage = percent(start.y, end.y, point.cury);
-	red = find_gradient_value((start.color >> 16) & 0xFF,
-			(end.color >> 16) & 0xFF,
-			percentage);
-	green = find_gradient_value((start.color >> 8) & 0xFF,
-			(end.color >> 8) & 0xFF,
-			percentage);
-	blue = find_gradient_value(start.color & 0xFF,
-			end.color & 0xFF,
-			percentage);
+	red = find_gradient_value((start.color >> 16) & 0xFF, \
+								(end.color >> 16) & 0xFF, percentage);
+	green = find_gradient_value((start.color >> 8) & 0xFF, \
+								(end.color >> 8) & 0xFF, percentage);
+	blue = find_gradient_value(start.color & 0xFF, \
+										end.color & 0xFF, percentage);
 	return ((red << 16) | (green << 8) | blue);
 }
 

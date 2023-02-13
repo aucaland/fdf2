@@ -30,8 +30,16 @@ int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 	}
 	else if (keycode == 4)
 	{
-		fdf->cam->inc_z *= 1.04;
-		fdf->cam->scale *= 1.04;
+		if (fdf->map->width > 100 && fdf->cam->scale < 20)
+		{
+			fdf->cam->inc_z *= 1.04;
+			fdf->cam->scale *= 1.04;
+		}
+		else if (fdf->map->width < 100 && fdf->cam->scale)
+		{
+			fdf->cam->inc_z *= 1.04;
+			fdf->cam->scale *= 1.04;
+		}
 	}
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
@@ -43,13 +51,13 @@ int	ft_zoom(int keycode, int x, int y, t_fdf *fdf)
 int	ft_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == LEFT_ARROW)
-		fdf->cam->offset_x -= 6;
+		fdf->cam->translate_x -= 6;
 	else if (keycode == UP_ARROW)
-		fdf->cam->offset_y -= 6;
+		fdf->cam->translate_y -= 6;
 	else if (keycode == RIGHT_ARROW)
-		fdf->cam->offset_x += 6;
+		fdf->cam->translate_x += 6;
 	else if (keycode == DOWN_ARROW)
-		fdf->cam->offset_y += 6;
+		fdf->cam->translate_y += 6;
 	mlx_destroy_image(fdf->mlx, fdf->data->img);
 	create_img(fdf);
 	if (fdf->cam->h_on == 1)

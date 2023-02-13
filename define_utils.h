@@ -28,9 +28,7 @@ typedef struct s_col
 	char	*str2;
 }				t_col;
 
-# define BLUE_F 0x0000ff
 # define WHITE 0xffffff
-# define RED_F 0xff0000
 # define GREEN_F 0x00ff00
 
 				/*							PALETTES					*/

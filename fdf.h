@@ -58,6 +58,8 @@ typedef struct s_tools
 {
 	float			offset_x;
 	float			offset_y;
+	float			translate_x;
+	float			translate_y;
 	float			scale;
 	double			rot_x;
 	double			rot_y;

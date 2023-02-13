@@ -16,10 +16,19 @@ t_point	proj(t_fdf *fdf)
 {
 	fdf->point.x *= fdf->cam->scale;
 	fdf->point.y *= fdf->cam->scale;
-	if (fdf->map->width > 300)
-		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / (fdf->map->height * 0.4));
+	fdf->cam->offset_x = fdf->cam->translate_x + fdf->map->width_win / 2.9;
+	fdf->cam->offset_y = fdf->cam->translate_y + fdf->map->height_win / 3;
+	if (fdf->map->width < 220)
+	{
+		fdf->cam->offset_x = fdf->map->width_win / 2.1 + fdf->cam->translate_x;
+		fdf->cam->offset_y = fdf->map->height_win / 2.2 + fdf->cam->translate_y;
+	}
+	if (fdf->map->width > 220)
+		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / \
+										(fdf->map->height * 0.4));
 	else
-		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / (fdf->map->height * 0.1));
+		fdf->point.z *= ((fdf->map->max_coeff * 0.07) / \
+										(fdf->map->height * 0.1));
 	fdf->point.x -= (fdf->map->width * fdf->cam->scale) / 2;
 	fdf->point.y -= (fdf->map->height * fdf->cam->scale) / 2;
 	ft_rotate_x(&fdf->point.y, &fdf->point.z, fdf->cam->rot_x);
