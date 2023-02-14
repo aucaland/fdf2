@@ -12,6 +12,34 @@
 
 #include "../fdf.h"
 
+void	proj_plane(t_fdf *fdf)
+{
+	if (fdf->cam->proj == 0)
+	{
+		reset_map(fdf);
+		if (fdf->map->width > 25)
+			fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 2;
+		else if (fdf->map->width > 12)
+			fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
+		fdf->cam->scale = (fdf->map->height_win / \
+		(fmax(fdf->map->width, fdf->map->height)));
+		fdf->cam->proj = 1;
+	}
+	else
+	{
+		reset_map(fdf);
+		if (fdf->map->width > 25)
+			fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 2;
+		else if (fdf->map->width > 12)
+			fdf->cam->inc_z = (fdf->map->height_win / fdf->map->max_coeff) / 10;
+		fdf->cam->scale = (fdf->map->height_win / \
+		(fmax(fdf->map->width, fdf->map->height)));
+		fdf->cam->proj = 0;
+	}
+	mlx_destroy_image(fdf->mlx, fdf->data->img);
+	create_img(fdf);
+}
+
 void	ft_rotate(int keycode, t_fdf *fdf)
 {
 	if (keycode == W)

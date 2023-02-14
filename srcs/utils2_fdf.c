@@ -46,3 +46,13 @@ void	check_map(t_fdf *fdf, int nbr_word, int count)
 	}
 	fdf->map->map_valid = 1;
 }
+
+void	reset_map(t_fdf *fdf)
+{
+	fdf->point.x = 0;
+	fdf->point.y = 0;
+	fdf->point.z = 0;
+	fdf->cam->rot_x = 0;
+	fdf->cam->rot_y = 0;
+	fdf->cam->rot_z = 0;
+}

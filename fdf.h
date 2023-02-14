@@ -126,6 +126,7 @@ void				ft_change_color(int keycode, t_fdf *fdf);
 void				ft_chose_color(int keycode, t_fdf *fdf);
 int					button_press(t_fdf *fdf);
 int					ft_hook_key_release(int keycode, t_fdf *fdf);
+void				proj_plane(t_fdf *fdf);
 
 			/*					PARSING				*/
 
@@ -146,6 +147,7 @@ t_point				proj(t_fdf *fdf);
 t_fdf				*new_point(int x, int y, t_fdf *fdf);
 void				isometric(float *x, float *y, int z, t_fdf *fdf);
 void				bresenham(t_point coord0, t_point coord1, t_fdf *fdf);
+void				reset_map(t_fdf *fdf);
 
 			/*						Colors					*/
 

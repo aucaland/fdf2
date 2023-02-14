@@ -106,12 +106,7 @@ int	ft_hook_keycode2(int keycode, t_fdf *fdf)
 	}
 	else if (keycode == P)
 	{
-		if (fdf->cam->proj == 0)
-			fdf->cam->proj = 1;
-		else
-			fdf->cam->proj = 0;
-		mlx_destroy_image(fdf->mlx, fdf->data->img);
-		create_img(fdf);
+		proj_plane(fdf);
 	}
 	return (0);
 }
