@@ -14,6 +14,7 @@ SRC_NAME	= fdf.c\
 			  menu.c\
 			  errors.c\
 			  errors2.c
+LIB_A		= LIBFT/libft.a
 
 INCS_FDF	= fdf.h\
 			  define_utils.h\
@@ -63,10 +64,11 @@ CH_FLAG	= -I. -I$(MLX) -ILIBFT
 
 ## Rules ##
 
-all:			build_lib $(NAME)
+all:			$(NAME)
 
-build_lib:
+$(LIB_A): force
 	@make --no-print-directory all -C LIBFT
+
 
 $(NAME):	 $(OBJ)
 	@make --no-print-directory all -C $(MLX)
@@ -75,7 +77,7 @@ $(NAME):	 $(OBJ)
 	@printf %b  "\r"
 	@$(MODE)
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INCS_FDF)
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INCS_FDF) $(LIB_A)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CH_FLAG) -o $@ -c $<
 	@printf %b "-\033[1;35m[$(NAME)]\033[0m__Compiling \033[1;92m$<\033[0m in \033[1;92m$@\033[0m..."
@@ -94,4 +96,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re force
