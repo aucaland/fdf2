@@ -1,5 +1,16 @@
 # Fil De Fer (FDF)
 
+## Installation and compilation :
+- X11 Lib has to be installed :
+```bash
+sudo apt update
+sudo apt install libxext-dev libx11-dev zlib1g-dev libpng-dev
+```
+- And *libbsd* too :
+```bash
+sudo apt install libbsd-dev
+```
+
 ## Résumé
 Ce projet consiste à créer graphiquement la représentation schématique d’un terrain en relief.
 
