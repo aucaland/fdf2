@@ -11,6 +11,12 @@ sudo apt install libxext-dev libx11-dev zlib1g-dev libpng-dev
 ```bash
 sudo apt install libbsd-dev
 ```
+### How to use :
+```bash
+cd fdf2
+make
+./fdf test_maps/map.fdf
+```
 
 ## Résumé
 Ce projet consiste à créer graphiquement la représentation schématique d’un terrain en relief.
