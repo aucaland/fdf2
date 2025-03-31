@@ -1,6 +1,7 @@
 # Fil De Fer (FDF)
 
 ## Installation and compilation :
+### For Linux and Mac only
 - X11 Lib has to be installed :
 ```bash
 sudo apt update
